@@ -8,12 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello!
-<form action="<%=path %>/user/create" method="post">
-<input type="text" name="user_name">
-<input type="text" name="user_password">
-<input type="submit" value="提交">
-</form>
-${result }
+<center><h1>欢迎来到“智能孝子”后台管理</h1>
+<a href="<%=path %>/rob/beacon/message">获取音频</a>
+</center>
+<%--<form action="<%=path %>/user/create" method="post">--%>
+<%--<input type="text" name="user_name">--%>
+<%--<input type="text" name="user_password">--%>
+<%--<input type="submit" value="提交">--%>
+<%--</form>--%>
+<%--${result }--%>
 </body>
 </html>

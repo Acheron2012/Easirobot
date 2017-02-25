@@ -1,5 +1,9 @@
 package com.ictwsn.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.misc.BASE64Encoder;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -10,11 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import sun.misc.BASE64Encoder;
 
 @SuppressWarnings("restriction")
 public class Tools {
@@ -92,11 +91,12 @@ public class Tools {
 		}
 		return null;
 	}
-	
+
+	//Properties操作
 	public static String getConfigureValue(String key)
 	{
 		Properties property = new Properties();
-		InputStream in = Tools.class.getResourceAsStream("/configure/system.properties");
+		InputStream in = Tools.class.getResourceAsStream("/system.properties");
 		if(in==null) logger.info("未读取到配置文件");
 		try {
 			property.load(in);
@@ -105,7 +105,9 @@ public class Tools {
 		}
 		return property.getProperty(key);
 	}
-	
+
+
+
 	public static void main(String[] args) {
 		/*try {
 			System.out.println(EncrypSHA("easicloudjljajdfio324jll38hl3"));
@@ -114,7 +116,9 @@ public class Tools {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}*/
-		System.out.println(getNowDate8());
+
+
+//		System.out.println(getNowDate8());
 	}
 	
 }

@@ -1,25 +1,15 @@
 package com.ictwsn.utils;
 
-import java.io.Serializable;
-
-import javax.annotation.Resource;
-
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.annotation.Resource;
+import java.io.Serializable;
+
 @SuppressWarnings("restriction")
 public class BaseDao {
-	//Mongodb
-	@Resource 
-	protected MongoTemplate mongoTemplate;
-	public MongoTemplate getMongoTemplate() {
-		return mongoTemplate;
-	}
-	public void setMongoTemplate(MongoTemplate mongoTemplate) {
-		this.mongoTemplate = mongoTemplate;
-	}
+
 	//JdbcTemplate
 	@Resource
 	protected JdbcTemplate jdbcTemplate;

@@ -1,7 +1,5 @@
 package com.ictwsn.utils;
 
-import com.ictwsn.test.bean.UserBean;
-import com.ictwsn.test.CookieUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +9,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
@@ -44,8 +41,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	
      // 过滤掉特殊请求的URL
-     		String url = request.getRequestURL().toString();
-     		
+     		/*String url = request.getRequestURL().toString();
+
      		 logger.info(">>>: " + url);
      		for (String s : IGNORE_URI) {
      			if (url.contains(s)) {
@@ -99,7 +96,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
      		} else {
      			logger.info("用户API请求，user_key为：{}", user_key);
      			return true;
-     		}
+     		}*/
+     		return true;
     }
  
     /** 
@@ -110,7 +108,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 //        super.postHandle(request, response, handler, modelAndView);
     	String redirect_url = request.getRequestURL().toString().substring(0,request.getRequestURL().toString().lastIndexOf("/"));
-    	logger.info("可在这里更变权限设置:{}",jdbcTemplate==null);
+//    	logger.info("可在这里更变权限设置:{}",jdbcTemplate==null);
 //    	response.sendRedirect(redirect_url+"/index2.jsp");  
     }
     /**  

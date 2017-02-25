@@ -1,8 +1,9 @@
 package com.ictwsn.utils;
 
-import java.io.UnsupportedEncodingException;  
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
-import sun.misc.*;  
+import java.io.UnsupportedEncodingException;
   
 public class Base64 {  
     // 加密  
@@ -37,7 +38,7 @@ public class Base64 {
     }  
     
     public static void main(String[] args) {
-    	String s = encode("hahah");
+    	String s = encode("文件加密");
     	System.out.println(s);
     	s = decode(s);
     	System.out.println(s);
