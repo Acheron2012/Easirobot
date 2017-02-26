@@ -18,17 +18,17 @@ import org.apache.commons.collections.map.StaticBucketMap;
 import org.apache.http.ParseException;
 import org.dom4j.DocumentException;
 
-import com.Ictwsn.Jpush.Jpush;
+import com.ictwsn.weixin.jpush.Jpush;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.util.CheckUtil;
-import com.util.MessageUtil;
-import com.util.WeixinUtil;
-import com.zy.po.*;
-import com.zy.thread.TokenThread;
+import com.ictwsn.weixin.util.CheckUtil;
+import com.ictwsn.weixin.util.MessageUtil;
+import com.ictwsn.weixin.util.WeixinUtil;
+import com.ictwsn.weixin.zy.po.*;
+import com.ictwsn.weixin.zy.thread.TokenThread;
 
 import net.sf.json.JSONObject;
 
-import com.zy.database.*;
+import com.ictwsn.weixin.zy.database.*;
 
 @SuppressWarnings("serial")
 @WebServlet("/WeinxinServlet")

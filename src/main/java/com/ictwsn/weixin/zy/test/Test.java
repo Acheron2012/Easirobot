@@ -1,14 +1,10 @@
 package com.ictwsn.weixin.zy.test;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-
+import com.ictwsn.weixin.util.WeixinUtil;
+import com.ictwsn.weixin.zy.po.AccessToken;
 import org.apache.http.ParseException;
 
-import com.util.WeixinUtil;
-import com.zy.po.AccessToken;
+import java.io.IOException;
 
 public class Test {
 

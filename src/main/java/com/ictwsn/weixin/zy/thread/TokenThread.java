@@ -1,11 +1,10 @@
 package com.ictwsn.weixin.zy.thread;
 
-import java.io.IOException;
-
+import com.ictwsn.weixin.util.WeixinUtil;
+import com.ictwsn.weixin.zy.po.AccessToken;
 import org.apache.http.ParseException;
 
-import com.util.WeixinUtil;
-import com.zy.po.AccessToken;
+import java.io.IOException;
 
 public class TokenThread implements Runnable {
 
@@ -14,8 +13,8 @@ public class TokenThread implements Runnable {
     public static String appid = "";  
     // 第三方用户唯一密钥 
     public static String appsecret = "";  
-    public static AccessToken accessToken = null;  
-	@Override
+    public static AccessToken accessToken = null;
+
 	public void run() {
 		// TODO Auto-generated method stub
 

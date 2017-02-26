@@ -38,15 +38,15 @@ import org.apache.http.util.EntityUtils;
 
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.sun.security.jgss.ExtendedGSSContext;
-import com.zy.menu.Button;
-import com.zy.menu.ClickButton;
-import com.zy.menu.Menu;
-import com.zy.menu.ViewButton;
-import com.zy.po.AccessToken;
-import com.zy.trans.Data;
-import com.zy.trans.Parts;
-import com.zy.trans.Symbols;
-import com.zy.trans.TransResult;
+import com.ictwsn.weixin.zy.menu.Button;
+import com.ictwsn.weixin.zy.menu.ClickButton;
+import com.ictwsn.weixin.zy.menu.Menu;
+import com.ictwsn.weixin.zy.menu.ViewButton;
+import com.ictwsn.weixin.zy.po.AccessToken;
+import com.ictwsn.weixin.zy.trans.Data;
+import com.ictwsn.weixin.zy.trans.Parts;
+import com.ictwsn.weixin.zy.trans.Symbols;
+import com.ictwsn.weixin.zy.trans.TransResult;
 
 /**
  * 微信工具类

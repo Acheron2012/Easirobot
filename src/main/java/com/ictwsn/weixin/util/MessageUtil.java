@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
-import com.zy.po.*;
+import com.ictwsn.weixin.zy.po.*;
 
 import org.dom4j.Element;
 import org.dom4j.Document;
