@@ -83,7 +83,10 @@ public class Jpush {
                 .setNotification(Notification.alert(ALERT))
                 .build();
     }
-    
+
+
+
+
     public static PushPayload buildPushObject_android_tag_alertWithTitle() {
         return PushPayload.newBuilder()
                 .setPlatform(Platform.android())

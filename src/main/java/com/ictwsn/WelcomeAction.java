@@ -9,6 +9,7 @@ public class WelcomeAction {
 	//欢迎界面（测试）
 	@RequestMapping("/welcome.do")
     public String welcome(){
+		System.out.println("测试页面");
 		return "index";
 	}
 	

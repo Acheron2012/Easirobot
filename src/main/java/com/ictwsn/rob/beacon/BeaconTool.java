@@ -61,10 +61,10 @@ public class BeaconTool {
                                             Attribute messageAttribute = (Attribute) message_attribute.next();
                                             if (messageAttribute.getName().equals("id") && messageAttribute.getValue().equals(random)) {
                                                 //判断该音频文件是否存在
-                                                audioPath = audioFile + moduleAttribute.getValue() + "\\" + scenarioAttribute.getValue() + "\\" + messageAttribute.getValue() + ".mp3";
+                                                audioPath = audioFile + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
                                                 //音频文件不存在，语音合成并下载到本地
                                                 if (!fileExists(new File(audioPath))) {
-                                                    logger.info("音频文件"+random+".mp3不存在，正在合成语音...");
+                                                    logger.info("音频文件:"+scenarioAttribute.getValue()+"-"+random+".mp3不存在，正在合成语音...");
                                                     TextToSpeech.downloadAudio(audioPath, messageElement.getText());
                                                     logger.info("语音合成完毕");
                                                 }

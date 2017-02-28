@@ -25,7 +25,8 @@ public class BeaconAction {
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request, HttpServletResponse response,
                           @RequestParam(value = "scenario", required = true) String scenario) throws IOException, ServletException {
-        String settings_path = this.getClass().getClassLoader().getResource("com/ictwsn/settings.xml").getPath();
+        String settings_path = BeaconAction.class.getClassLoader().getResource("").getPath()+"/"+"settings.xml";
+
         //获取解析后的合成语音
         String audioPath = BeaconTool.parsingBeaconXML(settings_path,scenario);
         try {
