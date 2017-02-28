@@ -1,6 +1,6 @@
 package com.ictwsn.rob.beacon;
 
-import com.ictwsn.utils.Tools;
+import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.speech.TextToSpeech;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -23,10 +23,10 @@ import java.util.Random;
 public class BeaconTool {
 
     public static Logger logger = LoggerFactory.getLogger(BeaconTool.class);
-    public static String audioFile = "E:\\document\\audio\\";
+    public static String audioFile;
 
     static {
-        audioFile = Tools.getConfigureValue("audioFile");
+        audioFile = Tools.getConfigureValue("audio.path");
     }
 
 
@@ -60,8 +60,10 @@ public class BeaconTool {
                                         for (Iterator message_attribute = messageElement.attributeIterator(); message_attribute.hasNext(); ) {
                                             Attribute messageAttribute = (Attribute) message_attribute.next();
                                             if (messageAttribute.getName().equals("id") && messageAttribute.getValue().equals(random)) {
+                                                //判断语音文件夹是否存在，若不存在，则创建
+                                                Tools.createdDirectory(audioFile +"/"+ moduleAttribute.getValue() + "/" + scenarioAttribute.getValue());
                                                 //判断该音频文件是否存在
-                                                audioPath = audioFile + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
+                                                audioPath = audioFile +"/"+ moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
                                                 //音频文件不存在，语音合成并下载到本地
                                                 if (!fileExists(new File(audioPath))) {
                                                     logger.info("音频文件:"+scenarioAttribute.getValue()+"-"+random+".mp3不存在，正在合成语音...");

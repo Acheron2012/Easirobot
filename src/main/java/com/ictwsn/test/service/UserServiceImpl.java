@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.ictwsn.test.bean.UserBean;
 import com.ictwsn.test.dao.UserDao;
-import com.ictwsn.utils.BaseDao;
+import com.ictwsn.utils.tools.BaseDao;
 
 @Service
 public class UserServiceImpl extends BaseDao implements UserService{

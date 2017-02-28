@@ -6,7 +6,7 @@
 
   <!-- 日志监听 -->
   <listener>
-    <listener-class>com.ictwsn.utils.Log4jListener</listener-class>
+    <listener-class>com.ictwsn.utils.tools.Log4jListener</listener-class>
   </listener>
 
   <context-param>

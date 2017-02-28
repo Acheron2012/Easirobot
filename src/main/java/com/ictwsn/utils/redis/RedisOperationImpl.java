@@ -13,7 +13,7 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.stereotype.Repository;
 
-import com.ictwsn.utils.BaseDao;
+import com.ictwsn.utils.tools.BaseDao;
 
 
 @Repository
