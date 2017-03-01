@@ -1,6 +1,6 @@
 package com.ictwsn.web.wechat.test;
 
-import com.ictwsn.web.wechat.po.AccessToken;
+import com.ictwsn.web.wechat.bean.AccessToken;
 import com.ictwsn.web.wechat.util.WeixinUtil;
 import org.apache.http.ParseException;
 

@@ -31,14 +31,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.ictwsn.web.wechat.menu.Button;
-import com.ictwsn.web.wechat.menu.Menu;
-import com.ictwsn.web.wechat.menu.ViewButton;
-import com.ictwsn.web.wechat.po.AccessToken;
-import com.ictwsn.web.wechat.trans.Data;
-import com.ictwsn.web.wechat.trans.Parts;
-import com.ictwsn.web.wechat.trans.Symbols;
-import com.ictwsn.web.wechat.trans.TransResult;
+import com.ictwsn.web.wechat.bean.menu.Button;
+import com.ictwsn.web.wechat.bean.menu.Menu;
+import com.ictwsn.web.wechat.bean.menu.ViewButton;
+import com.ictwsn.web.wechat.bean.AccessToken;
+import com.ictwsn.web.wechat.bean.trans.Data;
+import com.ictwsn.web.wechat.bean.trans.Parts;
+import com.ictwsn.web.wechat.bean.trans.Symbols;
+import com.ictwsn.web.wechat.bean.trans.TransResult;
 
 /**
  * 微信工具类

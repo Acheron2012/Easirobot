@@ -17,8 +17,8 @@
 			<message id="">请尽情的挥洒吧</message>
 		</scenario>
 		<scenario name="kitchen">
-			<message id="">您将创造出一盘美好的食物</message>
-			<message id="">请注意用刀安全</message>
+			<message id="1">您将创造出一盘美好的食物</message>
+			<message id="2">请注意用刀安全</message>
 		</scenario>
 		<scenario name="toilet">
 			<message id="1">请注意墙角，小心磕碰</message>

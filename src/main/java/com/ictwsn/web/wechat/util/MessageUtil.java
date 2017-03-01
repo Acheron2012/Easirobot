@@ -1,24 +1,16 @@
 package com.ictwsn.web.wechat.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.ictwsn.web.wechat.po.*;
+import com.ictwsn.web.wechat.bean.*;
+import com.thoughtworks.xstream.XStream;
+import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.ictwsn.weixin.zy.po.*;
-
-import org.dom4j.Element;
-import org.dom4j.Document;
-import com.thoughtworks.xstream.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 public class MessageUtil {
 	

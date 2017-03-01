@@ -36,7 +36,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="loginInterceptor" class="com.ictwsn.utils.LoginInterceptor"/>
+            <bean id="loginInterceptor" class="com.ictwsn.utils.tools.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -73,6 +73,6 @@
           p:defaultEncoding="UTF-8"/>
 
     <!-- SpringMVC启动后的系统初始化配置 -->
-    <bean id="initialConfiguration" class="com.ictwsn.utils.InitialConfiguration"></bean>
+    <bean id="initialConfiguration" class="com.ictwsn.utils.tools.InitialConfiguration"></bean>
 
 </beans>
