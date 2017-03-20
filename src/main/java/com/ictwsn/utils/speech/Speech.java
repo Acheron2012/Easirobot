@@ -13,13 +13,13 @@ public class Speech {
 
     public static final String SERVERURL = "http://vop.baidu.com/server_api";
     public static String TOKEN = "";
-    public static final String SPEECHFILENAME = "D:\\FFOutput\\Feb 24, 11.29.wav";
+    public static final String SPEECHFILENAME = "D:\\FFOutput\\beijing.amr";
     public static final String APIKEY = "Dt70455RDRmose5bs3qFoTLp";
     public static final String SECRETKEY = "9b2aa909022349be024b4a93d6ea252e";
     public static final String CUID = "94-DE-80-23-9B-23";
 
     public static final String SPD = "3";
-    public static final String AUDIOFILENAME = "Audio2";
+    public static final String AUDIOFILENAME = "Audio_new";
 
     //获取百度的认证密匙
     public static String getToken() {

@@ -1,6 +1,7 @@
 package com.ictwsn.utils.speech;
 
 
+import com.ictwsn.utils.turing.TuringUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -19,13 +20,14 @@ import java.io.*;
 public class SpeechRecognition {
 
     public static void main(String[] args) throws Exception {
-        recognition();
+        recognition(Speech.SPEECHFILENAME);
     }
 
 
-    private static void recognition() throws Exception {
+    public static String recognition(String speechPath) throws Exception {
 
-        File audioFile = new File(Speech.SPEECHFILENAME);
+        String speechText = null;
+        File audioFile = new File(speechPath);
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(Speech.SERVERURL);
@@ -54,8 +56,12 @@ public class SpeechRecognition {
             // 请求结束，返回结果
             String resData = EntityUtils.toString(httpResponse.getEntity());
             JSONObject resJson = JSONObject.fromObject(resData);
-            System.out.println(resJson);
+            if("0".equals(resJson.getString("err_no")))
+                //提取返回的结果并过滤掉特殊字符
+                speechText = TuringUtils.StringFilter(resJson.getString("result"));
+
         }
+        return speechText;
     }
 
 
