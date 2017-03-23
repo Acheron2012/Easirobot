@@ -54,6 +54,7 @@ public class WechatAction {
         String echostr = request.getParameter("echostr");
 
         PrintWriter out = response.getWriter();
+        logger.info("微信认证通过");
         if(CheckUtil.checkSignature(signature,timestamp,nonce )){
             logger.info("微信认证通过");
             out.flush();

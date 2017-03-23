@@ -1,8 +1,6 @@
 package com.ictwsn.utils.speech;
 
 import com.ictwsn.utils.turing.TuringAPI;
-import jdk.internal.instrumentation.Logger;
-import jdk.nashorn.internal.scripts.JO;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,7 +32,7 @@ public class TextToSpeech {
         Speech.TOKEN = jsonObject.getString("access_token");
         System.out.println(Speech.TOKEN);
 
-        String tex = "相关阅读：几乎所有哺乳动物和禽类(如鼠类猪羊牛家兔和鸡鸭鹅等)都可以传染弓形虫。人类的传染源主要是这些动物的肉类，如火锅的烫涮时间过短烧烤的温度不够，肉食的弓形虫没有杀死，就有传染的危险;生肉和熟食共用一个切菜砧板，生肉上的弓形虫就会污染熟食会致胎儿发育畸形的食物";
+        String tex = "自贡近来三日天气。2017年03月21日。白天：小雨。夜晚：小雨。降水量：1.8毫升。降水概率：92。最高温度：16度。最低温度：11度。最低温度：17千米。风向：17。微风级2017年03月22日。白天：多云。夜晚：多云。降水量：0.4毫升。降水概率：99。最高温度：20度。最低温度：11度。最低温度：19千米。风向：19。微风级2017年03月23日。白天：多云。夜晚：小雨。降水量：0.0毫升。降水概率：2。最高温度：21度。最低温度：13度。最低温度：20千米。风向：20。微风级";
 
 
         //拼接请求的语音地址

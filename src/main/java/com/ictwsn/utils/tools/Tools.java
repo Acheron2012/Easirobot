@@ -66,6 +66,30 @@ public class Tools {
 			return null;
 		}
 	}
+	//数字时间转为汉字时间
+	public static String stringToChineseTime(String datetime)
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日HH时");
+			return formatter.format(sdf.parse(datetime));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//数字日期转为汉字日期
+	public static String stringToChineseDate(String datetime)
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日");
+			return formatter.format(sdf.parse(datetime));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	//把字符串转化为东8区世家
 	public static Date changeToDate8(String timestamp)
 	{
