@@ -6,19 +6,24 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by Administrator on 2017-03-21.
  */
 public class Msg {
 
+    public static Logger logger = LoggerFactory.getLogger(Msg.class);
+
+
     //阿里大于基本参数
     public static final String url = "http://gw.api.taobao.com/router/rest";
     public static final String appkey = "23709690";
     public static final String secret = "3e7e624fd3128e18d01273ecf9842494";
 
+    public static void sendMessage(String name,String content){
 
-    public static void main(String[] args){
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
         //自定义用户id
@@ -28,12 +33,12 @@ public class Msg {
         //短息签名
         req.setSmsFreeSignName("智能孝子");
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name","zhouxiaofan");
-        jsonObject.put("content","回家请记得买水果");
+        jsonObject.put("name",name);
+        jsonObject.put("content",content);
         //消息模板
         req.setSmsParamString(jsonObject.toString());
         //手机号，多个以逗号分隔
-        req.setRecNum("18332551698");
+        req.setRecNum("18813124313");
         //短信模板id
         req.setSmsTemplateCode("SMS_56635394");
         AlibabaAliqinFcSmsNumSendResponse rsp = null;
@@ -42,6 +47,10 @@ public class Msg {
         } catch (ApiException e) {
             e.printStackTrace();
         }
-        System.out.println(rsp.getBody());
+        logger.info(rsp.getBody());
+    }
+
+    public static void main(String[] args){
+
     }
 }

@@ -7,7 +7,6 @@ com\ictwsn\web\wechat\thread\TokenThread.class
 com\ictwsn\utils\redis\RedisOperationImpl.class
 com\ictwsn\utils\redis\RedisOperation.class
 com\ictwsn\utils\tools\BaseDao.class
-com\ictwsn\utils\msg\CheckSumBuilder.class
 com\ictwsn\web\wechat\servlet\AudiodelServlet.class
 com\ictwsn\rob\beacon\BeaconTool.class
 com\ictwsn\test\action\UserAction.class
@@ -20,6 +19,7 @@ com\ictwsn\web\wechat\bean\BaseMessage.class
 com\ictwsn\utils\redis\RedisOperationImpl$2.class
 com\ictwsn\web\wechat\servlet\SchdelServlet.class
 com\ictwsn\test\CookieUtil$1.class
+com\ictwsn\utils\mail\EMail.class
 com\ictwsn\utils\tools\Tools.class
 com\ictwsn\utils\turing\TuringAPI.class
 com\ictwsn\web\wechat\servlet\SchServlet.class
@@ -37,9 +37,11 @@ com\ictwsn\utils\timer\Job.class
 com\ictwsn\WelcomeAction.class
 com\ictwsn\web\wechat\bean\News.class
 com\ictwsn\web\wechat\bean\menu\Menu.class
+com\ictwsn\utils\tools\Mongodb.class
 com\ictwsn\utils\speech\SpeechRecognition.class
 com\ictwsn\web\wechat\test\Test.class
 com\ictwsn\rob\physiology\PhysiologyAction.class
+com\ictwsn\rob\voice\action\VoiceAction.class
 com\ictwsn\web\wechat\util\EncodingFilter.class
 com\ictwsn\utils\tools\Log4jListener.class
 com\ictwsn\web\wechat\bean\trans\Parts.class
@@ -52,6 +54,7 @@ com\ictwsn\utils\tools\ToolAction.class
 com\ictwsn\utils\speech\TextToSpeech.class
 com\ictwsn\web\wechat\util\FileDelete.class
 com\ictwsn\rob\beacon\BeaconAction.class
+com\ictwsn\utils\calendar\LunarCalendar.class
 com\ictwsn\utils\tools\Base64.class
 com\ictwsn\web\wechat\bean\ImageMessage.class
 com\ictwsn\web\WechatAction.class
@@ -61,10 +64,11 @@ com\ictwsn\test\dao\UserDao.class
 com\ictwsn\web\wechat\bean\AudioTable.class
 com\ictwsn\web\wechat\bean\trans\Data.class
 com\ictwsn\web\wechat\bean\trans\Symbols.class
-com\ictwsn\rob\voice\VoiceAction.class
-com\ictwsn\utils\tools\EMail.class
 com\ictwsn\test\service\UserServiceImpl.class
+com\ictwsn\utils\dream\OliveDream.class
 com\ictwsn\web\wechat\bean\TextMessage.class
+com\ictwsn\utils\encyclopedias\Sougou.class
 com\ictwsn\web\custom\CustomAction.class
 com\ictwsn\web\wechat\bean\menu\ViewButton.class
+com\ictwsn\utils\health\HealthyNet.class
 com\ictwsn\test\bean\UserBean.class

@@ -28,9 +28,12 @@ public class EMail {
     public static String oldName = "chenlijuan";
 
     public static void mail(String content) {
-        String to[] = new String[1];
+        String to[] = new String[3];
         //子女收件人地址
         to[0] = "huangruoran@ict.ac.cn";
+        to[1] = "18813124313@163.com";
+        to[2] = "yufang2013@xs.ustb.edu.cn";
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");//设置日期格式
         String date = df.format(new Date());
         String subject = oldName + "-老人语音邮件-" + date; // 邮件标题

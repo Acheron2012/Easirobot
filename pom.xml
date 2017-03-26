@@ -186,7 +186,13 @@
       <artifactId>javax.mail-api</artifactId>
       <version>1.5.6</version>
     </dependency>
-
+    <!-- Mongodb依赖包 -->
+    <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.2.2</version>
+    </dependency>
 
     <!-- 微信集成jar -->
     <!-- https://mvnrepository.com/artifact/cn.jpush.api/jpush-client -->
@@ -224,7 +230,7 @@
           <webResources>
             <resource>
               <directory>${project.basedir}/lib</directory>
-              <targetPath>/lib</targetPath>
+              <targetPath>/WEB-INF/lib</targetPath>
               <filtering>false</filtering>
               <includes>
                 <include>**/*.jar</include>

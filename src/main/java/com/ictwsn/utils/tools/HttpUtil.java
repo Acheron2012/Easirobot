@@ -110,6 +110,28 @@ public class HttpUtil {
         }
         return null;
     }
+    /**
+     * @param url
+     * @param headers
+     * @return
+     */
+    public static HttpEntity httpPost(String url,Map<String,Object> headers){
+        CloseableHttpClient httpClient = getHttpClient();
+        HttpRequest request = new HttpPost(url);
+        if(headers!=null&&!headers.isEmpty()){
+            request = setHeaders(headers,request);
+        }
+        CloseableHttpResponse response = null;
+        try {
+            HttpPost httpPost = (HttpPost) request;
+            response=httpClient.execute(httpPost);
+            HttpEntity httpEntity = response.getEntity();
+            return httpEntity;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * post请求,使用json格式传参
@@ -145,7 +167,7 @@ public class HttpUtil {
     /**
      使用表单键值对传参
      */
-    public static HttpEntity PostForm(String url,Map<String,Object> headers,List<NameValuePair> data){
+    public static Header[] postFormReturnHeaders(String url,Map<String,Object> headers,List<NameValuePair> data){
         CloseableHttpClient httpClient = getHttpClient();
         HttpRequest request = new HttpPost(url);
         if(headers!=null&&!headers.isEmpty()){
@@ -159,8 +181,15 @@ public class HttpUtil {
             httpPost.setEntity(uefEntity);
             // httpPost.setEntity(new StringEntity(data, ContentType.create("application/json", "UTF-8")));
             response=httpClient.execute(httpPost);
-            HttpEntity entity = response.getEntity();
-            return entity;
+            return response.getAllHeaders();
+//            System.out.println(response.getAllHeaders().toString());
+//            Header[] headerss = response.getAllHeaders();
+//            for(Header hea : headerss){
+//                System.out.println(hea.getName()+"===="+hea.getValue());
+//            }
+//            HttpEntity entity = response.getEntity();
+//            System.out.println(entity);
+//            return entity;
         } catch (IOException e) {
             e.printStackTrace();
 
