@@ -25,7 +25,7 @@ public class EMail {
     public static final String password = "HeroVagabond2016";  // 邮件服务器登录密码
     public static final String from = "ruoranhuang@163.com"; // 发送人邮件地址
 
-    public static String oldName = "chenlijuan";
+    public static String oldName = "陈丽娟";
 
     public static void mail(String content) {
         String to[] = new String[3];

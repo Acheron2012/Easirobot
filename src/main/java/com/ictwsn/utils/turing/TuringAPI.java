@@ -20,7 +20,7 @@ public class TuringAPI {
 
     public static Logger logger = LoggerFactory.getLogger(TuringAPI.class);
     //用户id，任意值，用于上下文标识
-    public static final String userid = "123456";
+//    public static final String userid = "123456";
     //图灵机器人注册api key
     public static final String apikey = "737e3c633624422f8f5d67fb8798e930";
 
@@ -30,7 +30,7 @@ public class TuringAPI {
             speechText = SpeechRecognition.recognition(Speech.SPEECHFILENAME);
             System.out.println("语音指令："+speechText);
             if(speechText!=null)
-                TTS(turingRobot(speechText));
+                TTS(turingRobot(speechText,null));
             else
                 logger.info("语音识别错误");
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class TuringAPI {
     }
 
     //调用图灵接口
-    public static String turingRobot(String content)
+    public static String turingRobot(String content,String userId)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -58,7 +58,7 @@ public class TuringAPI {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("key",apikey);
         jsonObject.put("info",content);
-//        jsonObject.put("userid",userid);
+        if(userId!=null) jsonObject.put("userid",userId);
 
         StringEntity stringEntity = new StringEntity(jsonObject.toString(),"utf-8");
         stringEntity.setContentEncoding("UTF-8");

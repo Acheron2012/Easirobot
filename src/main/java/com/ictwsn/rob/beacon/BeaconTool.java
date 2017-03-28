@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.Random;
@@ -30,8 +27,7 @@ public class BeaconTool {
     }
 
 
-
-    public static String parsingBeaconXML(String settings_path,String scenario) {
+    public static String parsingBeaconXML(String settings_path, String scenario) {
         //音频文件路径
         String audioPath = "";
         try {
@@ -61,17 +57,15 @@ public class BeaconTool {
                                             Attribute messageAttribute = (Attribute) message_attribute.next();
                                             if (messageAttribute.getName().equals("id") && messageAttribute.getValue().equals(random)) {
                                                 //判断语音文件夹是否存在，若不存在，则创建
-                                                Tools.createdDirectory(audioFile +"/"+ moduleAttribute.getValue() + "/" + scenarioAttribute.getValue());
+                                                Tools.createdDirectory(audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue());
                                                 //判断该音频文件是否存在
-                                                audioPath = audioFile +"/"+ moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
+                                                audioPath = audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
                                                 //音频文件不存在，语音合成并下载到本地
                                                 if (!fileExists(new File(audioPath))) {
-                                                    logger.info("音频文件:"+scenarioAttribute.getValue()+"-"+random+".mp3不存在，正在合成语音...");
+                                                    logger.info("音频文件:" + scenarioAttribute.getValue() + "-" + random + ".mp3不存在，正在合成语音...");
                                                     TextToSpeech.downloadAudio(audioPath, messageElement.getText());
                                                     logger.info("语音合成完毕");
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     logger.info("音频文件已存在");
                                                 }
                                             }
@@ -110,6 +104,17 @@ public class BeaconTool {
         return file.exists();
     }
 
+    //读取文件流
+    public static InputStream readInputStram(String downLoadPath) {
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(downLoadPath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fileInputStream;
+    }
+
     //文件下载
     public static String downloadFile(HttpServletRequest request,
                                       HttpServletResponse response, String downLoadPath) throws Exception {
@@ -125,13 +130,13 @@ public class BeaconTool {
         try {
             File downloadFile = new File(downLoadPath);
             long fileLength = downloadFile.length();
-            response.setContentType("application/x-msdownload;");
+            response.setContentType("application/x-msdownload");
             response.setHeader("Content-disposition", "attachment; filename="
                     + new String(downloadFile.getName().getBytes("utf-8"), "ISO8859-1"));
             response.setHeader("Content-Length", String.valueOf(fileLength));
             bis = new BufferedInputStream(new FileInputStream(downLoadPath));
             bos = new BufferedOutputStream(response.getOutputStream());
-			/*
+            /*
 			 * 可能出现内存太小问题
 			 */
             byte[] buff = new byte[2048];
@@ -151,12 +156,14 @@ public class BeaconTool {
         return null;
     }
 
+    //读取文件音频流
+
+
     //生成随机id
-    public static String randomId(int max)
-    {
+    public static String randomId(int max) {
         int min = 1;
         Random random = new Random();
-        return random.nextInt(max)%(max-min+1)+min+"";
+        return random.nextInt(max) % (max - min + 1) + min + "";
     }
 
 }

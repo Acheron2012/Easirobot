@@ -13,8 +13,8 @@
 			<message id="1">祝你玩得愉快</message>
 		</scenario>
 		<scenario name="sports-place">
-			<message id="">适当的锻炼有利于延年益寿哦</message>
-			<message id="">请尽情的挥洒吧</message>
+			<message id="1">适当的锻炼有利于延年益寿哦</message>
+			<message id="2">请尽情的挥洒吧</message>
 		</scenario>
 		<scenario name="kitchen">
 			<message id="1">您将创造出一盘美好的食物</message>

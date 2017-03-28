@@ -4,10 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Encoder;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -139,6 +137,44 @@ public class Tools {
 		{
 			file.mkdirs();
 			logger.info("{}不存在，已创建",path);
+		}
+	}
+
+
+	//返回下载文件流
+	public static void downloadAudioFile(InputStream inputStream, HttpServletResponse response) {
+		response.setContentType("application/x-msdownload");
+
+		byte[] buffer = new byte[1024];
+		FileInputStream fis = null;
+		BufferedInputStream bis = null;
+		try {
+			bis = new BufferedInputStream(inputStream);
+			OutputStream os = response.getOutputStream();
+			int i = bis.read(buffer);
+			while (i != -1) {
+				os.write(buffer, 0, i);
+				i = bis.read(buffer);
+			}
+			os.flush();
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (bis != null) {
+				try {
+					bis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

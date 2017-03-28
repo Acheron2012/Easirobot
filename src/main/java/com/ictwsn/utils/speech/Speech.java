@@ -13,13 +13,15 @@ public class Speech {
 
     public static final String SERVERURL = "http://vop.baidu.com/server_api";
     public static String TOKEN = "";
-    public static final String SPEECHFILENAME = "D:\\FFOutput\\beijing.amr";
+    public static final String SPEECHFILENAME = "C:\\Users\\Administrator\\Desktop\\换联网系统研讨课(机器学习)\\Mar 27, 14.31.wav";
     public static final String APIKEY = "Dt70455RDRmose5bs3qFoTLp";
     public static final String SECRETKEY = "9b2aa909022349be024b4a93d6ea252e";
     public static final String CUID = "94-DE-80-23-9B-23";
 
     public static final String SPD = "3";
     public static final String AUDIOFILENAME = "Audio_new";
+    //发音人选择, 0为女声，1为男声，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为普通女声
+    public static String PER = "0";
 
     //获取百度的认证密匙
     public static String getToken() {
@@ -27,7 +29,7 @@ public class Speech {
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
         String getTokenURL = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials" +
-                "&client_id=" + Speech.APIKEY + "&client_secret=" + Speech.SECRETKEY;
+                "&client_id=" + Speech.APIKEY + "&client_secret=" + Speech.SECRETKEY ;
 
         HttpGet httpGet = new HttpGet(getTokenURL);
 

@@ -20,7 +20,7 @@ import java.io.*;
 public class SpeechRecognition {
 
     public static void main(String[] args) throws Exception {
-        recognition(Speech.SPEECHFILENAME);
+        System.out.println(recognition(Speech.SPEECHFILENAME));
     }
 
 
