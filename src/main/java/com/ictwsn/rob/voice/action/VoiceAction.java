@@ -8,8 +8,8 @@ import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.mail.EMail;
 import com.ictwsn.utils.msg.Msg;
 import com.ictwsn.utils.news.SinaNews;
+import com.ictwsn.utils.recipe.Xiachufang;
 import com.ictwsn.utils.speech.Speech;
-import com.ictwsn.utils.speech.TextToSpeech;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Heweather;
@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -95,13 +94,18 @@ public class VoiceAction {
             } else {
                 voiceResult = "未查找到您的音频文件";
             }
+            //菜谱
+        } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)")||text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
+            text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
+            voiceResult = Xiachufang.getRecipe(text);
+            if(voiceResult==null) flag = false;
             //旅游
         } else if (text.contains("旅游") || text.contains("攻略")) {
             text = text.replaceAll("(旅游)*(攻略)*", "");
             voiceResult = Sougou.crawlSougou(text);
             //爬取新浪新闻
         } else if (text.contains("新鲜事") || text.contains("新闻")) {
-            voiceResult = SinaNews.getCurrentNews(text);
+            voiceResult = SinaNews.getCurrentNews();
         } else if (text.contains("天气")) {
             //接入和风天气
             String weather_regex = "(今天)*(.*?)天气";
@@ -220,14 +224,14 @@ public class VoiceAction {
         logger.info("返回内容:{}", voiceResult);
 //        TextToSpeech.downloadAudio("C:\\Users\\Administrator\\Desktop\\audio.mp3", voiceResult);
         //字符串长度判断，并调用百度TTS
-        InputStream inputStream = null;
+        /*InputStream inputStream = null;
         //当长度大于1024字节时（一个中文占两个字节），需要将字节流合并
         if (voiceResult.length() > 512)
             inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         else inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
 //        //返回客户端字符流
         Tools.downloadAudioFile(inputStream, response);
-        System.out.println("处理完成");
+        System.out.println("处理完成");*/
         //返回处理
 //        JSONObject resultObject = new JSONObject();
 //        resultObject.put("error", 0);

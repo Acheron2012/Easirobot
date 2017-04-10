@@ -20,7 +20,8 @@ public class SinaNews {
     public static Logger logger = LoggerFactory.getLogger(SinaNews.class);
     public static String URL = "http://news.sina.com.cn/";
 
-    public static String getCurrentNews(String HTMLContent) {
+    public static String getCurrentNews() {
+        String HTMLContent = HttpUtil.getContent(URL, "utf-8");
         List<String> list = new ArrayList<String>();
         Document document = Jsoup.parse(HTMLContent, URL);
         Element mainElement = document.select("div#syncad_1")
@@ -46,10 +47,10 @@ public class SinaNews {
         }
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         SinaNews sinaNews = new SinaNews();
         String HTMLContent = HttpUtil.getContent(URL, "utf-8");
         System.out.println(sinaNews.getCurrentNews(HTMLContent));
-    }
+    }*/
 
 }
