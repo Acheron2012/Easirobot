@@ -1,5 +1,11 @@
 package com.ictwsn.utils.tools;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Encoder;
@@ -178,6 +184,67 @@ public class Tools {
 		}
 	}
 
+	// 将汉字转换为全拼
+	public static String getPingYin(String src) {
+
+		char[] t1 = null;
+		t1 = src.toCharArray();
+		String[] t2 = new String[t1.length];
+		HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
+
+		t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+		t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+		t3.setVCharType(HanyuPinyinVCharType.WITH_V);
+		String t4 = "";
+		int t0 = t1.length;
+		try {
+			for (int i = 0; i < t0; i++) {
+				// 判断是否为汉字字符
+				if (java.lang.Character.toString(t1[i]).matches(
+						"[\\u4E00-\\u9FA5]+")) {
+					t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
+					t4 += t2[0];
+				} else
+					t4 += java.lang.Character.toString(t1[i]);
+			}
+			// System.out.println(t4);
+			return t4;
+		} catch (BadHanyuPinyinOutputFormatCombination e1) {
+			e1.printStackTrace();
+		}
+		return t4;
+	}
+
+	//写入文件到客户端
+	public static void writeToClient(HttpServletResponse response,String filePath){
+		response.setContentType("application/x-msdownload");
+		FileInputStream fileInputStream = null;
+		try {
+			OutputStream outputStream = response.getOutputStream();
+			byte[] b = new byte[1024];
+			try {
+				fileInputStream = new FileInputStream(filePath);
+				int len;
+				while((len=fileInputStream.read(b))!=-1){
+					outputStream.write(b,0,len);
+				}
+				outputStream.flush();
+				outputStream.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(fileInputStream!=null){
+				try {
+					fileInputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 
 	public static void main(String[] args) {

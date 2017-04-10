@@ -47,7 +47,8 @@ public class BeaconAction {
         //切换声音
         Speech.PER = "3";
         //解决中文乱码
-        message = new String(message.getBytes("ISO-8859-1"), "UTF-8");
+        if (message != null)
+            message = new String(message.getBytes("ISO-8859-1"), "UTF-8");
         //语音结果
         String voiceResult = "";
         //音频流
@@ -72,10 +73,9 @@ public class BeaconAction {
             }
         }
         //返回给客户端
-        Tools.downloadAudioFile(inputStream,response);
+        Tools.downloadAudioFile(inputStream, response);
         return null;
     }
-
 
 
 }

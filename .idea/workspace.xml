@@ -2,41 +2,274 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5249aa63-ee2b-42f4-b27e-d9917c7abec2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/rob/beacon/BeaconAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/health/HealthyNet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/health/HealthyNet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/AudioDel.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/Audioshow.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/SchAdd.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/SchDel.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/Schedule reminder.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/Schshow.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/WelcomeAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/beacon/BeaconAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/beacon/BeaconTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/physiology/PhysiologyAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/schedule/ScheduleAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/voice/action/VoiceAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/CookieUtil$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/CookieUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/action/UserAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/bean/UserBean.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/dao/UserDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/service/UserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/test/service/UserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/calendar/LunarCalendar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/dream/OliveDream.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/encyclopedias/Sougou.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/jpush/Jpush.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/library/Library.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/mail/EMail.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/msg/Msg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/redis/RedisOperation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/redis/RedisOperationImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/redis/RedisOperationImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/redis/RedisOperationImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/redis/SerializeUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/Speech.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/SpeechRecognition.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/TextToSpeech.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/timer/Job.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/Base64.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/BaseDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/HttpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/InitialConfiguration.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/Log4jListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/LoginInterceptor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/Mongodb.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/ToolAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/tools/Tools.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/turing/TuringAPI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/turing/TuringUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/weather/Heweather.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/WechatAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/custom/CustomAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/record/RecordAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/AccessToken.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/AudioTable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/BaseMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/Image.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/ImageMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/Music.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/MusicMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/News.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/NewsMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/TextMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/menu/Button.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/menu/ClickButton.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/menu/Menu.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/menu/ViewButton.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/trans/Data.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/trans/Parts.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/trans/Symbols.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/bean/trans/TransResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/servlet/AudiodelServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/servlet/SchServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/servlet/SchdelServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/servlet/WeinxinServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/test/Test.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/thread/TokenThread.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/AudioDB.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/CheckUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/EncodingFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/FileDelete.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/MessageUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/web/wechat/util/WeixinUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/mysql-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/redis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/springmvc-servlet.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/system.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/aether-api-1.0.0.v20140518.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/aether-util-1.0.0.v20140518.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/backport-util-concurrent-3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/c3p0-0.9.1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/classworlds-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.8.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-cli-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-codec-1.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-httpclient-3.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-io-2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-lang-2.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-logging-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/commons-pool-1.5.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/cvsclient-20060125.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/dom4j-1.6.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/doxia-logging-api-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/doxia-sink-api-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/druid-1.0.15.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/ezmorph-1.0.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/fastjson-1.2.21.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/ganymed-ssh2-build210.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/groovy-all-1.7.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/gson-2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/hamcrest-core-1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/httpclient-4.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/httpcore-4.4.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jackrabbit-jcr-commons-1.5.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jackrabbit-webdav-1.5.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/javamelody-core-1.58.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-api-1.5.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jaxen-1.1-beta-8.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jcl-over-slf4j-1.7.19.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jdom-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jdom-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jedis-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jiguang-common-0.1.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jpush-client-3.2.11.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jrobin-1.5.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jsch-0.1.38.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/json-lib-2.4-jdk15.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/junit-4.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/log4j-1.2.16.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mail-1.4.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-artifact-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-artifact-manager-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-core-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-error-diagnostics-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-invoker-2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-model-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-monitor-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-plugin-api-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-plugin-descriptor-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-plugin-parameter-documenter-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-plugin-registry-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-profile-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-project-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-release-api-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-release-manager-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-reporting-api-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-repository-metadata-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-api-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-manager-plexus-1.8.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-accurev-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-bazaar-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-clearcase-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-cvs-commons-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-cvsexe-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-cvsjava-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-git-commons-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-gitexe-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-hg-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-integrity-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-jazz-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-perforce-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-starteam-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-svn-commons-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-svnexe-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-synergy-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-tfs-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-scm-provider-vss-1.9.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/maven-settings-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mksapi-jar-4.10.9049.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mongo-java-driver-3.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mybatis-3.3.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mybatis-spring-1.2.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/nekohtml-1.9.6.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/okhttp-3.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/okio-1.8.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-cipher-1.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-component-annotations-1.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-container-default-1.0-alpha-9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-interactivity-api-1.0-alpha-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-interpolation-1.14.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-sec-dispatcher-1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/plexus-utils-3.0.15.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/quartz-1.7.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.19.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/slf4j-log4j12-1.6.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-context-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-context-support-3.1.2.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-core-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-data-commons-1.12.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-data-mongodb-1.9.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-data-redis-1.0.2.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-jdbc-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-test-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-tx-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-4.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160607.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-file-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-http-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-http-lightweight-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-http-shared-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-provider-api-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-ssh-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-ssh-common-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-ssh-external-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/wagon-webdav-jackrabbit-1.0-beta-6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/xercesMinimal-1.9.6.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/xml-apis-1.0.b2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/xpp3_min-1.1.4c.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/lib/xstream-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/androidGetSch.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/androidGetSch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/audio/1.mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/css/index_style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/css/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/html/audioadd.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/html/bgm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/html/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/html/start.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/AudioDel.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/Schdel.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/Schedulereminder.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/Schshow.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/audioshow.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/ict.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/imooc.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/image/main.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/logs/error/error.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/logs/log/lo4j.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/logs/log/lo4j.log.2017-03-27.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/resource/See You Again.mp3" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/rob/beacon/BeaconAction.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/rob/beacon/BeaconAction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/rob/voice/action/VoiceAction.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/rob/voice/action/VoiceAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/mail/EMail.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/mail/EMail.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/Speech.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/Speech.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/SpeechRecognition.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/SpeechRecognition.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/TextToSpeech.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/speech/TextToSpeech.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/encyclopedias/Sougou.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/encyclopedias/Sougou.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/HttpUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/HttpUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/Mongodb.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/Mongodb.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/turing/TuringAPI.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/turing/TuringAPI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/beacon/BeaconAction.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/beacon/BeaconAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/voice/action/VoiceAction.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/rob/voice/action/VoiceAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/mail/EMail.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/mail/EMail.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/Speech.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/Speech.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/SpeechRecognition.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/SpeechRecognition.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/TextToSpeech.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/speech/TextToSpeech.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/turing/TuringAPI.class" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/com/ictwsn/utils/turing/TuringAPI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/Tools.class" afterPath="$PROJECT_DIR$/target/classes/com/ictwsn/utils/tools/Tools.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Easirobot_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Easirobot_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Easirobot.iml" afterPath="$PROJECT_DIR$/Easirobot.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/voice/action/VoiceAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/voice/action/VoiceAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/mail/EMail.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/mail/EMail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/Speech.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/Speech.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/SpeechRecognition.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/SpeechRecognition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/TextToSpeech.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/TextToSpeech.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/turing/TuringAPI.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/turing/TuringAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/settings.xml" afterPath="$PROJECT_DIR$/src/main/resources/settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/system.properties" afterPath="$PROJECT_DIR$/src/main/resources/system.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/settings.xml" afterPath="$PROJECT_DIR$/target/classes/settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/system.properties" afterPath="$PROJECT_DIR$/target/classes/system.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/settings.xml" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/system.properties" afterPath="$PROJECT_DIR$/target/robot-1.0-SNAPSHOT/WEB-INF/classes/system.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/health/HealthyNet.java" afterPath="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/library/Library.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,11 +286,86 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TuringAPI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/turing/TuringAPI.java">
+      <file leaf-file-name="HanLPUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/hanlp/HanLPUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="359">
+              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SinaNews.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/news/SinaNews.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="429">
+              <caret line="51" column="62" lean-forward="false" selection-start-line="51" selection-start-column="62" selection-end-line="51" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#644#652#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sougou.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="138" column="46" lean-forward="false" selection-start-line="138" selection-start-column="46" selection-end-line="138" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mongodb.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="224" column="19" lean-forward="false" selection-start-line="224" selection-start-column="19" selection-end-line="224" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tools.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1076">
+              <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="240" column="48" lean-forward="false" selection-start-line="240" selection-start-column="41" selection-end-line="240" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="system.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/system.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -66,8 +374,8 @@
       <file leaf-file-name="VoiceAction.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/voice/action/VoiceAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+            <state relative-caret-position="198">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,72 +386,8 @@
       <file leaf-file-name="BeaconAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tools.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="144" column="23" lean-forward="false" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/settings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="springmvc-servlet.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BeaconTool.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="107" column="44" lean-forward="false" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextToSpeech.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/TextToSpeech.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="221" column="32" lean-forward="true" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="system.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/system.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            <state relative-caret-position="476">
+              <caret line="43" column="83" lean-forward="false" selection-start-line="43" selection-start-column="83" selection-end-line="43" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -160,8 +404,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>javamelody</find>
-      <find>CharacterEncodingFilter</find>
       <find>demo</find>
       <find>job</find>
       <find>SERVERURL</find>
@@ -186,6 +428,12 @@
       <find>window.lemmaData</find>
       <find>墙上</find>
       <find>HttpServletResponse</find>
+      <find>custom</find>
+      <find>serv</find>
+      <find>jsoup</find>
+      <find>ct_t_01</find>
+      <find>syncad_1</find>
+      <find>Jsoup</find>
     </findStrings>
     <replaceStrings>
       <replace>ictwsn</replace>
@@ -215,9 +463,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/web/wechat/util/WeixinUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/LoginInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/web/wechat/util/MessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/web/wechat/servlet/WeinxinServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/web/wechat/bean/TextMessage.java" />
         <option value="$PROJECT_DIR$/target/robot/logs/log/lo4j.log" />
@@ -244,18 +489,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/dream/OliveDream.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/calendar/LunarCalendar.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/sougou.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/health/HealthNet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/health/HealthTips.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/msg/Msg.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/turing/TuringAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/SpeechRecognition.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/mail/EMail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/Speech.java" />
         <option value="$PROJECT_DIR$/src/main/resources/settings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/TextToSpeech.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/health/HealthyNet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/story/Story.java" />
@@ -263,8 +504,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/library/Library.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java" />
         <option value="$PROJECT_DIR$/src/main/resources/system.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/hanlp.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/hanlp/HanLPUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/utils/news/SinaNews.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ictwsn/rob/voice/action/VoiceAction.java" />
       </list>
     </option>
@@ -349,6 +597,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -358,20 +607,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Easirobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Easirobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Easirobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -515,7 +750,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tools" />
+              <option name="myItemId" value="news" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Easirobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Easirobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ictwsn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hanlp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Easirobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Easirobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ictwsn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="encyclopedias" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -621,43 +924,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Easirobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Easirobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ictwsn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rob" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beacon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -679,14 +947,14 @@
       <recent name="com.ictwsn.web.custom" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Git\projects\Easirobot\src\main\resources" />
       <recent name="E:\Git\projects\Easirobot\src\main\java\com\ictwsn\utils\http" />
       <recent name="E:\Git\projects\Easirobot\src\main\java\com\ictwsn\utils\mail" />
       <recent name="E:\Git\projects\Easirobot\lib" />
-      <recent name="E:\Git\projects\Easirobot\src\main\resources" />
       <recent name="E:\Git\projects\Easirobot\target\classes\com\ictwsn" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Easirobot">
+  <component name="RunManager" selected="Application.SinaNews">
     <configuration default="false" name="TextToSpeech" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -727,26 +995,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="Sougou" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.ictwsn.utils.encyclopedias.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.ictwsn.utils.encyclopedias.Sougou" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Easirobot" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="Mongodb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -767,14 +1015,34 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="SpeechRecognition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="HanLPUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="com.ictwsn.utils.speech.*" />
+          <option name="PATTERN" value="com.ictwsn.utils.hanlp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="com.ictwsn.utils.speech.SpeechRecognition" />
+      <option name="MAIN_CLASS_NAME" value="com.ictwsn.utils.hanlp.HanLPUtil" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Easirobot" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SinaNews" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.ictwsn.utils.news.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.ictwsn.utils.news.SinaNews" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1329,17 +1597,17 @@
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Easirobot" />
       <item index="1" class="java.lang.String" itemvalue="Application.TextToSpeech" />
       <item index="2" class="java.lang.String" itemvalue="Application.VoiceAction" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Sougou" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Mongodb" />
-      <item index="5" class="java.lang.String" itemvalue="Application.SpeechRecognition" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Mongodb" />
+      <item index="4" class="java.lang.String" itemvalue="Application.HanLPUtil" />
+      <item index="5" class="java.lang.String" itemvalue="Application.SinaNews" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.VoiceAction" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TextToSpeech" />
-        <item index="2" class="java.lang.String" itemvalue="Application.SpeechRecognition" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Mongodb" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Sougou" />
+        <item index="0" class="java.lang.String" itemvalue="Application.SinaNews" />
+        <item index="1" class="java.lang.String" itemvalue="Application.HanLPUtil" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Mongodb" />
+        <item index="3" class="java.lang.String" itemvalue="Application.VoiceAction" />
+        <item index="4" class="java.lang.String" itemvalue="Application.TextToSpeech" />
       </list>
     </recent_temporary>
   </component>
@@ -1368,12 +1636,16 @@
       <workItem from="1488617887236" duration="10992000" />
       <workItem from="1489238775212" duration="21134000" />
       <workItem from="1489991532269" duration="39684000" />
-      <workItem from="1490323493949" duration="72605000" />
+      <workItem from="1490323493949" duration="95750000" />
+      <workItem from="1491384007793" duration="96000" />
+      <workItem from="1491636866321" duration="1825000" />
+      <workItem from="1491640321302" duration="2435000" />
+      <workItem from="1491802044224" duration="3230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228457000" />
+    <option name="totallyTimeSpent" value="259188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1407,12 +1679,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3206934" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3206934" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21481876" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22334754" sideWeight="0.496208" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21481876" sideWeight="0.503792" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1440,44 +1712,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/weather/Weather.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/jpush/Jpush.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/redis/RedisOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/DateConvertor.java" />
-    <entry file="jar://E:/jdk/Java/jdk1.8.0_111/src.zip!/java/text/DateFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="365" column="0" lean-forward="false" selection-start-line="365" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/web/wechat/util/MessageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1485,7 +1723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="23" column="60" lean-forward="false" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1510,9 +1747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1520,7 +1754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1546,9 +1779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1556,7 +1786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="14" column="46" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,11 +1800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#234#235#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1583,10 +1807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <marker date="1488332906012" expanded="true" signature="2740:2817" ph="INSERT INTO sch... " />
-            <marker date="1488332906012" expanded="true" signature="6403:6434" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1594,80 +1814,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/EMail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-935">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/msg/CheckSumBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/http/Mongodb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/http/HttpUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/dream/OliveDream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1248#1249#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/EMail.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/msg/CheckSumBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/http/Mongodb.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/http/HttpUtil.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/calendar/LunarCalendar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2399">
-          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1031#1047#0" expanded="false" />
-            <element signature="e#1637#1652#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1684,25 +1843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/WelcomeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/msg/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="42" column="33" lean-forward="false" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1710,7 +1850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-187">
           <caret line="43" column="61" lean-forward="true" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1726,7 +1865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1734,15 +1872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="40" column="32" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="225" column="14" lean-forward="true" selection-start-line="225" selection-start-column="14" selection-end-line="225" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1754,47 +1883,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="42" column="32" lean-forward="false" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/story/Story.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/library/Library.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/story/Story.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/SpeechRecognition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="62" column="9" lean-forward="true" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/speech/TextToSpeech.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
-          <caret line="221" column="32" lean-forward="true" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
+          <caret line="221" column="32" lean-forward="false" selection-start-line="221" selection-start-column="32" selection-end-line="221" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="107" column="44" lean-forward="false" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1806,60 +1916,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconTool.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/msg/Msg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="107" column="44" lean-forward="false" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="44" />
+        <state relative-caret-position="442">
+          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/dream/OliveDream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc-servlet.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/WelcomeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+        <state relative-caret-position="119">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/test/CookieUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="76" />
+          <folding>
+            <marker date="1488268704424" expanded="true" signature="3777:3819" ph="select * fro... tbl_user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/hankcs/hanlp/portable-1.2.8/hanlp-portable-1.2.8.jar!/com/hankcs/hanlp/seg/Segment.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="433" column="31" lean-forward="false" selection-start-line="433" selection-start-column="31" selection-end-line="433" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hanlp.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="55" lean-forward="false" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/library/Library.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="91" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="25" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="43" column="83" lean-forward="false" selection-start-line="43" selection-start-column="83" selection-end-line="43" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/system.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+        <state relative-caret-position="425">
+          <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/beacon/BeaconAction.java">
+    <entry file="jar://E:/jdk/Java/jdk1.8.0_111/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+        <state relative-caret-position="199">
+          <caret line="380" column="0" lean-forward="false" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Mongodb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1076">
+          <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/hanlp/HanLPUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/Tools.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/tools/HttpUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="144" column="23" lean-forward="false" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
+        <state relative-caret-position="270">
+          <caret line="240" column="48" lean-forward="false" selection-start-line="240" selection-start-column="41" selection-end-line="240" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="224" column="19" lean-forward="false" selection-start-line="224" selection-start-column="19" selection-end-line="224" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/encyclopedias/Sougou.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="138" column="46" lean-forward="false" selection-start-line="138" selection-start-column="46" selection-end-line="138" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/utils/news/SinaNews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="51" column="62" lean-forward="false" selection-start-line="51" selection-start-column="62" selection-end-line="51" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#644#652#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ictwsn/rob/voice/action/VoiceAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+        <state relative-caret-position="198">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

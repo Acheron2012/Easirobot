@@ -58,7 +58,6 @@ public class Mongodb {
     }
 
     public static void main(String[] args) {
-
     }
 
 }

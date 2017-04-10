@@ -23,6 +23,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -234,4 +235,17 @@ public class HttpUtil {
         }
         return null;
     }
+
+    public static String getContent(String url, String coding) {
+        String content = null;
+        HttpEntity httpEntity = HttpUtil.httpGet(url, null);
+        try {
+            if (httpEntity == null) return null;
+            content = EntityUtils.toString(httpEntity, coding);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+
 }
