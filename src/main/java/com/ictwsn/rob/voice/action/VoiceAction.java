@@ -8,6 +8,7 @@ import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.mail.EMail;
 import com.ictwsn.utils.msg.Msg;
 import com.ictwsn.utils.news.SinaNews;
+import com.ictwsn.utils.poetry.Poetry;
 import com.ictwsn.utils.recipe.Xiachufang;
 import com.ictwsn.utils.speech.Speech;
 import com.ictwsn.utils.tools.Tools;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +53,7 @@ public class VoiceAction {
         text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
         logger.info("语音文本:{}", text);
         //收集用户语音信息
-        HanLPUtil.analysisUserVoice(user_id,text);
+        HanLPUtil.analysisUserVoice(user_id, text);
         //返回结果
         String voiceResult = "";
         boolean flag = true;
@@ -95,10 +97,10 @@ public class VoiceAction {
                 voiceResult = "未查找到您的音频文件";
             }
             //菜谱
-        } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)")||text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
+        } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)") || text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
             text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
             voiceResult = Xiachufang.getRecipe(text);
-            if(voiceResult==null) flag = false;
+            if (voiceResult == null) flag = false;
             //旅游
         } else if (text.contains("旅游") || text.contains("攻略")) {
             text = text.replaceAll("(旅游)*(攻略)*", "");
@@ -106,6 +108,8 @@ public class VoiceAction {
             //爬取新浪新闻
         } else if (text.contains("新鲜事") || text.contains("新闻")) {
             voiceResult = SinaNews.getCurrentNews();
+        } else if (text.contains("诗") || text.contains("词") || text.contains("曲") || text.contains("文言文")) {
+            voiceResult = Poetry.getPoetry(text);
         } else if (text.contains("天气")) {
             //接入和风天气
             String weather_regex = "(今天)*(.*?)天气";
@@ -166,6 +170,26 @@ public class VoiceAction {
                         matcher.group(3) + "故事");
                 if (voiceResult == null) flag = false;
             } else flag = false;
+        } else if (text.contains("歇后语")) {
+            Pattern pattern = Pattern.compile("(讲|说)*(个)*(.*?)歇后语");
+            Matcher matcher = pattern.matcher(text);
+            if (matcher.find()) {
+                //接入本地知识库
+                voiceResult = Library.getOneDataFromLibrary("xiehouyu", "content");
+                if (voiceResult == null) flag = false;
+            } else flag = false;
+        } else if (text.contains("名言")) {
+            Pattern pattern = Pattern.compile("(讲|说)*(个)*(.*?)(名人)*名言");
+            Matcher matcher = pattern.matcher(text);
+            if (matcher.find()) {
+                voiceResult = Library.getOneDataFromLibrary("quote", "content") +
+                        Library.getOneDataFromLibrary("quote", "person");
+                if (voiceResult == null) flag = false;
+            } else flag = false;
+        } else if (text.contains("历史上的今天")) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
+            String date = simpleDateFormat.format(new Date());
+            voiceResult = Library.getOneDataByConditionField("history", "content", "date", date.toString());
         } else if (text.contains("邮件")) {
             String email_message = "发(送)*邮件";
             Pattern pattern = Pattern.compile(email_message);

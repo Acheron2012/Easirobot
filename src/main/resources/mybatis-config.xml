@@ -6,5 +6,6 @@
     <mappers>  
         <!-- <mapper resource="com/ictwsn/UserMapper.xml"/>   -->
         <mapper class="com.ictwsn.test.dao.UserDao"/>
+        <mapper class="com.ictwsn.rob.beacon.dao.BeaconDao"/>
     </mappers>  
 </configuration>  
