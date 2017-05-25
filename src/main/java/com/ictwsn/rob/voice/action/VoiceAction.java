@@ -11,6 +11,7 @@ import com.ictwsn.utils.news.SinaNews;
 import com.ictwsn.utils.poetry.Poetry;
 import com.ictwsn.utils.recipe.Xiachufang;
 import com.ictwsn.utils.speech.Speech;
+import com.ictwsn.utils.speech.TextToSpeech;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Heweather;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -248,14 +250,14 @@ public class VoiceAction {
         logger.info("返回内容:{}", voiceResult);
 //        TextToSpeech.downloadAudio("C:\\Users\\Administrator\\Desktop\\audio.mp3", voiceResult);
         //字符串长度判断，并调用百度TTS
-        /*InputStream inputStream = null;
+        InputStream inputStream = null;
         //当长度大于1024字节时（一个中文占两个字节），需要将字节流合并
         if (voiceResult.length() > 512)
             inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         else inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
 //        //返回客户端字符流
         Tools.downloadAudioFile(inputStream, response);
-        System.out.println("处理完成");*/
+        System.out.println("处理完成");
         //返回处理
 //        JSONObject resultObject = new JSONObject();
 //        resultObject.put("error", 0);

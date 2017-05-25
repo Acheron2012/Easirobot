@@ -135,7 +135,8 @@ public class BeaconAction {
                         }
                         //名人名言
                         else if (scenarioCount == 9) {
-                            voiceResult += "名人名言：";
+                            voiceResult += "名人名" +
+                                    "言：";
                             voiceResult = Library.getOneDataFromLibrary("quote", "content") +
                                     Library.getOneDataFromLibrary("quote", "person");
                         }
