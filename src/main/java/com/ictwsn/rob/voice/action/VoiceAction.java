@@ -52,10 +52,15 @@ public class VoiceAction {
 //    public static void voiceAnalysis() {
 //        String user_id = request.getHeader("user_id");
 //        String text = "讲个家庭故事";
-        text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
         logger.info("语音文本:{}", text);
+        if(text.contains("?")) {
+            text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
+            logger.info("语音文本:{}", text);
+        }
         //收集用户语音信息
         HanLPUtil.analysisUserVoice(user_id, text);
+
+
         //返回结果
         String voiceResult = "";
         boolean flag = true;
@@ -213,8 +218,9 @@ public class VoiceAction {
                 voiceResult = "短信已发送";
             } else flag = false;
             //用户自定义上传内容
-        } else if (text.contains("短信")) {
-
+        } else if (text.matches("(饮食||健康||保健||运动)养生")) {
+            //在资料库中随机找寻一条数据
+            voiceResult = Library.getOneDataByConditionField("regimen", "content", "category", text);
             //声音切换
         } else if (text.matches("切换(成)*(.*?)(声|生|神|身|音)")) {
             String sex_voice = "切换(成)*(.*?)(声|生|神|身|音)";

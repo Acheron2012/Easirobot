@@ -97,7 +97,7 @@ public class BeaconAction {
                     beaconBean.setHistory(1);
                 } else {
                     int scenarioCount = jsonObject.getInt(scenario);
-                    //第1次和第4次时采用场景beancon
+                    //第1次和第5次时采用场景beancon
                     if (scenarioCount == 0 || scenarioCount == 4) {
                         String settings_path = BeaconAction.class.getClassLoader().getResource("").getPath() + "/" + "settings.xml";
                         //获取解析后的合成语音
@@ -137,8 +137,8 @@ public class BeaconAction {
                         else if (scenarioCount == 9) {
                             voiceResult += "名人名" +
                                     "言：";
-                            voiceResult = Library.getOneDataFromLibrary("quote", "content") +
-                                    Library.getOneDataFromLibrary("quote", "person");
+                            voiceResult += Library.getOneDataFromLibrary("quote", "content");
+//                                    Library.getOneDataFromLibrary("quote", "person");
                         }
                         //名人名言
                         else if (scenarioCount == 9) {
@@ -197,7 +197,8 @@ public class BeaconAction {
             beaconBean.setLast_time(new Date());
             beaconService.updateUserBeacon(beaconBean);
             logger.info(voiceResult);
-            inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
+            if (inputStream == null)
+                inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         }
         //返回给客户端
         Tools.downloadAudioFile(inputStream, response);
