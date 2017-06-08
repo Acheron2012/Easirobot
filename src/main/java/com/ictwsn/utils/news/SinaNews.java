@@ -30,18 +30,23 @@ public class SinaNews {
         for (Element ne : newsElements) {
             list.add(ne.attr("abs:href"));
         }
-        Random random = new Random();
-        int number = random.nextInt(list.size());
-        String newsContent = HttpUtil.getContent(list.get(number), "utf-8");
-        return analysisNews(newsContent);
+        String newsResult = null;
+        while(newsResult==null) {
+            Random random = new Random();
+            int number = random.nextInt(list.size());
+            String newsContent = HttpUtil.getContent(list.get(number), "utf-8");
+            newsResult = analysisNews(newsContent);
+            logger.info("当前获取的新闻内容为：{}",newsResult);
+        }
+        return newsResult;
     }
 
     private static String analysisNews(String newsContent) {
-        Document document = Jsoup.parse(newsContent);
-        Element articleContentElement = document.select("div#artibody").first();
-        articleContentElement.select("div[class=img_wrapper]").remove();
         try {
-            return articleContentElement.text().replace("　","").replace(" ","");
+            Document document = Jsoup.parse(newsContent);
+            Element articleContentElement = document.select("div#artibody").first();
+            articleContentElement.select("div[class=img_wrapper]").remove();
+            return articleContentElement.text().replace("　", "").replace(" ", "");
         } catch (Exception e) {
             return null;
         }

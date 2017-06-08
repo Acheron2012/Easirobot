@@ -118,7 +118,7 @@ public class BeaconAction {
                             //场景为厨房，推荐食疗
                             if ("kitchen".equals(scenario)) {
                                 voiceResult += "智能孝子食疗推荐：";
-                                voiceResult += Library.getThreeDatafield("food_therapy", "name", "description", "summary");
+                                voiceResult += Library.getThreeDataField("food_therapy", "name", "description", "summary");
                             }
                             //场景为沙发，老人健康推荐
                             if ("sofa".equals(scenario)) {
@@ -130,7 +130,7 @@ public class BeaconAction {
                         }
                         //诗歌
                         else if (scenarioCount == 6 || scenarioCount == 11) {
-                            voiceResult = "我要吟诗了：";
+                            voiceResult = "我要吟古诗文了：";
                             voiceResult = Poetry.getOnePoetry();
                         }
                         //名人名言

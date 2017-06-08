@@ -8,10 +8,11 @@ import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.mail.EMail;
 import com.ictwsn.utils.msg.Msg;
 import com.ictwsn.utils.news.SinaNews;
-import com.ictwsn.utils.poetry.Poetry;
 import com.ictwsn.utils.recipe.Xiachufang;
 import com.ictwsn.utils.speech.Speech;
 import com.ictwsn.utils.speech.TextToSpeech;
+import com.ictwsn.utils.tools.CheckChinese;
+import com.ictwsn.utils.tools.HttpUtil;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Heweather;
@@ -53,9 +54,9 @@ public class VoiceAction {
 //        String user_id = request.getHeader("user_id");
 //        String text = "讲个家庭故事";
         logger.info("语音文本:{}", text);
-        if(text.contains("?")) {
+        if (CheckChinese.isMessyCode(text)) {
             text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
-            logger.info("语音文本:{}", text);
+            logger.info("编码后语音文本:{}", text);
         }
         //收集用户语音信息
         HanLPUtil.analysisUserVoice(user_id, text);
@@ -107,16 +108,17 @@ public class VoiceAction {
         } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)") || text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
             text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
             voiceResult = Xiachufang.getRecipe(text);
-            if (voiceResult == null) flag = false;
+            if (voiceResult == null) {
+                logger.info("未识别菜名：{}",text);
+                flag = false;
+            }
             //旅游
         } else if (text.contains("旅游") || text.contains("攻略")) {
             text = text.replaceAll("(旅游)*(攻略)*", "");
             voiceResult = Sougou.crawlSougou(text);
             //爬取新浪新闻
-        } else if (text.contains("新鲜事") || text.contains("新闻")) {
+        } else if (text.contains("新鲜事") || text.matches("(讲|说)*(个)*新闻")) {
             voiceResult = SinaNews.getCurrentNews();
-        } else if (text.contains("诗") || text.contains("词") || text.contains("曲") || text.contains("文言文")) {
-            voiceResult = Poetry.getPoetry(text);
         } else if (text.contains("天气")) {
             //接入和风天气
             String weather_regex = "(今天)*(.*?)天气";
@@ -189,10 +191,31 @@ public class VoiceAction {
             Pattern pattern = Pattern.compile("(讲|说)*(个)*(.*?)(名人)*名言");
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
-                voiceResult = Library.getOneDataFromLibrary("quote", "content") +
-                        Library.getOneDataFromLibrary("quote", "person");
+                voiceResult = Library.getThreeDataField("quote", "category", "content", "person");
                 if (voiceResult == null) flag = false;
             } else flag = false;
+            //古诗文
+        } else if (text.matches("(讲|说|吟|读|背|诵)*(个|一篇|一章|一首)*(先秦|两汉|魏晋|南北朝|隋|唐|五|宋|金|元|明|清|古)*(代)*(诗|词|曲|文言文)")) {
+            Pattern pattern = Pattern.compile("(讲|说|吟|读|背|诵)*(个|一篇|一章|一首)*(先秦|两汉|魏晋|南北朝|隋|唐|五|宋|金|元|明|清|古)*(代)*(诗|词|曲|文言文)");
+            Matcher matcher = pattern.matcher(text);
+            if (matcher.find()) {
+                String dynasty = matcher.group(3);
+                String form = matcher.group(5);
+                if (dynasty != null && form != null) {
+                    if (text.contains("古"))
+                        voiceResult = Library.getFiveDataByConditionField("poetry", "dynasty",
+                                "form", "title", "author", "content", "form", form);
+                    else {
+                        voiceResult = Library.getFiveDataByTwoConditionsOfPattern("poetry", "dynasty",
+                                "form", "title", "author", "content", "dynasty",
+                                dynasty, "form", form);
+                    }
+                } else if (form != null)
+                    voiceResult = Library.getFiveDataByConditionField("poetry", "dynasty",
+                            "form", "title", "author", "content", "form", form);
+                else flag = false;
+            } else flag = false;
+
         } else if (text.contains("历史上的今天")) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
             String date = simpleDateFormat.format(new Date());
@@ -218,9 +241,29 @@ public class VoiceAction {
                 voiceResult = "短信已发送";
             } else flag = false;
             //用户自定义上传内容
-        } else if (text.matches("(饮食||健康||保健||运动)养生")) {
-            //在资料库中随机找寻一条数据
-            voiceResult = Library.getOneDataByConditionField("regimen", "content", "category", text);
+        } else if (text.contains("微信")) {
+            String email_message = "发(送)*微信";
+            Pattern pattern = Pattern.compile(email_message);
+            Matcher matcher = pattern.matcher(text);
+            //匹配到邮件消息
+            if (matcher.find()) {
+                String message = text.substring(text.indexOf("微信") + 2, text.length());
+                HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + message, null);
+                voiceResult = "微信已发送";
+            } else flag = false;
+            //用户自定义上传内容
+        } else if (text.matches(".{2}养生")) {
+            //主要类别：运动、饮食、心理、医疗
+            text = text.substring(0, 2);
+            if (text.matches("饮食|健康|保健|运动"))
+                //在资料库中随机找寻一条数据
+                voiceResult = Library.getOneDataByConditionField("regimen", "content", "category", text);
+            else if (text.matches("心理") || text.matches("心里"))
+                voiceResult = Library.getOneDataByConditionField("old_health", "content", "category", "老人心理");
+            else if (text.matches("医疗"))
+                voiceResult = Library.getOneDataByConditionField("regimen", "content", "category", "健康养生");
+            else
+                voiceResult = Library.getOneDataFromLibrary("regimen", "content");
             //声音切换
         } else if (text.matches("切换(成)*(.*?)(声|生|神|身|音)")) {
             String sex_voice = "切换(成)*(.*?)(声|生|神|身|音)";

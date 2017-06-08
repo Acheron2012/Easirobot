@@ -126,7 +126,8 @@ public class Xiachufang {
     }
 
     public static void main(String[] args) {
-        System.out.println(getRecipe("糖醋小龙虾"));
+
+        System.out.println(getRecipe("植树"));
     }
 
 }
