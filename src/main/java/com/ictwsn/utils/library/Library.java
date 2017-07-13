@@ -60,6 +60,7 @@ public class Library {
     }
 
     public static String getOneDataByConditionField(String collectionName, String getField, String conditionField, String condition) {
+        System.out.println("我来了");
         // 连接到数据库
         MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
         //获取数据总数
@@ -68,6 +69,7 @@ public class Library {
         //随机选择
         Random random = new Random();
         int number = random.nextInt(dataCount);
+        System.out.println("我来了1");
         logger.info("{}：随机获取第{}条数据，条件：{}", collectionName, number, condition);
         FindIterable<Document> findIterable = collection.find(new Document(conditionField, condition))
                 .skip(number - 1).limit(1);
@@ -166,9 +168,10 @@ public class Library {
 
 
     public static void main(String[] args) {
-        String test = Library.getFiveDataByConditionField("poetry","dynasty",
-                "form","title", "author","content","form","诗");
-        System.out.println(test);
+//        String test = Library.getFiveDataByConditionField("poetry","dynasty",
+//                "form","title", "author","content","form","诗");
+        String text = Library.getOneDataByConditionField("regimen", "content", "category", "运动养生");
+        System.out.println(text);
 
     }
 

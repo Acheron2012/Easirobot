@@ -29,7 +29,7 @@ public class Xiachufang {
 
     public static Logger logger = LoggerFactory.getLogger(Xiachufang.class);
 
-    public static String RECIPE_SEARCH_URL = "http://m.xiachufang.com/search/";
+    public static String RECIPE_SEARCH_URL = "http://m.xiachufang.com/search";
 
     public static String getRecipe(String text) {
         //获取一个mongodb链接
@@ -53,6 +53,7 @@ public class Xiachufang {
             if (response.getStatusLine().getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
                 String HTMLContent = EntityUtils.toString(entity, "UTF-8");
+//                System.out.println(HTMLContent);
                 String recipeUrl = getRecipeUrl(HTMLContent, searchUrl, text);
                 //为空返回
                 if (recipeUrl == null) return null;
@@ -89,13 +90,19 @@ public class Xiachufang {
 
     private static String getRecipeUrl(String HTMLContent, String url, String text) {
         Document document = Jsoup.parse(HTMLContent, url);
-        Elements recipesElements = document.select("article");
-        for (Element element : recipesElements) {
-            if (text.equals(element.select("header").first().text())) {
-                return element.select("a").first().attr("abs:href");
-            }
+        Elements recipesElements = document.select("a[class~=recipe]");
+        String recipeUrl = "";
+        try{
+            recipeUrl = recipesElements.first().attr("abs:href");
+        }catch (Exception e){
+            return null;
         }
-        return null;
+//        for (Element element : recipesElements) {
+//            if (text.equals(element.select("header").first().text())) {
+//                return element.select("a").first().attr("abs:href");
+//            }
+//        }
+        return recipeUrl;
     }
 
     private static JSONObject analysisRecipe(String url) {
@@ -127,7 +134,7 @@ public class Xiachufang {
 
     public static void main(String[] args) {
 
-        System.out.println(getRecipe("植树"));
+        System.out.println(getRecipe("酸菜鱼"));
     }
 
 }

@@ -70,15 +70,8 @@ public class VoiceAction {
         //自定义上传
         String custom = "((我(喜欢的|收藏的|上传的|的))|播放我的)(.+)";
         //语音选择
-        if (text.matches(encyclopedias)) {
-            if (!text.contains("你")) {
-                Pattern pattern = Pattern.compile(encyclopedias);
-                Matcher matcher = pattern.matcher(text);
-                if (matcher.find() && matcher.group(1) != null || matcher.group(2) != null) {
-                    voiceResult = Sougou.getEncyclopedia(matcher.group(1), matcher.group(2));
-                } else flag = false;
-            } else flag = false;
-        } else if (text.matches(custom)) {
+
+        if (text.matches(custom)) {
             Pattern pattern = Pattern.compile(custom);
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
@@ -248,13 +241,15 @@ public class VoiceAction {
             //匹配到邮件消息
             if (matcher.find()) {
                 String message = text.substring(text.indexOf("微信") + 2, text.length());
+                logger.info("微信消息:{}",message);
                 HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + message, null);
                 voiceResult = "微信已发送";
             } else flag = false;
             //用户自定义上传内容
         } else if (text.matches(".{2}养生")) {
             //主要类别：运动、饮食、心理、医疗
-            text = text.substring(0, 2);
+//            text = text.substring(0, 2);
+//            System.out.println("text="+text);
             if (text.matches("饮食|健康|保健|运动"))
                 //在资料库中随机找寻一条数据
                 voiceResult = Library.getOneDataByConditionField("regimen", "content", "category", text);
@@ -277,6 +272,14 @@ public class VoiceAction {
                 if (sex_sound.equals("标准男")) Speech.PER = "3";
                 if (sex_sound.equals("标准女")) Speech.PER = "4";
                 voiceResult = "声音已切换";
+            } else flag = false;
+        }else if (text.matches(encyclopedias)) {
+            if (!text.contains("你")) {
+                Pattern pattern = Pattern.compile(encyclopedias);
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find() && matcher.group(1) != null || matcher.group(2) != null) {
+                    voiceResult = Sougou.getEncyclopedia(matcher.group(1), matcher.group(2));
+                } else flag = false;
             } else flag = false;
         }
         //取消梦境功能
