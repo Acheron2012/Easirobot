@@ -2,7 +2,7 @@ package com.ictwsn.rob.beacon.action;
 
 
 import com.hankcs.hanlp.suggest.Suggester;
-import com.ictwsn.rob.beacon.BeaconTool;
+import com.ictwsn.rob.beacon.tool.BeaconTool;
 import com.ictwsn.rob.beacon.bean.BeaconBean;
 import com.ictwsn.rob.beacon.service.BeaconService;
 import com.ictwsn.utils.hanlp.HanLPUtil;

@@ -1,7 +1,6 @@
 package com.ictwsn.web.custom;
 
 
-import com.ictwsn.utils.jpush.Jpush;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -88,7 +87,7 @@ public class CustomAction {
             try {
                 result =  statement.executeUpdate(sql);
                 if(result!=0){
-                    Jpush.testSendPush(appKey, masterSecret);
+//                    Jpush.testSendPush(appKey, masterSecret);
                     response.setContentType("text/html;charset=gbk");
                     out.println("提交成功!");
 
@@ -191,7 +190,7 @@ public class CustomAction {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                Jpush.testSendPush(appKey, masterSecret);
+//                Jpush.testSendPush(appKey, masterSecret);
                 response.setHeader("Refresh","1;url=http://115.28.90.164/Weixin/JSP/SchDel.jsp");
             } catch (SQLException e) {
                 // TODO Auto-generated catch block

@@ -282,6 +282,7 @@ public class Tools {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(getPingYin("我是谁"));
 		/*try {
 			System.out.println(EncrypSHA("easicloudjljajdfio324jll38hl3"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

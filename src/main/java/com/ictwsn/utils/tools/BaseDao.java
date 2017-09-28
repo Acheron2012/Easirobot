@@ -19,7 +19,7 @@ public class BaseDao {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	//MyBats
+	//MyBatis
 	@Resource protected SqlSessionTemplate sqlSessionTemplate;
 	public SqlSessionTemplate getSqlSessionTemplate() {
 		return sqlSessionTemplate;

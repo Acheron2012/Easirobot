@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -25,24 +26,33 @@ public class EMail {
     public static final String password = "HeroVagabond2016";  // 邮件服务器登录密码
     public static final String from = "ruoranhuang@163.com"; // 发送人邮件地址
 
-    public static String oldName = "陈丽娟";
+//    public static String oldName = "陈丽娟";
 
-    public static void mail(String content) {
-        String to[] = new String[3];
-        //子女收件人地址
-        to[0] = "huangruoran@ict.ac.cn";
-        to[1] = "18813124313@163.com";
-        to[2] = "yufang2013@xs.ustb.edu.cn";
+    public static void mail(String user_name, List<String> address, String content) {
+
+//        String to[] = new String[3];
+//        //子女收件人地址
+//        to[0] = "huangruoran@ict.ac.cn";
+//        to[1] = "18813124313@163.com";
+//        to[2] = "yufang2013@xs.ustb.edu.cn";
+
+//        System.out.println(user_name);
+//        System.out.println(address.toString());
+//        System.out.println(content);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");//设置日期格式
         String date = df.format(new Date());
-        String subject = oldName + "-老人语音邮件-" + date; // 邮件标题
-        String body = oldName + "的子女：您好，\n\n" +
+        String subject = user_name + "-老人语音邮件-" + date; // 邮件标题
+        String body = user_name + "的子女：您好，\n\n" +
                 "\t\t" + "您的老人为您发送语音：" + content
                 + "\n\n祝好！\n" + "中科院计算所智能孝子团队";
+
+
         //邮件发送
-        for (int i = 0; i < to.length; i++) {
-            Send(smtphost, user, password, from, to[i], subject, body);
+        for (int i = 0; i < address.size(); i++) {
+            if (address.get(i) != null && !address.get(i).equals(""))
+                System.out.println(address.get(i));
+                Send(smtphost, user, password, from, address.get(i), subject, body);
         }
     }
 
@@ -107,7 +117,7 @@ public class EMail {
     }
 
 
-    public static void main(String[] args) {
-        mail("下班回来记得买菜！");
-    }
+//    public static void main(String[] args) {
+//        mail("下班回来记得买菜！");
+//    }
 }

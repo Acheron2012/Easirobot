@@ -34,12 +34,12 @@ public class HanLPUtil {
         shortestSegment.enableAllNamedEntityRecognize(true);
     }
 
-    public static void analysisUserVoice(String userId, String text) {
+    public static void analysisUserVoice(String deviceID, String text) {
         // 从连接池获取一个连接
         mongoDatabase = Mongodb.getMongoDatabase();
         MongoCollection<Document> collection = mongoDatabase.getCollection("user_voice");
         Document document = new Document();
-        document.put("userId", userId);
+        document.put("deviceID", deviceID);
         document.put("dataTime", System.currentTimeMillis());
         //插入文本信息
         document.put("text", text);

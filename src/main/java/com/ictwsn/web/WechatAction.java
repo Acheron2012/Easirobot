@@ -1,6 +1,5 @@
 package com.ictwsn.web;
 
-import com.ictwsn.utils.jpush.Jpush;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.web.wechat.util.AudioDB;
 import com.ictwsn.web.wechat.thread.TokenThread;
@@ -170,7 +169,7 @@ public class WechatAction {
                         if(AudioDB.updateDB(Integer.parseInt(this.id))){
                             idFlag = false;
                             //Jpush.buildPushObject_diyAUDIOmessage();
-                            Jpush.audioPush(Jpush.appKey,Jpush.masterSecret);
+//                            Jpush.audioPush(Jpush.appKey,Jpush.masterSecret);
                             message = MessageUtil.initText(ToUserName, FromUserName, "语音上传成功");
                             out.print(message);
                             out.flush();

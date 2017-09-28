@@ -1,13 +1,15 @@
 package com.ictwsn.utils.msg;
 
+import com.alibaba.fastjson.JSONObject;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2017-03-21.
@@ -22,7 +24,18 @@ public class Msg {
     public static final String appkey = "23709690";
     public static final String secret = "3e7e624fd3128e18d01273ecf9842494";
 
-    public static void sendMessage(String name,String content){
+    public static void sendMessage(String name, List<Long> phones, String content){
+
+//        System.out.println(name);
+//        System.out.println(phones.toString());
+//        System.out.println(content);
+
+        String phones_string = "";
+        for(int i = 0; i<phones.size(); i++)
+            if(phones.get(i)!=null)
+                phones_string += phones.get(i) + ",";
+        phones_string = phones_string.substring(0,phones_string.length()-1);
+        System.out.println("发送号码:"+phones_string);
 
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
@@ -38,7 +51,7 @@ public class Msg {
         //消息模板
         req.setSmsParamString(jsonObject.toString());
         //手机号，多个以逗号分隔
-        req.setRecNum("18813124313");
+        req.setRecNum(phones_string);
         //短信模板id
         req.setSmsTemplateCode("SMS_56635394");
         AlibabaAliqinFcSmsNumSendResponse rsp = null;

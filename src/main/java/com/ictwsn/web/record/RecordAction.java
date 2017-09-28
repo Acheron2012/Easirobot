@@ -1,7 +1,6 @@
 package com.ictwsn.web.record;
 
 
-import com.ictwsn.utils.jpush.Jpush;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -108,7 +107,7 @@ public class RecordAction {
             String sqldel = "DELETE FROM audiopath" + " WHERE id =" +audioId+ ""  ;
             try {
                 st1.executeUpdate(sqldel);
-                Jpush.audioPush(Jpush.appKey,Jpush.masterSecret);
+//                Jpush.audioPush(Jpush.appKey,Jpush.masterSecret);
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

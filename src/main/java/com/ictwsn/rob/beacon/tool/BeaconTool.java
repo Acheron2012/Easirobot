@@ -1,4 +1,4 @@
-package com.ictwsn.rob.beacon;
+package com.ictwsn.rob.beacon.tool;
 
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.speech.TextToSpeech;

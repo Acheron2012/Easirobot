@@ -1,6 +1,7 @@
 package com.ictwsn.rob.voice.action;
 
 
+import com.ictwsn.rob.voice.service.VoiceService;
 import com.ictwsn.utils.calendar.LunarCalendar;
 import com.ictwsn.utils.encyclopedias.Sougou;
 import com.ictwsn.utils.hanlp.HanLPUtil;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,28 +45,65 @@ public class VoiceAction {
 
     public static final String FILE_NAME = "ResultAudio.mp3";
 
-//    public static void main(String[] args) {
+    //    public static void main(String[] args) {
 //        voiceAnalysis();
 //    }
+    @Resource
+    VoiceService voiceService;
+
+    @RequestMapping(value = "/weixin")
+    public void childCommunication(HttpServletRequest request, HttpServletResponse response,
+                                   @RequestParam(value = "text", required = true) String text,
+                                   @RequestParam(value = "deviceID", required = true) String deviceID,
+                                   @RequestParam(value = "admin", required = true) String admin) throws ServletException, IOException {
+        //admin 0 为子女，1为管理员
+        logger.info("语音文本:{}", text);
+
+        if (CheckChinese.isMessyCode(text)) {
+            text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
+            logger.info("编码后语音文本:{}", text);
+        }
+
+        //发送微信消息到子女
+        String voiceResult = "";
+        HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + text + "&deviceID=" + deviceID + "&admin="
+                + admin, null);
+        voiceResult = "微信已发送";
+        logger.info("返回内容:{}", voiceResult);
+        //字符串长度判断，并调用百度TTS
+        InputStream inputStream = null;
+        inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
+//        //返回客户端字符流
+        Tools.downloadAudioFile(inputStream, response);
+        System.out.println("处理完成");
+    }
+
 
     @RequestMapping(value = "/voice")
     public void voiceAnalysis(HttpServletRequest request, HttpServletResponse response,
-                              @RequestParam(value = "text", required = true) String text) throws ServletException, IOException {
-        String user_id = "1000";
-//    public static void voiceAnalysis() {
-//        String user_id = request.getHeader("user_id");
-//        String text = "讲个家庭故事";
+                              @RequestParam(value = "text", required = true) String text,
+                              @RequestParam(value = "deviceID", required = false) String deviceID) throws ServletException, IOException {
+
         logger.info("语音文本:{}", text);
         if (CheckChinese.isMessyCode(text)) {
             text = new String(text.getBytes("ISO-8859-1"), "UTF-8");
             logger.info("编码后语音文本:{}", text);
         }
         //收集用户语音信息
-        HanLPUtil.analysisUserVoice(user_id, text);
-
-
+        HanLPUtil.analysisUserVoice(deviceID, text);
         //返回结果
         String voiceResult = "";
+
+
+        //层级1，用户自定义回答（老人设置和子女设置）
+        String answer = voiceService.getAnswerByDeviceIDAndQuestion(deviceID, text);
+        if (answer != null) {
+            voiceResult = answer;
+            responseVoice(voiceResult, response);
+            return;
+        }
+
+        //层级2，进入指令资料库
         boolean flag = true;
         //爬取搜狗百科
         String encyclopedias = "(.*?)((是谁|是哪个|是什么人)|(是什么|怎么样|如何|的作用|的用处|有什么用|(的)*功能|有什么好处)|(在哪儿|在哪里|位于哪里|在哪个地方))";
@@ -102,7 +142,7 @@ public class VoiceAction {
             text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
             voiceResult = Xiachufang.getRecipe(text);
             if (voiceResult == null) {
-                logger.info("未识别菜名：{}",text);
+                logger.info("未识别菜名：{}", text);
                 flag = false;
             }
             //旅游
@@ -220,31 +260,39 @@ public class VoiceAction {
             //匹配到邮件消息
             if (matcher.find()) {
                 String message = text.substring(text.indexOf("邮件") + 2, text.length());
-                EMail.mail(message);
+                //获取老人姓名
+                String user_name = voiceService.getUserNameByDeviceID(deviceID);
+                //获取子女邮件地址
+                List<String> address = voiceService.getEmailAddressByDeviceID(deviceID);
+                EMail.mail(user_name, address, message);
                 voiceResult = "邮件已发送";
             } else flag = false;
         } else if (text.contains("短信")) {
             String email_message = "发(送)*短信";
             Pattern pattern = Pattern.compile(email_message);
             Matcher matcher = pattern.matcher(text);
-            //匹配到邮件消息
+            //匹配到短信消息
             if (matcher.find()) {
+                //获取老人姓名
+                String user_name = voiceService.getUserNameByDeviceID(deviceID);
+                //获取子女电话号码
+                List<Long> phones = voiceService.getPhonesByDeviceID(deviceID);
                 String message = text.substring(text.indexOf("短信") + 2, text.length());
-                Msg.sendMessage("陈丽娟", message);
+                Msg.sendMessage(user_name, phones, message);
                 voiceResult = "短信已发送";
             } else flag = false;
             //用户自定义上传内容
-        } else if (text.contains("微信")) {
-            String email_message = "发(送)*微信";
-            Pattern pattern = Pattern.compile(email_message);
-            Matcher matcher = pattern.matcher(text);
-            //匹配到邮件消息
-            if (matcher.find()) {
-                String message = text.substring(text.indexOf("微信") + 2, text.length());
-                logger.info("微信消息:{}",message);
-                HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + message, null);
-                voiceResult = "微信已发送";
-            } else flag = false;
+//        } else if (text.contains("微信")) {
+//            String email_message = "发(送)*微信";
+//            Pattern pattern = Pattern.compile(email_message);
+//            Matcher matcher = pattern.matcher(text);
+//            //匹配到邮件消息
+//            if (matcher.find()) {
+//                String message = text.substring(text.indexOf("微信") + 2, text.length());
+//                logger.info("微信消息:{}", message);
+//                HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + message, null);
+//                voiceResult = "微信已发送";
+//            } else flag = false;
             //用户自定义上传内容
         } else if (text.matches(".{2}养生")) {
             //主要类别：运动、饮食、心理、医疗
@@ -273,7 +321,7 @@ public class VoiceAction {
                 if (sex_sound.equals("标准女")) Speech.PER = "4";
                 voiceResult = "声音已切换";
             } else flag = false;
-        }else if (text.matches(encyclopedias)) {
+        } else if (text.matches(encyclopedias)) {
             if (!text.contains("你")) {
                 Pattern pattern = Pattern.compile(encyclopedias);
                 Matcher matcher = pattern.matcher(text);
@@ -289,26 +337,23 @@ public class VoiceAction {
             voiceResult = OliveDream.getDream(text);
         }*/
         else {
-            logger.info("未能识别语音内容，转入图灵接口");
-            voiceResult = TuringAPI.turingRobot(text, null);
+            flag = false;
+//            logger.info("未能识别语音内容，转入图灵接口");
+//            voiceResult = TuringAPI.turingRobot(text, null);
         }
-        //未能有效处理，转入图灵接口
+        //层级3，对话接口
         if (flag == false) {
-            logger.info("未能做出语音行动，转入图灵接口");
-            voiceResult = TuringAPI.turingRobot(text, null);
+            //转入内置对话接口
+            voiceResult = Library.getAnswerByQuestion("conversation", "answer", text);
+            if (voiceResult == null) {
+                //未能有效处理，转入图灵接口
+                logger.info("未能做出语音行动，转入图灵接口");
+                voiceResult = TuringAPI.turingRobot(text, null);
+            }
         }
-        //空格处理
-        voiceResult = voiceResult.replace(" ", "").replaceAll("\\s", "");
-        logger.info("返回内容:{}", voiceResult);
-//        TextToSpeech.downloadAudio("C:\\Users\\Administrator\\Desktop\\audio.mp3", voiceResult);
-        //字符串长度判断，并调用百度TTS
-        InputStream inputStream = null;
-        //当长度大于1024字节时（一个中文占两个字节），需要将字节流合并
-        if (voiceResult.length() > 512)
-            inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
-        else inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
-//        //返回客户端字符流
-        Tools.downloadAudioFile(inputStream, response);
+//      合成语音并返回客户端
+        responseVoice(voiceResult, response);
+
         System.out.println("处理完成");
         //返回处理
 //        JSONObject resultObject = new JSONObject();
@@ -341,6 +386,21 @@ public class VoiceAction {
 //            e.printStackTrace();
 //        }
 //    }
+
+    public static void responseVoice(String voiceResult, HttpServletResponse response) {
+        //空格处理
+        voiceResult = voiceResult.replace(" ", "").replaceAll("\\s", "");
+        logger.info("返回内容:{}", voiceResult);
+//        TextToSpeech.downloadAudio("C:\\Users\\Administrator\\Desktop\\audio.mp3", voiceResult);
+        //字符串长度判断，并调用百度TTS
+        InputStream inputStream = null;
+        //当长度大于1024字节时（一个中文占两个字节），需要将字节流合并
+        if (voiceResult.length() > 512)
+            inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
+        else inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
+//        //返回客户端字符流
+        Tools.downloadAudioFile(inputStream, response);
+    }
 
     //得到用户自定义文件名
     public static String getCustomFileName(String fileName) {

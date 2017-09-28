@@ -21,7 +21,7 @@ public class InitialConfiguration implements ApplicationListener<ContextRefreshe
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 
 		//获取目录创建语音池
-		logger.info("初始化语音文件夹===");
+		logger.info("初始化语音文件夹！");
 		String rootPath = Tools.getConfigureValue("audio.path");
 		//获取XML中的配置信息
 		String settings_path = InitialConfiguration.class.getClassLoader().getResource("").getPath()+"/"+"settings.xml";
@@ -41,6 +41,21 @@ public class InitialConfiguration implements ApplicationListener<ContextRefreshe
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
+		//创建广告文件夹
+		File adverFile = new File(Tools.getConfigureValue("advertisement.file"));
+		if (!adverFile.getParentFile().exists()) {// 判断目标文件所在的目录是否存在
+			// 如果目标文件所在的文件夹不存在，则创建父文件夹
+			System.out.println("广告文件所在目录不存在，准备创建它！");
+			if (!adverFile.getParentFile().mkdirs()) {// 判断创建目录是否成功
+				System.out.println("广告文件所在的目录失败！");
+			}
+		}
+		//如果目标文件夹不存在，进行创建
+		if (!adverFile.exists()) {
+			logger.info("广告文件夹创建完毕！");
+			adverFile.mkdir();
+		}
+
 		logger.info("语音文件夹创建完毕！");
 
 		logger.info("spring容器初始化完毕================================================");
