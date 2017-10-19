@@ -28,6 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +95,19 @@ public class HttpUtil {
      */
     public static HttpEntity httpGet(String url, Map<String,Object> headers){
         CloseableHttpClient httpClient = getHttpClient();
-        HttpRequest httpGet = new HttpGet(url);
+        URL url_ = null;
+        URI uri = null;
+        try {
+            url_ = new URL(url);
+            try {
+                uri = new URI(url_.getProtocol(), url_.getHost(), url_.getPath(), url_.getQuery(), null);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpRequest httpGet = new HttpGet(uri);
         if(headers!=null&&!headers.isEmpty()){
             httpGet = setHeaders(headers, httpGet);
         }
@@ -151,7 +167,7 @@ public class HttpUtil {
 
         try {
             HttpPost httpPost = (HttpPost) request;
-            StringEntity stringEntity = new StringEntity(jsonParam.toString(), "utf-8");
+            StringEntity stringEntity = new StringEntity(jsonParam, "utf-8");
             stringEntity.setContentEncoding("UTF-8");
             stringEntity.setContentType("application/json");
             httpPost.setEntity(stringEntity);
@@ -246,6 +262,10 @@ public class HttpUtil {
             e.printStackTrace();
         }
         return content;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

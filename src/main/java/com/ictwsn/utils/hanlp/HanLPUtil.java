@@ -5,6 +5,7 @@ import com.hankcs.hanlp.seg.Segment;
 import com.hankcs.hanlp.seg.Viterbi.ViterbiSegment;
 import com.hankcs.hanlp.seg.common.Term;
 import com.ictwsn.utils.tools.Mongodb;
+import com.ictwsn.utils.tools.Tools;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -13,6 +14,7 @@ import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +52,28 @@ public class HanLPUtil {
         collection.insertOne(document);
     }
 
+    public static void saveUserVoice(String deviceID, String text,int company_id,String label) {
+        // 从连接池获取一个连接
+        mongoDatabase = Mongodb.getMongoDatabase();
+        MongoCollection<Document> collection = mongoDatabase.getCollection("user_voice");
+        Document document = new Document();
+        document.put("deviceID", deviceID);
+        // 放入timestamp
+        Date date = null;
+        date = Tools.getNowDate8();
+        document.put("dataTime", date);
+        //插入文本信息
+        document.put("text", text);
+        //插入分词关键字，设定最大为5个
+        document.put("keyWord", HanLP.extractKeyword(text, 5).toString());
+        //和子女还是和机器人对话 label='child' or 'robot'
+        document.put("label",label);
+        //公司id
+        document.put("company_id",company_id);
+        collection.insertOne(document);
+    }
+
+
     public static List<String> getUserVoiceKeywords(String userId) {
         StringBuffer voiceText = new StringBuffer();
         // 从连接池获取一个连接
@@ -80,7 +104,8 @@ public class HanLPUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getSeparatewords("讲一首唐诗"));
+        HanLPUtil.saveUserVoice("gh_655b593ac7b9_9897297a665e1d3b","下班回家买菜",1001,"robot");
+//        System.out.println(getSeparatewords("讲一首唐诗"));
     }
 
 }

@@ -15,4 +15,6 @@ public interface BeaconDao {
     //搜寻该用户是否有此设备id
     @Update("update tbl_beacon set last_time = #{last_time}, scenario = #{scenario},history=#{history} where user_id = #{user_id}")
     int updateUserBeacon(BeaconBean beaconBean);
+
+
 }

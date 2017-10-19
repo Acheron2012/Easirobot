@@ -9,6 +9,7 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,7 +64,11 @@ public class Msg {
         logger.info(rsp.getBody());
     }
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
+        List<Long> phones = new ArrayList<Long>();
+        phones.add(15611535191L);
+//        phones.add(18813124313L);
+//        phones.add(18810287398L);
+        sendMessage("老人", phones, "发短信好慢啊");
     }
 }

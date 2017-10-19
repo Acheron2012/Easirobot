@@ -153,7 +153,7 @@ public class TextToSpeech {
         String tempContent;
         int tempLength = 0;
         for (int i = 0; i < count; i++) {
-            logger.info("已进入第{}次合并",i+1);
+            logger.info("已进入第{}次合并", i + 1);
             if (i == count - 1) {
                 tempContent = context.substring(tempLength, context.length());
                 tempLength = context.length();
@@ -218,6 +218,25 @@ public class TextToSpeech {
             logger.info("合成语音entity为空");
         }
         return null;
+    }
+
+    //通过url返回音频流
+    public static InputStream returnInputStreamByURL(String inputURL) {
+        InputStream inputStream = null;
+        //发送请求返回结果
+        HttpEntity entity = HttpUtil.httpGet(inputURL, null);
+        if (entity != null) {
+            try {
+                inputStream = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            logger.info("合成语音entity为空");
+            return null;
+        }
+        return inputStream;
     }
 
 

@@ -8,5 +8,6 @@
         <mapper class="com.ictwsn.test.dao.UserDao"/>
         <mapper class="com.ictwsn.rob.beacon.dao.BeaconDao"/>
         <mapper class="com.ictwsn.rob.voice.dao.VoiceDao"/>
+        <mapper class="com.ictwsn.web.req.ReqDao.ReqDao"/>
     </mappers>  
 </configuration>  

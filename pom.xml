@@ -125,12 +125,13 @@
       <artifactId>spring-test</artifactId>
       <version>4.2.5.RELEASE</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+    <!-- 邮件功能  -->
     <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>mail</artifactId>
       <version>1.4.7</version>
     </dependency>
+
     <!-- JSTL标签引入 -->
     <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
     <dependency>

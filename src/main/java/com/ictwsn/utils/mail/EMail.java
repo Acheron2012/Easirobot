@@ -4,12 +4,10 @@ import com.ictwsn.utils.timer.Job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.security.Security;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +26,7 @@ public class EMail {
 
 //    public static String oldName = "陈丽娟";
 
+//    阿里云服务器需要打开25端口
     public static void mail(String user_name, List<String> address, String content) {
 
 //        String to[] = new String[3];
@@ -43,7 +42,7 @@ public class EMail {
         SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");//设置日期格式
         String date = df.format(new Date());
         String subject = user_name + "-老人语音邮件-" + date; // 邮件标题
-        String body = user_name + "的子女：您好，\n\n" +
+        String body = user_name + "的子女：\n您好，\n\n" +
                 "\t\t" + "您的老人为您发送语音：" + content
                 + "\n\n祝好！\n" + "中科院计算所智能孝子团队";
 
@@ -52,7 +51,7 @@ public class EMail {
         for (int i = 0; i < address.size(); i++) {
             if (address.get(i) != null && !address.get(i).equals(""))
                 System.out.println(address.get(i));
-                Send(smtphost, user, password, from, address.get(i), subject, body);
+            Send(smtphost, user, password, from, address.get(i), subject, body);
         }
     }
 
@@ -60,10 +59,33 @@ public class EMail {
                             String subject, String body) {
         try {
             logger.info("开始发送邮件");
+            //使用SSL加密的465端口，25端口阿里云无法使用
+            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+            //设置邮件会话参数
             Properties props = new Properties();
-            props.put("mail.smtp.host", smtphost);
+            //邮箱的发送服务器地址
+            props.setProperty("mail.smtp.host", smtphost);
+            props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            //邮箱发送服务器端口,这里设置为465端口
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
             props.put("mail.smtp.auth", "true");
+
+//            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+//            //邮箱发送服务器端口,这里设置为465端口
+//            props.setProperty("mail.smtp.port", "465");
+//            props.setProperty("mail.smtp.socketFactory.port", "465");
+
             Session ssn = Session.getInstance(props, null);
+            //获取到邮箱会话,利用匿名内部类的方式,将发送者邮箱用户名和密码授权给jvm
+//            Session ssn = Session.getDefaultInstance(props, new Authenticator() {
+//                protected PasswordAuthentication getPasswordAuthentication() {
+//                    return new PasswordAuthentication(user, password);
+//                }
+//            });
             MimeMessage message = new MimeMessage(ssn);
             InternetAddress fromAddress = new InternetAddress(from);
             message.setFrom(fromAddress);
@@ -116,8 +138,54 @@ public class EMail {
         }
     }
 
+    public static void sendEmil(String to, String message) {
+        try {
+            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+            //设置邮件会话参数
+            Properties props = new Properties();
+            //邮箱的发送服务器地址
+            props.setProperty("mail.smtp.host", smtphost);
+            props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            //邮箱发送服务器端口,这里设置为465端口
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.auth", "true");
+            //获取到邮箱会话,利用匿名内部类的方式,将发送者邮箱用户名和密码授权给jvm
+            Session session = Session.getDefaultInstance(props, new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(user, password);
+                }
+            });
+            //通过会话,得到一个邮件,用于发送
+            Message msg = new MimeMessage(session);
+            //设置发件人
+            msg.setFrom(new InternetAddress(from));
+            //设置收件人,to为收件人,cc为抄送,bcc为密送
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+//            msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(to, false));
+//            msg.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(to, false));
+            msg.setSubject("邮件主题");
+            //设置邮件消息
+            msg.setText(message);
+            //设置发送的日期
+            msg.setSentDate(new Date());
 
-//    public static void main(String[] args) {
-//        mail("下班回来记得买菜！");
-//    }
+            //调用Transport的send方法去发送邮件
+            Transport.send(msg);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+//        List<String> add = new ArrayList<String>();
+//        add.add("huangruoran@ict.ac.cn");
+//        mail("陈丽娟", add, "下班回来记得买菜！");
+        sendEmil("huangruoran@ict.ac.cn","我靠");
+    }
 }

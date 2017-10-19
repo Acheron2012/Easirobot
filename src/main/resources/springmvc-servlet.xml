@@ -43,6 +43,7 @@
     <!-- 定时器的配置 -->
     <!-- 包装任务类 -->
     <bean name="Job" class="com.ictwsn.utils.timer.Job"></bean>
+
     <bean id="job1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="Job"></property>
         <property name="targetMethod" value="startJob"></property>
@@ -57,15 +58,61 @@
             <value>00 15 16 * * ?</value>
         </property>
     </bean>
+
+    <!-- 流量清零 -->
+    <!-- 当日清零 -->
+    <bean id="resetByDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="Job"></property>
+        <property name="targetMethod" value="resetFlowByDay"></property>
+    </bean>
+    <bean id="resetByDayTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="resetByDay"></property>
+        <property name="cronExpression">
+            <!-- 例：每天晚上23点59分59秒开始执行,这里可填写相应表达式 -->
+            <value>59 59 23 * * ?</value>
+        </property>
+    </bean>
+    <!-- 当月清零 -->
+    <bean id="resetByMonth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="Job"></property>
+        <property name="targetMethod" value="resetFlowByMonth"></property>
+    </bean>
+    <bean id="resetByMonthTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="resetByMonth"></property>
+        <property name="cronExpression">
+            <!-- 例：每月最后一日晚上23点59分59秒开始执行 -->
+            <value>59 59 23 L * ?</value>
+        </property>
+    </bean>
+    <!-- 当年清零 -->
+    <bean id="resetByYear" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="Job"></property>
+        <property name="targetMethod" value="resetFlowByYear"></property>
+    </bean>
+    <bean id="resetByYearTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="resetByYear"></property>
+        <property name="cronExpression">
+            <!-- 例：每月最后一日晚上23点59分59秒开始执行 -->
+            <value>59 59 23 L DEC ?</value>
+        </property>
+    </bean>
+
     <!-- 调度工厂 -->
     <bean id="startQuartz" lazy-init="false" autowire="no"
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="doJob1Trigger"/>
+                <ref bean="resetByDayTrigger"/>
+                <ref bean="resetByMonthTrigger"/>
+                <ref bean="resetByYearTrigger"/>
             </list>
         </property>
     </bean>
+
+
+
+
 
     <!-- 文件上传 -->
     <bean id="multipartResolver"

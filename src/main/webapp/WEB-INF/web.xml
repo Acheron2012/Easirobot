@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>goindex.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- 日志监听 -->
@@ -81,21 +81,42 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.css</url-pattern>
   </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.gif</url-pattern>
-
   </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.jpg</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpeg</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <!-- 字体图标正确显示 -->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.svg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.eot</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.woff</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ttf</url-pattern>
   </servlet-mapping>
 
 </web-app>
