@@ -220,7 +220,7 @@
     <dependency>
       <groupId>com.hankcs</groupId>
       <artifactId>hanlp</artifactId>
-      <version>portable-1.2.8</version>
+      <version>portable-1.5.2</version>
     </dependency>
 
     <!-- 添加本地依赖 -->
@@ -230,6 +230,13 @@
       <version>20160607</version>
       <scope>system</scope>
       <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
+    </dependency>
+
+    <!-- 百度AI jar -->
+    <dependency>
+      <groupId>com.baidu.aip</groupId>
+      <artifactId>java-sdk</artifactId>
+      <version>3.3.2</version>
     </dependency>
 
     <!-- Jpush -->

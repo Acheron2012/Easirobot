@@ -29,11 +29,14 @@ public class TextToSpeech {
 //        Speech.TOKEN = jsonObject.getString("access_token");
 //        System.out.println(Speech.TOKEN);
 
-        String tex = "\uD83D\uDE01 *肉片煸干之后会出";
+        String tex = "登鹳雀楼\n" +
+                "作者：王之涣\n" +
+                "白日依山尽，黄河入海流。\n" +
+                "欲穷千里目，更上一层楼。";
         InputStream inputStream = returnCombineSpeechInputStream(tex);
         if (inputStream == null) System.out.println("我是空");
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\Audio_new.mp3");
+            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\登鹳雀楼.mp3");
             byte[] b = new byte[1024];
             int len;
             try {
@@ -145,6 +148,9 @@ public class TextToSpeech {
 
     //当长度大于1024字节时（一个中文占两个字节），创建序列流来合并两个流
     public static InputStream returnCombineSpeechInputStream(String context) {
+        //获取一个httpclient链接
+        CloseableHttpClient httpClient = HttpUtil.getHttpClient();
+        HttpEntity entity = null;
         //获取TOKEN
         Speech.TOKEN = JSONObject.fromObject(Speech.getToken()).getString("access_token");
         int count = (context.length() / 512) + 1;
@@ -171,7 +177,8 @@ public class TextToSpeech {
             String voiceURL = "http://tsn.baidu.com/text2audio?tex=" + tempContent + "&lan=zh&cuid=" +
                     Speech.CUID + "&ctp=1&tok=" + Speech.TOKEN + "&spd=" + Speech.SPD + "&per=" + Speech.PER;
             //发送请求返回结果
-            HttpEntity entity = HttpUtil.httpGet(voiceURL, null);
+//            HttpEntity entity = HttpUtil.httpGet(voiceURL, null);
+            entity = HttpUtil.httpGetByHttpClient(httpClient,voiceURL);
             if (entity != null) {
                 try {
                     InputStream tempInputSream = entity.getContent();

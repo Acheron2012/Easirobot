@@ -310,7 +310,26 @@
                 </div>
                 <!-- /. PAGE INNER  -->
 
+
             </div>
+            <script>
+                function pushAdvertisement() {
+                    $.ajax({
+                        url: '<%=path%>/rob/push',
+                        type: 'GET',     // 请求类型，常用的有 GET 和 POST
+                        data: {
+                            // 请求参数
+                            ad_id: 123456
+                        },
+                        success: function (data) { // 接口调用成功回调函数
+                            alert('推送成功');
+                        }
+                    });
+                }
+            </script>
+            <center>
+                <button class="btn btn-success" onclick="pushAdvertisement()">广告测试</button>
+            </center>
             <!-- /. PAGE WRAPPER  -->
         </div>
 

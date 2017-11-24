@@ -38,7 +38,7 @@ public class ChatbotPush {
 
     public static final String TITLE = "智能孝子";
     public static final String ALERT = "123";
-    public static final String MSG_CONTENT = "余昉师弟";
+    public static final String MSG_CONTENT = "4:119.23.238.240:8080/robot-1.0-SNAPSHOT/rob/ad?ad_id=123456";
     public static final String REGISTRATION_ID = "0900e8d85ef";
     public static final String TAG = "tag_api";
     public static long sendCount = 0;
@@ -227,15 +227,18 @@ public class ChatbotPush {
                 .setMessage(Message.newBuilder()
                         .setMsgContent(MSG_CONTENT)
                         .build())
-//                .setNotification(Notification.newBuilder()
-//                        .setAlert(ALERT)
-//                        .addPlatformNotification(AndroidNotification.newBuilder()
-//                                .setTitle(TITLE)
-//                                .addExtras(extras).build())
-//                        .addPlatformNotification(IosNotification.newBuilder()
-//                                .incrBadge(1)
-//                                .addExtra("extra_key", "extra_value").build())
+//                .setOptions(Options.newBuilder()
+//                        .setApnsProduction(false)
 //                        .build())
+                .setNotification(Notification.newBuilder()
+                        .setAlert(ALERT)
+                        .addPlatformNotification(AndroidNotification.newBuilder()
+                                .setTitle(TITLE)
+                                .addExtras(extras).build())
+                        .addPlatformNotification(IosNotification.newBuilder()
+                                .incrBadge(1)
+                                .addExtra("extra_key", "extra_value").build())
+                        .build())
                 .build();
     }
 

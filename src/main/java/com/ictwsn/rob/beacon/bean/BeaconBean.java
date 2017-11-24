@@ -53,4 +53,5 @@ public class BeaconBean {
     private String scenario;
     private Date last_time;
     private int history;
+
 }

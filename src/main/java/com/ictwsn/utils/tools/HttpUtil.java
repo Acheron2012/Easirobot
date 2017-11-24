@@ -127,6 +127,24 @@ public class HttpUtil {
         }
         return null;
     }
+    public static HttpEntity httpGetByHttpClient(CloseableHttpClient httpClient, String url){
+        HttpRequest httpGet = new HttpGet(url);
+        CloseableHttpResponse response = null;
+        try{
+            response =httpClient.execute((HttpGet)httpGet);
+            if (response.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = response.getEntity();
+                return entity;
+            }
+            else{
+                logger.info("合成错误！");
+                logger.info("请求错误，返回码:"+response.getStatusLine().getStatusCode());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * @param url
      * @param headers

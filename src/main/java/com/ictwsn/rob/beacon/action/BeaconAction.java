@@ -2,6 +2,7 @@ package com.ictwsn.rob.beacon.action;
 
 
 import com.hankcs.hanlp.suggest.Suggester;
+import com.ictwsn.rob.beacon.bean.UserBean;
 import com.ictwsn.rob.beacon.tool.BeaconTool;
 import com.ictwsn.rob.beacon.bean.BeaconBean;
 import com.ictwsn.rob.beacon.service.BeaconService;
@@ -57,7 +58,8 @@ public class BeaconAction {
                                  @RequestParam(value = "scenario", required = true) String scenario,
                                  @RequestParam(value = "uuid", required = true) String uuid,
                                  @RequestParam(value = "conv", required = true) int conv,
-                                 @RequestParam(value = "message", required = false) String message) throws IOException, ServletException {
+                                 @RequestParam(value = "message", required = false) String message,
+                                 @RequestParam(value = "device_id", required = false) String device_id) throws IOException, ServletException {
         //解决中文乱码
         if (message != null)
             message = new String(message.getBytes("ISO-8859-1"), "UTF-8");
@@ -74,6 +76,9 @@ public class BeaconAction {
         }
         //触发beacon语音
         else {
+            //设备id
+            if (device_id == null) device_id = "gh_655b593ac7b9_9897297a665e1d3b";
+
             //获取当前用户的beacon信息
             BeaconBean beaconBean = beaconService.getUserBeacon(1000);
             //获取scenario
@@ -91,7 +96,7 @@ public class BeaconAction {
                     //返回历史上的今天
                     simpleDateFormat = new SimpleDateFormat("MM月dd日");
                     System.out.println("format=" + simpleDateFormat.format(new Date()));
-                    voiceResult += Tools.getDateSx() + "。" + "智能孝子为您讲述历史上的今天：";
+                    voiceResult += Tools.getDateSx() + "。" + "为您讲述历史上的今天：";
                     voiceResult += Library.getOneDataByConditionField("history", "content", "date", simpleDateFormat.format(new Date()));
                     //更新历史上的今天
                     beaconBean.setHistory(1);
@@ -117,13 +122,13 @@ public class BeaconAction {
                         if (scenarioCount == 1 || scenarioCount == 3 || scenarioCount == 5) {
                             //场景为厨房，推荐食疗
                             if ("kitchen".equals(scenario)) {
-                                voiceResult += "智能孝子食疗推荐：";
+                                voiceResult += "食疗推荐：";
                                 voiceResult += Library.getThreeDataField("food_therapy", "name", "description", "summary");
                             }
                             //场景为沙发，老人健康推荐
                             if ("sofa".equals(scenario)) {
                                 String[] category = {"四季养生", "老人健康", "医疗护理", "健康饮食"};
-                                voiceResult += "智能孝子养生保健：";
+                                voiceResult += "养生保健：";
                                 voiceResult += Library.getThreeDatafieldByCondition("old_health", "title",
                                         "category", "description", "category", category[new Random().nextInt(category.length)]);
                             }
@@ -147,7 +152,7 @@ public class BeaconAction {
                             voiceResult = Library.getOneDataFromLibrary("health", "message");
                         } else {
                             //获取用户语音并分词
-                            List<String> list = HanLPUtil.getUserVoiceKeywords(1000 + "");
+                            List<String> list = HanLPUtil.getUserVoiceKeywords(device_id);
                             String[] categories = {"老人保健", "老人生活", "老人饮食", "老人心理", "老人健身", "老人用品"};
                             Suggester suggester = new Suggester();
                             for (String ca : categories) {
@@ -155,7 +160,7 @@ public class BeaconAction {
                             }
                             String wordSuggestion = suggester.suggest(list.get(0), 1).toString().replaceAll("\\[", "").replaceAll("\\]", "");
                             logger.info("语义推荐：" + wordSuggestion);       // 语义
-                            voiceResult += "智能孝子为您推荐：";
+                            voiceResult += "为您推荐：";
                             try {
                                 voiceResult += Library.getThreeDatafieldByCondition("old_health", "title",
                                         "summary", "content", "category", wordSuggestion);
@@ -180,8 +185,14 @@ public class BeaconAction {
                 }
             } else {
                 System.out.println("不为同一天");
+
+                //获取用户的姓名及所在城市
+                UserBean userBean = beaconService.getUserBeanByDeviceId(device_id);
+                String user_name = userBean.getUser_name();
+                String user_city = userBean.getUser_city();
+                logger.info("user_name:{},user_city:{}",user_name,user_city);
                 //今日天气及穿衣建议
-                voiceResult = Suggestion.getSuggestion("陈丽娟", "北京");
+                voiceResult = Suggestion.getSuggestion(user_name, user_city);
                 //更新beacon场景次数为0
                 Set<Map.Entry> entrySet = jsonObject.entrySet();
                 for (Map.Entry<String, Integer> entry : entrySet) {

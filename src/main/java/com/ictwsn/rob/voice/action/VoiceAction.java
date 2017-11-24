@@ -194,8 +194,12 @@ public class VoiceAction {
             }
             //旅游
         } else if (text.contains("旅游") || text.contains("攻略")) {
-            text = text.replaceAll("(旅游)*(攻略)*", "");
-            voiceResult = Sougou.crawlSougou(text);
+            if(text.contains("哪里")||text.contains("哪儿")||text.contains("怎么")||text.contains("如何"))
+                flag = false;
+            else {
+                text = text.replaceAll("(旅游)*(攻略)*", "");
+                voiceResult = Sougou.crawlSougou(text);
+            }
             //爬取新浪新闻
         } else if (text.contains("新鲜事") || text.matches("(讲|说)*(个)*新闻")) {
             voiceResult = SinaNews.getCurrentNews();
@@ -245,18 +249,30 @@ public class VoiceAction {
             Pattern pattern = Pattern.compile("(讲|说)(个)*(.*?)笑话");
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
-                //接入本地健康知识库
-                voiceResult = Library.getOneDataByCondition("joke", "content",
-                        matcher.group(3) + "笑话");
+                //如果未查询到前面的内容，则从库里随机选择一条数据
+                if(matcher.group(3).length()<2) {
+                    //接入本地笑话库
+                    voiceResult = Library.getOneDataFromLibrary("joke", "content");
+                } else {
+                    voiceResult = Library.getOneDataByCondition("joke", "content",
+                            matcher.group(3) + "笑话");
+                }
                 if (voiceResult == null) flag = false;
             } else flag = false;
         } else if (text.contains("故事")) {
+            System.out.println("我进来了");
             Pattern pattern = Pattern.compile("(讲|说)(个)*(.*?)故事");
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
-                //接入本地健康知识库
-                voiceResult = Library.getOneDataByCondition("story", "content",
-                        matcher.group(3) + "故事");
+                //如果未查询到前面的内容，则从库里随机选择一条数据
+                if(matcher.group(3).length()<2) {
+                    //接入本地故事库
+                    voiceResult = Library.getOneDataFromLibrary("story", "content");
+                } else {
+                    //接入本地健康知识库
+                    voiceResult = Library.getOneDataByCondition("story", "content",
+                            matcher.group(3) + "故事");
+                }
                 if (voiceResult == null) flag = false;
             } else flag = false;
         } else if (text.contains("歇后语")) {
@@ -390,7 +406,7 @@ public class VoiceAction {
         if (flag == false) {
             //层级3，进入ruyi.ai智能孝子模块
             voiceResult = RuyiAi.ruyiAi(text, deviceID);
-            if (voiceResult != null) {
+            if (voiceResult != null && !voiceResult.equals("还没学会这个") && !voiceResult.equals("没听懂，能解释一下么")) {
                 //是音频文件链接
                 if (voiceResult.startsWith("http")) {
                     InputStream inputStream = null;

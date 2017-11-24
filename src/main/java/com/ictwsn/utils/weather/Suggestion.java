@@ -14,7 +14,7 @@ public class Suggestion {
     private static Logger logger = LoggerFactory.getLogger(Suggestion.class);
 
     public static void main(String[] args) {
-        System.out.println(getSuggestion("陈丽娟", "北京"));
+        System.out.println(getSuggestion("李娟", "北京"));
     }
 
     public static String getSuggestion(String name, String city) {
@@ -45,7 +45,7 @@ public class Suggestion {
         String comf = suggestionObject.getJSONObject("comf").getString("txt");
         //穿衣指数
         String drsg = suggestionObject.getJSONObject("drsg").getString("txt");
-        drsg = drsg.replace("建议", "智能孝子建议您：");
+        drsg = drsg.replace("建议", "温馨提示：");
         //去除部分文字
         drsg = drsg.replace("年老体弱者", "").replace("等", "").replace("体弱者", "");
         suggestionResult += comf;
