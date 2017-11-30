@@ -217,11 +217,11 @@
     </dependency>
 
     <!-- HanLP -->
-    <dependency>
+    <!--<dependency>
       <groupId>com.hankcs</groupId>
       <artifactId>hanlp</artifactId>
       <version>portable-1.5.2</version>
-    </dependency>
+    </dependency>-->
 
     <!-- 添加本地依赖 -->
     <dependency>
@@ -258,7 +258,8 @@
   </dependencies>
 
   <build>
-    <finalName>robot-1.0-SNAPSHOT</finalName>
+    <finalName>Easirobot</finalName>
+    <!--<finalName>robot-1.0-SNAPSHOT</finalName>-->
     <!-- 打包时倒入到lib中 -->
     <plugins>
       <!-- 加载本地jar包 -->

@@ -1,6 +1,7 @@
 package com.ictwsn.utils.hanlp;
 
 import com.hankcs.hanlp.HanLP;
+import com.hankcs.hanlp.dependency.CRFDependencyParser;
 import com.hankcs.hanlp.seg.Segment;
 import com.hankcs.hanlp.seg.Viterbi.ViterbiSegment;
 import com.hankcs.hanlp.seg.common.Term;
@@ -100,8 +101,8 @@ public class HanLPUtil {
         List<Term> listTerm = shortestSegment.seg(text);
         HashMap<String, String> hashMap = new HashMap<String, String>();
         for (Term t : listTerm) {
-            if (t.toString().contains("/nr")) hashMap.put("nr", t.toString().replace("/nr", ""));
-            if (t.toString().contains("/n")) hashMap.put("n", t.toString().replace("/n", ""));
+            if (t.toString().contains("/nr")) {hashMap.put("nr", t.toString().replace("/nr", ""));}
+            if (t.toString().contains("/n")) {hashMap.put("n", t.toString().replace("/n", ""));}
         }
 
         return hashMap;
@@ -109,15 +110,15 @@ public class HanLPUtil {
 
     public static void EntityRecognition() {
         String[] testCase = new String[]{
-                "签约仪式前，秦光荣、李纪恒、仇和等一同会见了参加签约的企业家。",
-                "王国强、高峰、汪洋、张朝阳光着头、韩寒、小四",
-                "张浩和胡健康复员回家了",
-                "王总和小丽结婚了",
-                "编剧邵钧林和稽道青说",
-                "这里有关天培的有关事迹",
-                "龚学平等领导,邓颖超生前",
-                "中关村今天天气怎么样",
-                "孔雀女的瓜是笨蛋",
+            "签约仪式前，秦光荣、李纪恒、仇和等一同会见了参加签约的企业家。",
+            "王国强、高峰、汪洋、张朝阳光着头、韩寒、小四",
+            "张浩和胡健康复员回家了",
+            "王总和小丽结婚了",
+            "编剧邵钧林和稽道青说",
+            "这里有关天培的有关事迹",
+            "龚学平等领导,邓颖超生前",
+            "中关村今天天气怎么样",
+            "孔雀女的瓜是笨蛋",
         };
         for (String sentence : testCase) {
             List<Term> termList = shortestSegment.seg(sentence);
@@ -127,7 +128,24 @@ public class HanLPUtil {
 
     public static void main(String[] args) {
 //        HanLPUtil.saveUserVoice("gh_655b593ac7b9_9897297a665e1d3b", "下班回家买菜", 1001, "robot");
-//        System.out.println(getSeparatewords("讲一首唐诗"));
+        //        System.out.println(getSeparatewords("讲一首唐诗"));
+        //        String text = "今天北京天气怎么样";
+        //        String[] keywords = {"天气怎么样","气温如何","查一下天气","的天气","问一下天气","凉不凉","热不热","天气如何"};
+        //        String[] slots = {"t","ns"};
+        //        boolean flag = HanlpEntityUtil.keywordMatching(text,keywords);
+        //        if(flag) {
+        //            //抽取词性标注
+        //            List<Term> termList = shortestSegment.seg(text);
+        //            for(String slot: slots) {
+        //                for(Term term:termList) {
+        //                    String slot_ = HanlpEntityUtil.wordClassMatching(term.toString(),slot);
+        //                    System.out.println(slot_);
+        //                }
+        //            }
+        //
+        //
+        //        }
+        System.out.println(CRFDependencyParser.compute("今天天气怎么样"));
         EntityRecognition();
     }
 

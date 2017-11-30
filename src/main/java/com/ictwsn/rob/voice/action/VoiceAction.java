@@ -13,10 +13,7 @@ import com.ictwsn.utils.recipe.Xiachufang;
 import com.ictwsn.utils.ruyiai.RuyiAi;
 import com.ictwsn.utils.speech.Speech;
 import com.ictwsn.utils.speech.TextToSpeech;
-import com.ictwsn.utils.tools.Arith;
-import com.ictwsn.utils.tools.CheckChinese;
-import com.ictwsn.utils.tools.HttpUtil;
-import com.ictwsn.utils.tools.Tools;
+import com.ictwsn.utils.tools.*;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.web.req.ReqService.RuqStatisticService;
 import org.slf4j.Logger;
@@ -115,13 +112,19 @@ public class VoiceAction {
             voiceResult = "微信已发送";
         }
 
-        logger.info("返回内容:{}", voiceResult);
-        //字符串长度判断，并调用百度TTS
-        InputStream inputStream = null;
-        inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
-//        //返回客户端字符流
-        Tools.downloadAudioFile(inputStream, response);
-        System.out.println("处理完成");
+        //返回文字内容
+        ActionTool.responseToJSON(response,voiceResult);
+
+//        //字符串长度判断，并调用百度TTS
+//        InputStream inputStream = null;
+//        inputStream = TextToSpeech.returnSpeechInputStream(voiceResult);
+////        //返回客户端字符流
+//        Tools.downloadAudioFile(inputStream, response);
+
+
+        //统计流量和下载次数
+        flowStatisticService.updateStatistic(voiceResult.getBytes("UTF-8").length);
+        System.out.println("子女语音处理完成");
     }
 
 
@@ -145,7 +148,10 @@ public class VoiceAction {
         String answer = voiceService.getAnswerByDeviceIDAndQuestion(deviceID, text);
         if (answer != null) {
             voiceResult = answer;
-            responseVoice(voiceResult, response);
+            //返回文字到客户端
+            ActionTool.responseToJSON(response,voiceResult);
+            //返回语音
+//            responseVoice(voiceResult, response);
             return;
         }
 
@@ -194,7 +200,7 @@ public class VoiceAction {
             }
             //旅游
         } else if (text.contains("旅游") || text.contains("攻略")) {
-            if(text.contains("哪里")||text.contains("哪儿")||text.contains("怎么")||text.contains("如何"))
+            if (text.contains("哪里") || text.contains("哪儿") || text.contains("怎么") || text.contains("如何"))
                 flag = false;
             else {
                 text = text.replaceAll("(旅游)*(攻略)*", "");
@@ -250,7 +256,7 @@ public class VoiceAction {
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
                 //如果未查询到前面的内容，则从库里随机选择一条数据
-                if(matcher.group(3).length()<2) {
+                if (matcher.group(3).length() < 2) {
                     //接入本地笑话库
                     voiceResult = Library.getOneDataFromLibrary("joke", "content");
                 } else {
@@ -265,7 +271,7 @@ public class VoiceAction {
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
                 //如果未查询到前面的内容，则从库里随机选择一条数据
-                if(matcher.group(3).length()<2) {
+                if (matcher.group(3).length() < 2) {
                     //接入本地故事库
                     voiceResult = Library.getOneDataFromLibrary("story", "content");
                 } else {
@@ -316,48 +322,6 @@ public class VoiceAction {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日");
             String date = simpleDateFormat.format(new Date());
             voiceResult = Library.getOneDataByConditionField("history", "content", "date", date.toString());
-//        } else if (text.contains("邮件")) {
-//            String email_message = "发(送)*邮件";
-//            Pattern pattern = Pattern.compile(email_message);
-//            Matcher matcher = pattern.matcher(text);
-//            //匹配到邮件消息
-//            if (matcher.find()) {
-//                String message = text.substring(text.indexOf("邮件") + 2, text.length());
-//                //获取老人姓名
-//                String user_name = voiceService.getUserNameByDeviceID(deviceID);
-//                //获取子女邮件地址
-//                List<String> address = voiceService.getEmailAddressByDeviceID(deviceID);
-////                EMail.sendEmil("huangruoran@ict.ac.cn",message);
-//                EMail.mail(user_name, address, message);
-//                voiceResult = "邮件已发送";
-//            } else flag = false;
-//        } else if (text.contains("短信")) {
-//            String email_message = "发(送)*短信";
-//            Pattern pattern = Pattern.compile(email_message);
-//            Matcher matcher = pattern.matcher(text);
-//            //匹配到短信消息
-//            if (matcher.find()) {
-//                //获取老人姓名
-//                String user_name = voiceService.getUserNameByDeviceID(deviceID);
-//                //获取子女电话号码
-//                List<Long> phones = voiceService.getPhonesByDeviceID(deviceID);
-//                String message = text.substring(text.indexOf("短信") + 2, text.length());
-//                Msg.sendMessage(user_name, phones, message);
-//                voiceResult = "短信已发送";
-//            } else flag = false;
-            //用户自定义上传内容
-//        } else if (text.contains("微信")) {
-//            String email_message = "发(送)*微信";
-//            Pattern pattern = Pattern.compile(email_message);
-//            Matcher matcher = pattern.matcher(text);
-//            //匹配到邮件消息
-//            if (matcher.find()) {
-//                String message = text.substring(text.indexOf("微信") + 2, text.length());
-//                logger.info("微信消息:{}", message);
-//                HttpUtil.httpGet("http://www.zyrill.top/Weixin/temptextcheck?text=" + message, null);
-//                voiceResult = "微信已发送";
-//            } else flag = false;
-            //用户自定义上传内容
         } else if (text.matches(".{2}养生")) {
             //主要类别：运动、饮食、心理、医疗
 //            text = text.substring(0, 2);
@@ -393,32 +357,32 @@ public class VoiceAction {
                     voiceResult = Sougou.getEncyclopedia(matcher.group(1), matcher.group(2));
                 } else flag = false;
             } else flag = false;
-        }
+        } else flag = false;
         //取消梦境功能
        /* else if (text.contains("周公解梦") | text.contains("梦见") | text.contains("做梦")) {
             //接入haoService周公解梦
             text = text.replace("周公解梦", "").replaceAll("\\s", "");
             voiceResult = OliveDream.getDream(text);
         }*/
-        else flag = false;
 
         //转入内置对话接口
         if (flag == false) {
             //层级3，进入ruyi.ai智能孝子模块
             voiceResult = RuyiAi.ruyiAi(text, deviceID);
             if (voiceResult != null && !voiceResult.equals("还没学会这个") && !voiceResult.equals("没听懂，能解释一下么")) {
+
                 //是音频文件链接
-                if (voiceResult.startsWith("http")) {
-                    InputStream inputStream = null;
-                    if ((inputStream = TextToSpeech.returnInputStreamByURL(voiceResult)) != null) {
-                        //返回客户端字符流
-                        long flow = Tools.downloadAudioFile(inputStream, response);
-                        logger.info("耗费流量{}M({}字节)", Arith.round(Arith.div(flow, 1024 * 1024), 2), flow);
-                        flowStatisticService.updateStatistic(flow);
-                        System.out.println("处理完成");
-                        return;
-                    }
-                }
+//                if (voiceResult.startsWith("http")) {
+//                    InputStream inputStream = null;
+//                    if ((inputStream = TextToSpeech.returnInputStreamByURL(voiceResult)) != null) {
+//                        //返回客户端字符流
+//                        long flow = Tools.downloadAudioFile(inputStream, response);
+//                        logger.info("耗费流量{}M({}字节)", Arith.round(Arith.div(flow, 1024 * 1024), 2), flow);
+//                        flowStatisticService.updateStatistic(flow);
+//                        System.out.println("处理完成");
+//                        return;
+//                    }
+//                }
             } else {
                 //层级4，本地库对话接口
                 voiceResult = Library.getAnswerByQuestion("conversation", "answer", text);
@@ -430,16 +394,17 @@ public class VoiceAction {
                 }
             }
         }
+        //返回文字到客户端
+        ActionTool.responseToJSON(response,voiceResult);
+
 //      合成语音并返回客户端
-        responseVoice(voiceResult, response);
+//        responseVoice(voiceResult, response);
+
+        //统计流量和下载次数
+        flowStatisticService.updateStatistic(voiceResult.getBytes("UTF-8").length);
 
         System.out.println("处理完成_");
-        //返回处理
-//        JSONObject resultObject = new JSONObject();
-//        resultObject.put("error", 0);
-//        resultObject.put("result", voiceResult);
-//        resultObject.put("user_id", user_id);
-//        responseToJSON(response, resultObject.toString());
+
     }
 
 //    @RequestMapping("/music")
@@ -453,18 +418,7 @@ public class VoiceAction {
 //    }
 
 
-    // JSON封装返回数据
-//    public void responseToJSON(HttpServletResponse response, String jsonContent) {
-//        response.setContentType("text/html;charset=utf-8");
-//        try {
-//            PrintWriter out = response.getWriter();
-//            out.write(jsonContent);
-//            out.flush();
-//            out.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
     public void responseVoice(String voiceResult, HttpServletResponse response) {
         //空格处理

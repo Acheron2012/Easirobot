@@ -1,7 +1,6 @@
 package com.ictwsn.rob.beacon.tool;
 
 import com.ictwsn.utils.tools.Tools;
-import com.ictwsn.utils.speech.TextToSpeech;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -53,23 +52,24 @@ public class BeaconTool {
                                     //获取message
                                     for (Iterator message_element = scenarioElement.elementIterator("message"); message_element.hasNext(); ) {
                                         Element messageElement = (Element) message_element.next();
-                                        for (Iterator message_attribute = messageElement.attributeIterator(); message_attribute.hasNext(); ) {
-                                            Attribute messageAttribute = (Attribute) message_attribute.next();
-                                            if (messageAttribute.getName().equals("id") && messageAttribute.getValue().equals(random)) {
-                                                //判断语音文件夹是否存在，若不存在，则创建
-                                                Tools.createdDirectory(audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue());
-                                                //判断该音频文件是否存在
-                                                audioPath = audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
-                                                //音频文件不存在，语音合成并下载到本地
-                                                if (!fileExists(new File(audioPath))) {
-                                                    logger.info("音频文件:" + scenarioAttribute.getValue() + "-" + random + ".mp3不存在，正在合成语音...");
-                                                    TextToSpeech.downloadAudio(audioPath, messageElement.getText());
-                                                    logger.info("语音合成完毕");
-                                                } else {
-                                                    logger.info("音频文件已存在");
-                                                }
-                                            }
-                                        }
+                                        return messageElement.getText();
+//                                        for (Iterator message_attribute = messageElement.attributeIterator(); message_attribute.hasNext(); ) {
+//                                            Attribute messageAttribute = (Attribute) message_attribute.next();
+//                                            if (messageAttribute.getName().equals("id") && messageAttribute.getValue().equals(random)) {
+//                                                //判断语音文件夹是否存在，若不存在，则创建
+//                                                Tools.createdDirectory(audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue());
+//                                                //判断该音频文件是否存在
+//                                                audioPath = audioFile + "/" + moduleAttribute.getValue() + "/" + scenarioAttribute.getValue() + "/" + messageAttribute.getValue() + ".mp3";
+//                                                //音频文件不存在，语音合成并下载到本地
+//                                                if (!fileExists(new File(audioPath))) {
+//                                                    logger.info("音频文件:" + scenarioAttribute.getValue() + "-" + random + ".mp3不存在，正在合成语音...");
+//                                                    TextToSpeech.downloadAudio(audioPath, messageElement.getText());
+//                                                    logger.info("语音合成完毕");
+//                                                } else {
+//                                                    logger.info("音频文件已存在");
+//                                                }
+//                                            }
+//                                        }
                                     }
                                 }
                             }
@@ -78,7 +78,8 @@ public class BeaconTool {
                 }
             }
 
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -149,9 +150,9 @@ public class BeaconTool {
             throw new Exception("下载错误");
         } finally {
             if (bis != null)
-                bis.close();
+            {bis.close();}
             if (bos != null)
-                bos.close();
+            {bos.close();}
         }
         return null;
     }

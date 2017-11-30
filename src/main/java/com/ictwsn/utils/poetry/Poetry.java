@@ -35,9 +35,9 @@ public class Poetry {
         //设置查询条件
         BasicDBObject doc = new BasicDBObject();
         int dataCount = (int) collection.count();
-        if (dataCount == 0) return null;
+        if (dataCount == 0) {return null;}
         else {
-            if (dataCount == 0) return null;
+            if (dataCount == 0) {return null;}
             //随机选择
             Random random = new Random();
             int number = random.nextInt(dataCount);
@@ -70,11 +70,11 @@ public class Poetry {
             categoryPattern = Pattern.compile("^.*" + hashMap.get("n").toString() + ".*$", Pattern.CASE_INSENSITIVE);
             doc.put("category", categoryPattern);
         }
-        if (authorPattern == null && categoryPattern == null) return null;
+        if (authorPattern == null && categoryPattern == null) {return null;}
         int dataCount = (int) collection.count(doc);
-        if (dataCount == 0) return null;
+        if (dataCount == 0) {return null;}
         else {
-            if (dataCount == 0) return null;
+            if (dataCount == 0) {return null;}
             //随机选择
             Random random = new Random();
             int number = random.nextInt(dataCount);

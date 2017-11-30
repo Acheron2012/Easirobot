@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 @Controller
-public class ToolAction {
+public class UpdateAction {
 
     private static final String temppath = "E:/";
 

@@ -181,7 +181,7 @@ public class Tools {
     public static String getConfigureValue(String key) {
         Properties property = new Properties();
         InputStream in = Tools.class.getResourceAsStream("/system.properties");
-        if (in == null) logger.info("未读取到配置文件");
+        if (in == null) {logger.info("未读取到配置文件");}
         try {
             property.load(in);
         } catch (IOException e) {
@@ -262,7 +262,7 @@ public class Tools {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
                     t4 += t2[0];
                 } else
-                    t4 += java.lang.Character.toString(t1[i]);
+                {t4 += java.lang.Character.toString(t1[i]);}
             }
             // System.out.println(t4);
             return t4;
@@ -338,8 +338,9 @@ public class Tools {
         }
     }
 
-    // JSON封装返回数据
+    // 返回JSON内容
     public static void responseToJSON(HttpServletResponse response, String jsonContent) {
+        //Convert to JSON format
         response.setContentType("text/html;charset=utf-8");
         try {
             PrintWriter out = response.getWriter();
@@ -350,6 +351,9 @@ public class Tools {
             e.printStackTrace();
         }
     }
+
+
+
 
     public static void main(String[] args) {
 

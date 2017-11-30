@@ -2,14 +2,15 @@ package com.ictwsn.rob.beacon.action;
 
 
 import com.hankcs.hanlp.suggest.Suggester;
-import com.ictwsn.rob.beacon.bean.UserBean;
-import com.ictwsn.rob.beacon.tool.BeaconTool;
 import com.ictwsn.rob.beacon.bean.BeaconBean;
+import com.ictwsn.rob.beacon.bean.UserBean;
 import com.ictwsn.rob.beacon.service.BeaconService;
+import com.ictwsn.rob.beacon.tool.BeaconTool;
 import com.ictwsn.utils.hanlp.HanLPUtil;
 import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.poetry.Poetry;
 import com.ictwsn.utils.speech.TextToSpeech;
+import com.ictwsn.utils.tools.ActionTool;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Suggestion;
@@ -72,7 +73,8 @@ public class BeaconAction {
         //进入情景对话，接入图灵
         if (conv == CONVERSATION_TRUE) {
             voiceResult = TuringAPI.turingRobot(message, uuid);
-            inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
+            //返回语音
+//            inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         }
         //触发beacon语音
         else {
@@ -105,12 +107,16 @@ public class BeaconAction {
                     //第1次和第5次时采用场景beancon
                     if (scenarioCount == 0 || scenarioCount == 4) {
                         String settings_path = BeaconAction.class.getClassLoader().getResource("").getPath() + "/" + "settings.xml";
+                        //获取解析后的文字内容
+                        voiceResult = BeaconTool.parsingBeaconXML(settings_path, scenario);
+
                         //获取解析后的合成语音
-                        String audioPath = BeaconTool.parsingBeaconXML(settings_path, scenario);
-                        System.out.println(audioPath);
+//                        String audioPath = BeaconTool.parsingBeaconXML(settings_path, scenario);
+//                        System.out.println(audioPath);
                         try {
+
                             //读取音频文件
-                            inputStream = BeaconTool.readInputStram(audioPath);
+//                            inputStream = BeaconTool.readInputStram(audioPath);
 //                BeaconTool.downloadFile(request, response, audioPath);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -170,7 +176,7 @@ public class BeaconAction {
                             System.out.println("==========" + list.toString());
                         }
                         //返回音频文件
-                        inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
+//                        inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
                     }
                 }
                 System.out.println(jsonObject.toString());
@@ -190,7 +196,7 @@ public class BeaconAction {
                 UserBean userBean = beaconService.getUserBeanByDeviceId(device_id);
                 String user_name = userBean.getUser_name();
                 String user_city = userBean.getUser_city();
-                logger.info("user_name:{},user_city:{}",user_name,user_city);
+                logger.info("user_name:{},user_city:{}", user_name, user_city);
                 //今日天气及穿衣建议
                 voiceResult = Suggestion.getSuggestion(user_name, user_city);
                 //更新beacon场景次数为0
@@ -208,11 +214,16 @@ public class BeaconAction {
             beaconBean.setLast_time(new Date());
             beaconService.updateUserBeacon(beaconBean);
             logger.info(voiceResult);
-            if (inputStream == null)
-                inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
+
+            //返回语音
+//            if (inputStream == null)
+//                inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         }
+        //返回文字内容
+        ActionTool.responseToJSON(response, voiceResult);
+
         //返回给客户端
-        Tools.downloadAudioFile(inputStream, response);
+//        Tools.downloadAudioFile(inputStream, response);
         return null;
     }
 
