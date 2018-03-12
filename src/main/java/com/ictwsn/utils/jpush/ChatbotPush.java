@@ -38,7 +38,8 @@ public class ChatbotPush {
 
     public static final String TITLE = "智能孝子";
     public static final String ALERT = "123";
-    public static final String MSG_CONTENT = "4:119.23.238.240:8080/robot-1.0-SNAPSHOT/rob/ad?ad_id=123456";
+//    4:http://easirobot.zhongketianhe.com.cn:8080/Easirobot/rob/ad?ad_id=123456
+    public static final String MSG_CONTENT = "4:123456";
     public static final String REGISTRATION_ID = "0900e8d85ef";
     public static final String TAG = "tag_api";
     public static long sendCount = 0;
@@ -219,8 +220,8 @@ public class ChatbotPush {
     }
 
     public static PushPayload buildPushObject_android_and_ios() {
-        Map<String, String> extras = new HashMap<String, String>();
-        extras.put("test", "https://community.jiguang.cn/push");
+//        Map<String, String> extras = new HashMap<String, String>();
+//        extras.put("test", "https://community.jiguang.cn/push");
         return PushPayload.newBuilder()
                 .setPlatform(Platform.android_ios())
                 .setAudience(Audience.all())
@@ -230,15 +231,15 @@ public class ChatbotPush {
 //                .setOptions(Options.newBuilder()
 //                        .setApnsProduction(false)
 //                        .build())
-                .setNotification(Notification.newBuilder()
-                        .setAlert(ALERT)
-                        .addPlatformNotification(AndroidNotification.newBuilder()
-                                .setTitle(TITLE)
-                                .addExtras(extras).build())
-                        .addPlatformNotification(IosNotification.newBuilder()
-                                .incrBadge(1)
-                                .addExtra("extra_key", "extra_value").build())
-                        .build())
+//                .setNotification(Notification.newBuilder()
+//                        .setAlert(ALERT)
+//                        .addPlatformNotification(AndroidNotification.newBuilder()
+//                                .setTitle(TITLE)
+//                                .addExtras(extras).build())
+//                        .addPlatformNotification(IosNotification.newBuilder()
+//                                .incrBadge(1)
+//                                .addExtra("extra_key", "extra_value").build())
+//                        .build())
                 .build();
     }
 

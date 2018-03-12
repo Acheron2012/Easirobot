@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 @SuppressWarnings("restriction")
 public class Tools {
@@ -162,6 +163,7 @@ public class Tools {
         Date datetime = calendar.getTime();
         return datetime;
     }
+
     //得到一天以后的时间
     public static Date getDayAfter1Day() {
         Calendar calendar = Calendar.getInstance();
@@ -169,6 +171,7 @@ public class Tools {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         return calendar.getTime();
     }
+
     //仅获得日期
     public static String getOnlyDayByDate(Date date) {
         //剔除掉时间，保留日期
@@ -181,7 +184,9 @@ public class Tools {
     public static String getConfigureValue(String key) {
         Properties property = new Properties();
         InputStream in = Tools.class.getResourceAsStream("/system.properties");
-        if (in == null) {logger.info("未读取到配置文件");}
+        if (in == null) {
+            logger.info("未读取到配置文件");
+        }
         try {
             property.load(in);
         } catch (IOException e) {
@@ -261,8 +266,9 @@ public class Tools {
                         "[\\u4E00-\\u9FA5]+")) {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
                     t4 += t2[0];
-                } else
-                {t4 += java.lang.Character.toString(t1[i]);}
+                } else {
+                    t4 += java.lang.Character.toString(t1[i]);
+                }
             }
             // System.out.println(t4);
             return t4;
@@ -352,16 +358,26 @@ public class Tools {
         }
     }
 
-
+    //以90%高概率获得1，低概率获得0
+    public static int getNumberByHighProbability() {
+        Random random = new Random();
+        int number = random.nextInt(100);
+        if (number < 90) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
 
     public static void main(String[] args) {
 
-        Date date = getDayAfter1Day();
-        System.out.println(getOnlyDayByDate(date));
-        System.out.println(getNowDayBefore15Days(date));
+//        Date date = getDayAfter1Day();
+//        System.out.println(getOnlyDayByDate(date));
+//        System.out.println(getNowDayBefore15Days(date));
+        System.out.println(getNumberByHighProbability());
         /*try {
-			System.out.println(EncrypSHA("easicloudjljajdfio324jll38hl3"));
+            System.out.println(EncrypSHA("easicloudjljajdfio324jll38hl3"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			System.out.println(sdf.format(new Date()));
 		} catch (NoSuchAlgorithmException e) {

@@ -25,6 +25,12 @@ public class RuyiAi {
         jsonObject.put("q", question);
         jsonObject.put("app_key", APP_KEY);
         jsonObject.put("user_id", deviceID);
+//        boolean resestSession;
+//        if (Tools.getNumberByHighProbability() == 1) {
+//            resestSession = false;
+//        } else {
+//            resestSession = true;
+//        }
         //不忘记短期对话记忆
         jsonObject.put("reset_session", false);
 
@@ -35,12 +41,15 @@ public class RuyiAi {
             try {
                 //获取
                 JSONObject jsonContent = JSONObject.fromObject(content);
+                if (jsonContent.getInt("code") != 0) {
+                    return "修改ID";
+                }
                 JSONObject jsonResult = jsonContent.getJSONObject("result");
                 JSONObject jsonIntent_0 = jsonResult.getJSONArray("intents").getJSONObject(0);
                 JSONObject json_result = jsonIntent_0.getJSONObject("result");
                 //判断是否获取的为音频文件
-                if (json_result.containsKey("media_url")) {
-                    result = json_result.getString("media_url");
+                if (json_result.containsKey("mp3_audio_url")) {
+                    result = json_result.getString("mp3_audio_url");
                 } else if (jsonIntent_0.containsKey("outputs")) {
                     if (jsonIntent_0.getJSONArray("outputs").getJSONObject(1).getString("type").equals("dialog")) {
                         result = jsonIntent_0.getJSONArray("outputs").getJSONObject(1).getJSONObject("property").
@@ -49,7 +58,9 @@ public class RuyiAi {
                         result = jsonIntent_0.getJSONArray("outputs").getJSONObject(1).getJSONObject("property").
                                 getString("voice_url");
                     }
-                } else return null;
+                } else {
+                    return null;
+                }
             } catch (Exception e) {
                 logger.info("未能识别当前意图");
                 e.printStackTrace();

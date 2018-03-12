@@ -200,7 +200,7 @@
     <dependency>
       <groupId>cn.jpush.api</groupId>
       <artifactId>jpush-client</artifactId>
-      <version>3.2.11</version>
+      <version>3.3.4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
     <dependency>
@@ -217,11 +217,11 @@
     </dependency>
 
     <!-- HanLP -->
-    <!--<dependency>
+    <dependency>
       <groupId>com.hankcs</groupId>
       <artifactId>hanlp</artifactId>
       <version>portable-1.5.2</version>
-    </dependency>-->
+    </dependency>
 
     <!-- 添加本地依赖 -->
     <dependency>

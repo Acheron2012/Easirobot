@@ -5,6 +5,7 @@ import com.hankcs.hanlp.seg.common.Term;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.*;
 import java.util.List;
 
 @Controller
@@ -12,9 +13,9 @@ public class WelcomeAction {
 	
 	//欢迎界面（测试）
 	@RequestMapping("/welcome.do")
-    public String welcome(){
-		System.out.println("测试页面");
-		return "index";
+    public String welcome() {
+			System.out.println("测试页面");
+			return "index";
 	}
 
 	//欢迎界面（测试）

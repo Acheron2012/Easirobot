@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -113,7 +114,7 @@ public class VoiceAction {
         }
 
         //返回文字内容
-        ActionTool.responseToJSON(response,voiceResult);
+        ActionTool.responseToJSON(response, voiceResult);
 
 //        //字符串长度判断，并调用百度TTS
 //        InputStream inputStream = null;
@@ -149,7 +150,7 @@ public class VoiceAction {
         if (answer != null) {
             voiceResult = answer;
             //返回文字到客户端
-            ActionTool.responseToJSON(response,voiceResult);
+            ActionTool.responseToJSON(response, voiceResult);
             //返回语音
 //            responseVoice(voiceResult, response);
             return;
@@ -369,6 +370,8 @@ public class VoiceAction {
         if (flag == false) {
             //层级3，进入ruyi.ai智能孝子模块
             voiceResult = RuyiAi.ruyiAi(text, deviceID);
+            //访问失败时，修改deviceId再次请求
+            if (voiceResult.equals("修改ID")) voiceResult = RuyiAi.ruyiAi(text, deviceID + new Random().nextInt(100));
             if (voiceResult != null && !voiceResult.equals("还没学会这个") && !voiceResult.equals("没听懂，能解释一下么")) {
 
                 //是音频文件链接
@@ -395,7 +398,7 @@ public class VoiceAction {
             }
         }
         //返回文字到客户端
-        ActionTool.responseToJSON(response,voiceResult);
+        ActionTool.responseToJSON(response, voiceResult);
 
 //      合成语音并返回客户端
 //        responseVoice(voiceResult, response);
@@ -416,8 +419,6 @@ public class VoiceAction {
 //        responseToJSON(response, resultObject.toString());
 //        return null;
 //    }
-
-
 
 
     public void responseVoice(String voiceResult, HttpServletResponse response) {

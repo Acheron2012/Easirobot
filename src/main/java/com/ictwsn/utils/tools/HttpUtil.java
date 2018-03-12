@@ -43,41 +43,41 @@ public class HttpUtil {
 
     public static Logger logger = LoggerFactory.getLogger(HttpUtil.class);
 
-    private static PoolingHttpClientConnectionManager clientConnectionManager=null;
-    private static CloseableHttpClient httpClient=null;
+    private static PoolingHttpClientConnectionManager clientConnectionManager = null;
+    private static CloseableHttpClient httpClient = null;
     private static RequestConfig config = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD_STRICT).build();
     private final static Object syncLock = new Object();
-    private static Map<String,String> cookies;
+    private static Map<String, String> cookies;
 
-    public HttpUtil(){}
+    public HttpUtil() {
+    }
 
-    public HttpUtil(Map<String,String> cookies){
+    public HttpUtil(Map<String, String> cookies) {
         this.cookies = cookies;
     }
 
     /**
      * 创建httpclient连接池并初始化
      */
-    static{
+    static {
 
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
                 .register("https", SSLConnectionSocketFactory.getSocketFactory())
                 .register("http", PlainConnectionSocketFactory.getSocketFactory())
                 .build();
-        clientConnectionManager =new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+        clientConnectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
         clientConnectionManager.setMaxTotal(50);
         clientConnectionManager.setDefaultMaxPerRoute(25);
     }
 
-    public static CloseableHttpClient getHttpClient(){
-        if(httpClient == null){
-            synchronized (syncLock){
-                if(httpClient == null){
+    public static CloseableHttpClient getHttpClient() {
+        if (httpClient == null) {
+            synchronized (syncLock) {
+                if (httpClient == null) {
                     CookieStore cookieStore = new BasicCookieStore();
-                    if(cookies!=null)
-                    {
-                        for(Map.Entry<String,String> entry : cookies.entrySet()){
-                            cookieStore.addCookie(new BasicClientCookie(entry.getKey(),entry.getValue()));
+                    if (cookies != null) {
+                        for (Map.Entry<String, String> entry : cookies.entrySet()) {
+                            cookieStore.addCookie(new BasicClientCookie(entry.getKey(), entry.getValue()));
                         }
                     }
                     httpClient = HttpClients.custom().setConnectionManager(clientConnectionManager).setDefaultCookieStore(cookieStore).setDefaultRequestConfig(config).build();
@@ -89,77 +89,79 @@ public class HttpUtil {
 
     /**
      * get请求
+     *
      * @param url
      * @param headers
      * @return
      */
-    public static HttpEntity httpGet(String url, Map<String,Object> headers){
+    public static HttpEntity httpGet(String url, Map<String, Object> headers) {
         CloseableHttpClient httpClient = getHttpClient();
         URL url_ = null;
         URI uri = null;
         try {
             url_ = new URL(url);
             try {
-                uri = new URI(url_.getProtocol(), url_.getHost(), url_.getPath(), url_.getQuery(), null);
+                uri = new URI(url_.getProtocol(), null, url_.getHost(), url_.getPort(), url_.getPath(), url_.getQuery(), null);
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        System.out.println(uri);
         HttpRequest httpGet = new HttpGet(uri);
-        if(headers!=null&&!headers.isEmpty()){
+        if (headers != null && !headers.isEmpty()) {
             httpGet = setHeaders(headers, httpGet);
         }
         CloseableHttpResponse response = null;
-        try{
-            response =httpClient.execute((HttpGet)httpGet);
+        try {
+            response = httpClient.execute((HttpGet) httpGet);
             if (response.getStatusLine().getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
                 return entity;
+            } else {
+                logger.info("请求错误，返回码:" + response.getStatusLine().getStatusCode());
             }
-            else{
-                logger.info("请求错误，返回码:"+response.getStatusLine().getStatusCode());
-            }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
         return null;
     }
-    public static HttpEntity httpGetByHttpClient(CloseableHttpClient httpClient, String url){
+
+    public static HttpEntity httpGetByHttpClient(CloseableHttpClient httpClient, String url) {
         HttpRequest httpGet = new HttpGet(url);
         CloseableHttpResponse response = null;
-        try{
-            response =httpClient.execute((HttpGet)httpGet);
+        try {
+            response = httpClient.execute((HttpGet) httpGet);
             if (response.getStatusLine().getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
                 return entity;
-            }
-            else{
+            } else {
                 logger.info("合成错误！");
-                logger.info("请求错误，返回码:"+response.getStatusLine().getStatusCode());
+                logger.info("请求错误，返回码:" + response.getStatusLine().getStatusCode());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
     /**
      * @param url
      * @param headers
      * @return
      */
-    public static HttpEntity httpPost(String url,Map<String,Object> headers){
+    public static HttpEntity httpPost(String url, Map<String, Object> headers) {
         CloseableHttpClient httpClient = getHttpClient();
         HttpRequest request = new HttpPost(url);
-        if(headers!=null&&!headers.isEmpty()){
-            request = setHeaders(headers,request);
+        if (headers != null && !headers.isEmpty()) {
+            request = setHeaders(headers, request);
         }
         CloseableHttpResponse response = null;
         try {
             HttpPost httpPost = (HttpPost) request;
-            response=httpClient.execute(httpPost);
+            response = httpClient.execute(httpPost);
             HttpEntity httpEntity = response.getEntity();
             return httpEntity;
         } catch (IOException e) {
@@ -170,16 +172,17 @@ public class HttpUtil {
 
     /**
      * post请求,使用json格式传参
+     *
      * @param url
      * @param headers
      * @param jsonParam
      * @return
      */
-    public static HttpEntity httpPost(String url,Map<String,Object> headers,String jsonParam){
+    public static HttpEntity httpPost(String url, Map<String, Object> headers, String jsonParam) {
         CloseableHttpClient httpClient = getHttpClient();
         HttpRequest request = new HttpPost(url);
-        if(headers!=null&&!headers.isEmpty()){
-            request = setHeaders(headers,request);
+        if (headers != null && !headers.isEmpty()) {
+            request = setHeaders(headers, request);
         }
         CloseableHttpResponse response = null;
 
@@ -190,7 +193,7 @@ public class HttpUtil {
             stringEntity.setContentType("application/json");
             httpPost.setEntity(stringEntity);
 
-            response=httpClient.execute(httpPost);
+            response = httpClient.execute(httpPost);
             HttpEntity httpEntity = response.getEntity();
             return httpEntity;
         } catch (IOException e) {
@@ -199,23 +202,24 @@ public class HttpUtil {
         }
         return null;
     }
+
     /**
-     使用表单键值对传参
+     * 使用表单键值对传参
      */
-    public static Header[] postFormReturnHeaders(String url,Map<String,Object> headers,List<NameValuePair> data){
+    public static Header[] postFormReturnHeaders(String url, Map<String, Object> headers, List<NameValuePair> data) {
         CloseableHttpClient httpClient = getHttpClient();
         HttpRequest request = new HttpPost(url);
-        if(headers!=null&&!headers.isEmpty()){
-            request = setHeaders(headers,request);
+        if (headers != null && !headers.isEmpty()) {
+            request = setHeaders(headers, request);
         }
         CloseableHttpResponse response = null;
         UrlEncodedFormEntity uefEntity;
         try {
             HttpPost httpPost = (HttpPost) request;
-            uefEntity = new UrlEncodedFormEntity(data,"UTF-8");
+            uefEntity = new UrlEncodedFormEntity(data, "UTF-8");
             httpPost.setEntity(uefEntity);
             // httpPost.setEntity(new StringEntity(data, ContentType.create("application/json", "UTF-8")));
-            response=httpClient.execute(httpPost);
+            response = httpClient.execute(httpPost);
             return response.getAllHeaders();
 //            System.out.println(response.getAllHeaders().toString());
 //            Header[] headerss = response.getAllHeaders();
@@ -231,13 +235,15 @@ public class HttpUtil {
         }
         return null;
     }
+
     /**
      * 设置请求头信息
+     *
      * @param headers
      * @param request
      * @return
      */
-    private static HttpRequest setHeaders(Map<String,Object> headers, HttpRequest request) {
+    private static HttpRequest setHeaders(Map<String, Object> headers, HttpRequest request) {
         for (Map.Entry entry : headers.entrySet()) {
             if (!entry.getKey().equals("Cookie")) {
                 request.addHeader((String) entry.getKey(), (String) entry.getValue());
@@ -251,19 +257,19 @@ public class HttpUtil {
         return request;
     }
 
-    public static Map<String,String> getCookie(String url){
+    public static Map<String, String> getCookie(String url) {
         CloseableHttpClient httpClient = getHttpClient();
         HttpRequest httpGet = new HttpGet(url);
         CloseableHttpResponse response = null;
-        try{
-            response =httpClient.execute((HttpGet)httpGet);
+        try {
+            response = httpClient.execute((HttpGet) httpGet);
             Header[] headers = response.getAllHeaders();
-            Map<String,String> cookies=new HashMap<String, String>();
-            for(Header header:headers){
-                cookies.put(header.getName(),header.getValue());
+            Map<String, String> cookies = new HashMap<String, String>();
+            for (Header header : headers) {
+                cookies.put(header.getName(), header.getValue());
             }
             return cookies;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -274,7 +280,9 @@ public class HttpUtil {
         String content = null;
         HttpEntity httpEntity = HttpUtil.httpGet(url, null);
         try {
-            if (httpEntity == null) return null;
+            if (httpEntity == null) {
+                return null;
+            }
             content = EntityUtils.toString(httpEntity, coding);
         } catch (IOException e) {
             e.printStackTrace();
