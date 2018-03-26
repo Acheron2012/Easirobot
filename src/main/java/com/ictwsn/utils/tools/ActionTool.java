@@ -16,27 +16,27 @@ public class ActionTool {
     private static Logger logger = LoggerFactory.getLogger(ActionTool.class);
 
     //封装为JSON数据
-    private static String convertToJSON(String text) {
+    private static String convertToJSON(String text, int code) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code",0);
+        jsonObject.put("code", code);
         JSONObject jsonResult = new JSONObject();
         if (text.startsWith("http")) {
-            jsonResult.put("url",text);
-            jsonResult.put("text","");
+            jsonResult.put("url", text);
+            jsonResult.put("text", "");
         } else {
-            jsonResult.put("url","");
-            jsonResult.put("text",text);
+            jsonResult.put("url", "");
+            jsonResult.put("text", text);
         }
-        jsonObject.put("result",jsonResult);
-        logger.info("返回内容：{}",jsonResult);
+        jsonObject.put("result", jsonResult);
+        logger.info("返回内容：{}", jsonResult);
         return jsonObject.toString();
     }
 
 
     // JSON封装文本内容并返回数据，并计算流量和下载次数
-    public static void responseToJSON(HttpServletResponse response, String voiceResult) {
+    public static void responseToJSON(HttpServletResponse response, String voiceResult, int code) {
         //Convert to JSON format
-        String jsonContent = convertToJSON(voiceResult);
+        String jsonContent = convertToJSON(voiceResult, code);
         response.setContentType("text/html;charset=utf-8");
         try {
             PrintWriter out = response.getWriter();

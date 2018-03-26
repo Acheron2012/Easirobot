@@ -6,6 +6,7 @@ import com.ictwsn.rob.beacon.bean.BeaconBean;
 import com.ictwsn.rob.beacon.bean.UserBean;
 import com.ictwsn.rob.beacon.service.BeaconService;
 import com.ictwsn.rob.beacon.tool.BeaconTool;
+import com.ictwsn.rob.voice.action.VoiceAction;
 import com.ictwsn.utils.hanlp.HanLPUtil;
 import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.poetry.Poetry;
@@ -15,6 +16,7 @@ import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Suggestion;
 import net.sf.json.JSONObject;
+import org.omg.PortableInterceptor.ACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -220,7 +222,7 @@ public class BeaconAction {
 //                inputStream = TextToSpeech.returnCombineSpeechInputStream(voiceResult);
         }
         //返回文字内容
-        ActionTool.responseToJSON(response, voiceResult);
+        ActionTool.responseToJSON(response, voiceResult, VoiceAction.ACCESS);
 
         //返回给客户端
 //        Tools.downloadAudioFile(inputStream, response);

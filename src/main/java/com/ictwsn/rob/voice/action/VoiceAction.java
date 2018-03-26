@@ -26,14 +26,10 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,6 +40,8 @@ public class VoiceAction {
     public static Logger logger = LoggerFactory.getLogger(VoiceAction.class);
 
     public static final String FILE_NAME = "ResultAudio.mp3";
+    public static final int NOTALLOWED = 401;
+    public static final int ACCESS = 0;
     public static int company_id = 1001;
 
 
@@ -61,6 +59,8 @@ public class VoiceAction {
                                    @RequestParam(value = "text", required = true) String text,
                                    @RequestParam(value = "deviceID", required = true) String deviceID,
                                    @RequestParam(value = "admin", required = true) String admin) throws ServletException, IOException {
+
+
         //admin 0 为子女，1为管理员
         //定义返回内容
         String voiceResult = "";
@@ -114,7 +114,7 @@ public class VoiceAction {
         }
 
         //返回文字内容
-        ActionTool.responseToJSON(response, voiceResult);
+        ActionTool.responseToJSON(response, voiceResult, ACCESS);
 
 //        //字符串长度判断，并调用百度TTS
 //        InputStream inputStream = null;
@@ -132,7 +132,16 @@ public class VoiceAction {
     @RequestMapping(value = "/voice")
     public void voiceAnalysis(HttpServletRequest request, HttpServletResponse response,
                               @RequestParam(value = "text", required = true) String text,
-                              @RequestParam(value = "deviceID", required = false) String deviceID) throws ServletException, IOException {
+                              @RequestParam(value = "deviceID", required = true) String deviceID) throws ServletException, IOException {
+        //返回结果
+        String voiceResult = "";
+        boolean flag = true;
+//        if (!IsAccess(deviceID)) {
+//            voiceResult = "未授权的机器人ID：" + deviceID;
+//            //返回文字到客户端
+//            ActionTool.responseToJSON(response, voiceResult, NOTALLOWED);
+//            return;
+//        }
 
         logger.info("语音文本:{}", text);
         if (CheckChinese.isMessyCode(text)) {
@@ -141,8 +150,6 @@ public class VoiceAction {
         }
         //收集用户语音信息
         HanLPUtil.saveUserVoice(deviceID, text, company_id, "robot");
-        //返回结果
-        String voiceResult = "";
 
 
         //层级1，用户自定义回答（老人设置和子女设置）
@@ -150,48 +157,52 @@ public class VoiceAction {
         if (answer != null) {
             voiceResult = answer;
             //返回文字到客户端
-            ActionTool.responseToJSON(response, voiceResult);
+            ActionTool.responseToJSON(response, voiceResult, ACCESS);
             //返回语音
 //            responseVoice(voiceResult, response);
             return;
         }
-
-
         //层级2，进入指令资料库
-        boolean flag = true;
+
         //爬取搜狗百科
         String encyclopedias = "(.*?)((是谁|是哪个|是什么人)|(是什么|的作用|的用处|有什么用|(的)*功能|有什么好处)|(在哪儿|在哪里|位于哪里|在哪个地方))";
-        //自定义上传
-        String custom = "((我(喜欢的|收藏的|上传的|的))|播放我的)(.+)";
-        //语音选择
 
-        if (text.matches(custom)) {
-            Pattern pattern = Pattern.compile(custom);
-            Matcher matcher = pattern.matcher(text);
-            if (matcher.find()) {
-                //搜寻目录下的用户语音文件
-                File customFiles = new File(Tools.getConfigureValue("custom.file"));
-                File[] files = customFiles.listFiles();
-                for (File f : files) {
-                    if (!f.isDirectory()) {
-                        //切割出目录下的文件名
-                        String customeFileName = getCustomFileName(f.getName());
-                        if (customeFileName != null) {
-                            //当语音名与库中的上传文件名匹配时(使用拼音)
-                            if (Tools.getPingYin(customeFileName).contains(
-                                    Tools.getPingYin(matcher.group(4)))) {
-                                //返回自定义语音文件
-                                Tools.writeToClient(response, f.getPath());
-                                return;
-                            }
-                        }
-                    }
-                }
-                voiceResult = "未查找到您的音频文件";
-            } else {
-                voiceResult = "未查找到您的音频文件";
-            }
-            //菜谱
+        //自定义上传
+//        String custom = "((我(喜欢的|收藏的|上传的|的))|播放我的)(.+)";
+        //语音选择
+//        if (text.matches(custom)) {
+//            Pattern pattern = Pattern.compile(custom);
+//            Matcher matcher = pattern.matcher(text);
+//            if (matcher.find()) {
+//                //搜寻目录下的用户语音文件
+//                File customFiles = new File(Tools.getConfigureValue("custom.file"));
+//                File[] files = customFiles.listFiles();
+//                for (File f : files) {
+//                    if (!f.isDirectory()) {
+//                        //切割出目录下的文件名
+//                        String customeFileName = getCustomFileName(f.getName());
+//                        if (customeFileName != null) {
+//                            //当语音名与库中的上传文件名匹配时(使用拼音)
+//                            if (Tools.getPingYin(customeFileName).contains(
+//                                    Tools.getPingYin(matcher.group(4)))) {
+//                                //返回自定义语音文件
+//                                Tools.writeToClient(response, f.getPath());
+//                                return;
+//                            }
+//                        }
+//                    }
+//                }
+//                voiceResult = "未查找到您的音频文件";
+//            } else {
+//                voiceResult = "未查找到您的音频文件";
+//            }
+        //菜谱
+//        }
+
+        //记忆回复
+        if (text.matches("(.?)*(刚才|刚刚)*没听清楚||(再|在)(播|放|来|说|播放)一(遍|次|回|下)")) {
+            voiceResult = voiceService.getUserByDeviceID(deviceID).getLast_answer();
+//            System.out.println("voice---------:" + voiceResult);
         } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)") || text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
             text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
             voiceResult = Xiachufang.getRecipe(text);
@@ -356,6 +367,10 @@ public class VoiceAction {
                 Matcher matcher = pattern.matcher(text);
                 if (matcher.find() && matcher.group(1) != null || matcher.group(2) != null) {
                     voiceResult = Sougou.getEncyclopedia(matcher.group(1), matcher.group(2));
+                    //未爬取到资源时
+                    if (voiceResult.equals("")) {
+                        flag = false;
+                    }
                 } else flag = false;
             } else flag = false;
         } else flag = false;
@@ -398,15 +413,17 @@ public class VoiceAction {
             }
         }
         //返回文字到客户端
-        ActionTool.responseToJSON(response, voiceResult);
+        ActionTool.responseToJSON(response, voiceResult, ACCESS);
 
 //      合成语音并返回客户端
 //        responseVoice(voiceResult, response);
 
         //统计流量和下载次数
         flowStatisticService.updateStatistic(voiceResult.getBytes("UTF-8").length);
+        //存储到数据库中
+        logger.info("更新上一次答案影响行的状态：{}", voiceService.SaveUserLastAnswerByDeviceID(deviceID, voiceResult));
 
-        System.out.println("处理完成_");
+        logger.info("处理完成_");
 
     }
 
@@ -419,6 +436,27 @@ public class VoiceAction {
 //        responseToJSON(response, resultObject.toString());
 //        return null;
 //    }
+
+    //是否允许请求
+    public boolean IsAccess(String device_id) {
+        //获取缓存中的device_ids用于判断是否符合请求权限
+        Set<String> device_ids = voiceService.getAllDeviceID();
+//        System.out.println(device_ids.contains(device_id));
+//
+//        Iterator<String> it = device_ids.iterator();
+//        while (it.hasNext()) {
+//            String str = it.next();
+//            System.out.println(str);
+//        }
+//        System.out.println("____________遍历完成_______");
+        if (device_ids.contains(device_id)) {
+            logger.info("有效device_id");
+            return true;
+        } else {
+            logger.info("无效device_id：{}，禁止访问", device_id);
+            return false;
+        }
+    }
 
 
     public void responseVoice(String voiceResult, HttpServletResponse response) {

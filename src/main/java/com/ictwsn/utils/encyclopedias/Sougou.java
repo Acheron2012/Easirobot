@@ -15,6 +15,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.bson.Document;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 爬取搜狗百科
@@ -35,6 +35,10 @@ public class Sougou {
 
     public static final String url = "http://baike.sogou.com/lemma/default/ShowLemmaDefault,$FinalBorder.$NewSearchBar.sf.sd";
     public static Logger logger = LoggerFactory.getLogger(Msg.class);
+
+    public static void main(String[] args) {
+        System.out.println(crawlSougou("雁栖湖"));
+    }
 
     public static String crawlSougou(String textField) {
         String encyclopedia = "";
@@ -58,7 +62,9 @@ public class Sougou {
         String location = "";
         Header[] heads = HttpUtil.postFormReturnHeaders(url, headers, data);
         for (Header h : heads) {
-            if ("Location".equals(h.getName())) location = h.getValue();
+            if ("Location".equals(h.getName())) {
+                location = h.getValue();
+            }
         }
         //查询到结果
         if (!"".equals(location)) {
@@ -66,15 +72,20 @@ public class Sougou {
             HttpEntity httpEntity = HttpUtil.httpGet(location, null);
             try {
                 String HTMLContent = EntityUtils.toString(httpEntity);
+//                System.out.println(HTMLContent);
+                //Jsoup匹配
+                org.jsoup.nodes.Document doc = Jsoup.parse(HTMLContent, location);
+                Element element = doc.select("#j-shareAbstract").first();
+                encyclopedia = element.text().toString();
                 //正则匹配
-                Pattern pattern = Pattern.compile("window\\.lemmaData = (.*?)var hasRelationTable", Pattern.DOTALL);
-                Matcher matcher = pattern.matcher(HTMLContent);
-                if (matcher.find()) {
-                    String word = matcher.group(1).trim().replaceAll("\\n", "").replaceAll("\\s", "");
-                    word = word.substring(0, word.length() - 1);
-                    JSONObject jsonObject = JSONObject.fromObject(word);
-                    encyclopedia = jsonObject.getString("mbabstract");
-                }
+//                Pattern pattern = Pattern.compile("window\\.lemmaData = (.*?)var hasRelationTable", Pattern.DOTALL);
+//                Matcher matcher = pattern.matcher(HTMLContent);
+//                if (matcher.find()) {
+//                    String word = matcher.group(1).trim().replaceAll("\\n", "").replaceAll("\\s", "");
+//                    word = word.substring(0, word.length() - 1);
+//                    JSONObject jsonObject = JSONObject.fromObject(word);
+//                    encyclopedia = jsonObject.getString("mbabstract");
+//                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,13 +97,15 @@ public class Sougou {
 
         //分类
         String category = "";
-        if (keyWord.matches("是谁|是哪个|是什么人"))
+        if (keyWord.matches("是谁|是哪个|是什么人")) {
             category = "人名";
-        else if (keyWord.matches("是什么|怎么样|如何|的作用|的用处|有什么用|(的)*功能|有什么好处"))
+        } else if (keyWord.matches("是什么|怎么样|如何|的作用|的用处|有什么用|(的)*功能|有什么好处")) {
             category = "物名";
-        else if (keyWord.matches("在哪儿|在哪里|位于哪里|在哪个地方"))
+        } else if (keyWord.matches("在哪儿|在哪里|位于哪里|在哪个地方")) {
             category = "地名";
-        else category = "其它";
+        } else {
+            category = "其它";
+        }
         //查询本地库获取内容
         String content = selectLocalEncyclopedia(name, category);
         //若为空，则爬取搜狗百科内容，并存入本地百科库
@@ -104,7 +117,9 @@ public class Sougou {
             //插入本地百科库
             insertLocalEncyclopedia(name, category, keyWord, content);
             logger.info("资料不存在，已将“{}”百科内容添加到本地资料库", name);
-        } else logger.info("资料存在，已从本地百科库中获取“{}”", name);
+        } else {
+            logger.info("资料存在，已从本地百科库中获取“{}”", name);
+        }
         return content;
     }
 
@@ -118,8 +133,9 @@ public class Sougou {
         doc.put("category", category);
 
         int dataCount = (int) collection.count(doc);
-        if (dataCount == 0) return null;
-        else {
+        if (dataCount == 0) {
+            return null;
+        } else {
             FindIterable<Document> findIterable = collection.find(doc);
             MongoCursor<Document> mongoCursor = findIterable.iterator();
             JSONObject jsonObject = JSONObject.fromObject(mongoCursor.next().toJson());

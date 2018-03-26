@@ -19,6 +19,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import io.netty.handler.codec.http.HttpMethod;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,22 +32,23 @@ public class ChatbotPush {
     protected static final Logger LOG = LoggerFactory.getLogger(ChatbotPush.class);
 
     // demo App defined in resources/jpush-api.conf
-    protected static final String APP_KEY ="54642be1084bdd1303610ee1";
+    protected static final String APP_KEY = "54642be1084bdd1303610ee1";
     protected static final String MASTER_SECRET = "be880fb5915b7f581122bdaa";
 //    protected static final String GROUP_PUSH_KEY = "2c88a01e073a0fe4fc7b167c";
 //    protected static final String GROUP_MASTER_SECRET = "b11314807507e2bcfdeebe2e";
 
     public static final String TITLE = "智能孝子";
     public static final String ALERT = "123";
-//    4:http://easirobot.zhongketianhe.com.cn:8080/Easirobot/rob/ad?ad_id=123456
-    public static final String MSG_CONTENT = "4:123456";
+    //    4:http://easirobot.zhongketianhe.com.cn:8080/Easirobot/rob/ad?ad_id=123456
+    public static String MSG_CONTENT = "4:";
     public static final String REGISTRATION_ID = "0900e8d85ef";
     public static final String TAG = "tag_api";
+    public static String ALIAS = "gh_655b593ac7b9_9897297a665e1d3b_a";
     public static long sendCount = 0;
     private static long sendTotalTime = 0;
 
     public static void main(String[] args) {
-        testSendPushWithCustomConfig();
+//        testSendPushWithCustomConfig(ALIAS);
 //        testSendIosAlert();
 //		testSendPush();
 //        testGetCidList();
@@ -114,7 +116,7 @@ public class ChatbotPush {
                 .registerTypeAdapter(PlatformNotification.class, new InterfaceAdapter<PlatformNotification>())
                 .create();
         // Since the type of DeviceType is enum, thus the value should be uppercase, same with the AudienceType.
-        String payloadString = "{\"platform\":{\"all\":false,\"deviceTypes\":[\"IOS\"]},\"audience\":{\"all\":false,\"targets\":[{\"audienceType\":\"TAG_AND\",\"values\":[\"tag1\",\"tag_all\"]}]},\"notification\":{\"notifications\":[{\"soundDisabled\":false,\"badgeDisabled\":false,\"sound\":\"happy\",\"badge\":\"5\",\"contentAvailable\":false,\"alert\":\"Test from API Example - alert\",\"extras\":{\"from\":\"JPush\"},\"type\":\"cn.jpush.api.push.model.notification.IosNotification\"}]},\"message\":{\"msgContent\":\"Test from API Example - msgContent\"},\"options\":{\"sendno\":1429488213,\"overrideMsgId\":0,\"timeToLive\":-1,\"apnsProduction\":true,\"bigPushDuration\":0}}";
+        String payloadString = "{\"platform\":{\"all\":false,\"deviceTypes\":[\"IOS\"]},\"audience\":{\"all\":false,\"targets\":[{\"audienceType\":\"TAG_AND\",\"values\":[\"tag1\",\"tag_all\"]}]},\"notification\":{\"notifications\":[{\"soundDisabled\":false,\"badgeDisabled\":false,\"sound\":\"happy\",\"badge\":\"5\",\"contentAvailable\":false,\"alert\":\"URLtoUTF8 from API Example - alert\",\"extras\":{\"from\":\"JPush\"},\"type\":\"cn.jpush.api.push.model.notification.IosNotification\"}]},\"message\":{\"msgContent\":\"URLtoUTF8 from API Example - msgContent\"},\"options\":{\"sendno\":1429488213,\"overrideMsgId\":0,\"timeToLive\":-1,\"apnsProduction\":true,\"bigPushDuration\":0}}";
         PushPayload payload = gson.fromJson(payloadString, PushPayload.class);
         try {
             PushResult result = jpushClient.sendPush(payload);
@@ -148,7 +150,7 @@ public class ChatbotPush {
 //        ApacheHttpClient httpClient = new ApacheHttpClient(authCode, null, clientConfig);
         jpushClient.getPushClient().setHttpClient(httpClient);
         final PushPayload payload = buildPushObject_ios_tagAnd_alertWithExtrasAndMessage();
-        for(int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             Thread thread = new Thread() {
                 public void run() {
                     for (int j = 0; j < 200; j++) {
@@ -224,7 +226,7 @@ public class ChatbotPush {
 //        extras.put("test", "https://community.jiguang.cn/push");
         return PushPayload.newBuilder()
                 .setPlatform(Platform.android_ios())
-                .setAudience(Audience.all())
+                .setAudience(Audience.alias(ALIAS))
                 .setMessage(Message.newBuilder()
                         .setMsgContent(MSG_CONTENT)
                         .build())
@@ -354,12 +356,17 @@ public class ChatbotPush {
                 .build();
     }
 
-    public static void testSendPushWithCustomConfig() {
+    public static boolean testSendPushWithCustomConfig(String device_id, String request_url) {
         ClientConfig config = ClientConfig.getInstance();
         // Setup the custom hostname
         config.setPushHostName("https://api.jpush.cn");
 
         JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, config);
+
+        ALIAS = device_id;
+        MSG_CONTENT = "4:" + request_url;
+
+        System.out.println("MSG_CONTENT:"+MSG_CONTENT);
 
         // For push, all you need do is to build PushPayload object.
         PushPayload payload = buildPushObject_android_and_ios();
@@ -367,7 +374,8 @@ public class ChatbotPush {
         try {
             PushResult result = jpushClient.sendPush(payload);
             LOG.info("Got result - " + result);
-
+            JSONObject jsonResult = JSONObject.fromObject(result.toString());
+            if (jsonResult.getInt("statusCode") == 0) {return true;}
         } catch (APIConnectionException e) {
             LOG.error("Connection error. Should retry later. ", e);
 
@@ -378,6 +386,7 @@ public class ChatbotPush {
             LOG.info("Error Message: " + e.getErrorMessage());
             LOG.info("Msg ID: " + e.getMsgId());
         }
+        return false;
     }
 
     public static void testSendIosAlert() {
@@ -403,8 +412,8 @@ public class ChatbotPush {
     public static void testSendWithSMS() {
         JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY);
         try {
-            SMS sms = SMS.content("Test SMS", 10);
-            PushResult result = jpushClient.sendAndroidMessageWithAlias("Test SMS", "test sms", sms, "alias1");
+            SMS sms = SMS.content("URLtoUTF8 SMS", 10);
+            PushResult result = jpushClient.sendAndroidMessageWithAlias("URLtoUTF8 SMS", "test sms", sms, "alias1");
             LOG.info("Got result - " + result);
         } catch (APIConnectionException e) {
             LOG.error("Connection error. Should retry later. ", e);
