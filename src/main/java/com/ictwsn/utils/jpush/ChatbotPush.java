@@ -356,15 +356,20 @@ public class ChatbotPush {
                 .build();
     }
 
-    public static boolean testSendPushWithCustomConfig(String device_id, String request_url) {
+    public static boolean testSendPushWithCustomConfig(String device_id, String request_url,int push_id) {
         ClientConfig config = ClientConfig.getInstance();
         // Setup the custom hostname
         config.setPushHostName("https://api.jpush.cn");
 
         JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, config);
-
         ALIAS = device_id;
-        MSG_CONTENT = "4:" + request_url;
+
+        if(push_id==4) {
+            MSG_CONTENT = "4:" + request_url;
+        } else {
+            MSG_CONTENT = "6:" + request_url;
+        }
+
 
         System.out.println("MSG_CONTENT:"+MSG_CONTENT);
 
