@@ -202,7 +202,7 @@ public class VoiceAction {
         //记忆回复
         if (text.matches("(.?)*(刚才|刚刚)*没听清楚||(再|在)(播|放|来|说|播放)一(遍|次|回|下)")) {
             voiceResult = voiceService.getUserByDeviceID(deviceID).getLast_answer();
-//            System.out.println("voice---------:" + voiceResult);
+            System.out.println("voice---------:" + voiceResult);
         } else if (text.matches("(.*?)(怎么做|食谱|菜谱|如何做|怎样做)") || text.matches("(怎么做|食谱|菜谱|如何做|怎样做)(.*?)")) {
             text = text.replaceAll("怎么做|食谱|菜谱|如何做|怎样做", "");
             voiceResult = Xiachufang.getRecipe(text);
@@ -278,7 +278,6 @@ public class VoiceAction {
                 if (voiceResult == null) flag = false;
             } else flag = false;
         } else if (text.contains("故事")) {
-            System.out.println("我进来了");
             Pattern pattern = Pattern.compile("(讲|说)(个)*(.*?)故事");
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
@@ -293,6 +292,12 @@ public class VoiceAction {
                 }
                 if (voiceResult == null) flag = false;
             } else flag = false;
+        } else if (text.contains("红色文化")) {
+            /* 随机挑选红色文化网内容进行播放 */
+            voiceResult = Library.getTwoDataField("revolution", "category", "content");
+            if (voiceResult == null) {
+                flag = false;
+            }
         } else if (text.contains("歇后语")) {
             Pattern pattern = Pattern.compile("(讲|说)*(个)*(.*?)歇后语");
             Matcher matcher = pattern.matcher(text);
@@ -386,32 +391,30 @@ public class VoiceAction {
             //层级3，进入ruyi.ai智能孝子模块
             voiceResult = RuyiAi.ruyiAi(text, deviceID);
             //访问失败时，修改deviceId再次请求
+            if (voiceResult == null) voiceResult = "";
             if (voiceResult.equals("修改ID")) voiceResult = RuyiAi.ruyiAi(text, deviceID + new Random().nextInt(100));
-            if (voiceResult != null && !voiceResult.equals("还没学会这个") && !voiceResult.equals("没听懂，能解释一下么")) {
-
-                //是音频文件链接
-//                if (voiceResult.startsWith("http")) {
-//                    InputStream inputStream = null;
-//                    if ((inputStream = TextToSpeech.returnInputStreamByURL(voiceResult)) != null) {
-//                        //返回客户端字符流
-//                        long flow = Tools.downloadAudioFile(inputStream, response);
-//                        logger.info("耗费流量{}M({}字节)", Arith.round(Arith.div(flow, 1024 * 1024), 2), flow);
-//                        flowStatisticService.updateStatistic(flow);
-//                        System.out.println("处理完成");
-//                        return;
-//                    }
-//                }
-            } else {
+            if (voiceResult == null || voiceResult.equals("还没学会这个") || voiceResult.equals("没听懂，能解释一下么")
+                    || voiceResult.equals("暂时无法获取数据") || voiceResult.equals("")) {
+                logger.info("本地库对话接口");
                 //层级4，本地库对话接口
                 voiceResult = Library.getAnswerByQuestion("conversation", "answer", text);
-                if (voiceResult == null) {
+                if (voiceResult == null || voiceResult.equals("")) {
                     //未能有效处理，转入图灵接口
                     logger.info("未能做出语音行动，转入图灵接口");
                     //层级5，图灵接口
-                    voiceResult = TuringAPI.turingRobot(text, null);
+                    voiceResult = TuringAPI.turingRobot(text, deviceID);
+                    logger.info("图灵消息：{}", voiceResult);
                 }
             }
         }
+
+        //最终反馈
+        if (voiceResult.equals("") || voiceResult == null) {
+            String[] answerResult = new String[]{"您说的我不理解，小天小合还在学习当中", "小天小合还没学会这个问题呢", "虽然我听不懂，但是好高大上的样子",
+                    "您的问题我正在努力的的学习当中"};
+            voiceResult = answerResult[new Random().nextInt(answerResult.length)];
+        }
+
         //返回文字到客户端
         ActionTool.responseToJSON(response, voiceResult, ACCESS);
 

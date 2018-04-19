@@ -21,6 +21,8 @@ public class ActionTool {
         jsonObject.put("code", code);
         JSONObject jsonResult = new JSONObject();
         if (text.startsWith("http")) {
+            //特殊字符转码
+            text = URLtoUTF8.toUtf8String(text);
             jsonResult.put("url", text);
             jsonResult.put("text", "");
         } else {

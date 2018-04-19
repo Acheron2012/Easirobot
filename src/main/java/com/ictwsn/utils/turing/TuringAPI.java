@@ -24,13 +24,13 @@ public class TuringAPI {
     //图灵机器人注册api key
     public static final String apikey = "737e3c633624422f8f5d67fb8798e930";
 
-    public static void turing(){
+    public static void turing() {
         String speechText = null;
         try {
             speechText = SpeechRecognition.recognition(Speech.SPEECHFILENAME);
-            System.out.println("语音指令："+speechText);
-            if(speechText!=null)
-                TTS(turingRobot(speechText,null));
+            System.out.println("语音指令：" + speechText);
+            if (speechText != null)
+                TTS(turingRobot(speechText, null));
             else
                 logger.info("语音识别错误");
         } catch (Exception e) {
@@ -40,14 +40,14 @@ public class TuringAPI {
     }
 
     //调用语音合成
-    private static void TTS(String context){
-        System.out.println("合成语音："+context.trim());
+    private static void TTS(String context) {
+        System.out.println("合成语音：" + context.trim());
         TextToSpeech.textToSpeech(context.trim());
     }
 
     //调用图灵接口
-    public static String turingRobot(String content,String userId)
-    {
+    public static String turingRobot(String content, String userId) {
+        System.out.println("问题：" + content);
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
         String turingURL = "http://www.tuling123.com/openapi/api";
@@ -56,11 +56,11 @@ public class TuringAPI {
         HttpResponse httpResponse = null;
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("key",apikey);
-        jsonObject.put("info",content);
-        if(userId!=null) jsonObject.put("userid",userId);
+        jsonObject.put("key", apikey);
+        jsonObject.put("info", content);
+        if (userId != null) jsonObject.put("userid", userId);
 
-        StringEntity stringEntity = new StringEntity(jsonObject.toString(),"utf-8");
+        StringEntity stringEntity = new StringEntity(jsonObject.toString(), "utf-8");
         stringEntity.setContentEncoding("UTF-8");
         stringEntity.setContentType("application/json");//发送json数据需要设置contentType
         httpPost.setEntity(stringEntity);
@@ -68,16 +68,14 @@ public class TuringAPI {
         //发送请求
         try {
             httpResponse = httpclient.execute(httpPost);
-            if(httpResponse.getStatusLine().getStatusCode()==200){
-                String result = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                String result = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
                 JSONObject resultObject = JSONObject.fromObject(result);
+                System.out.println(resultObject.toString());
                 //获取返回结果编码
-                if("100000".equals(resultObject.getString("code"))){
-                    //返回过滤后的文本信息
+                //返回过滤后的文本信息
 //                    System.out.println("返回的图灵信息:"+resultObject.get("text").toString());
-                    return TuringUtils.filterSpeech(resultObject.get("text").toString());
-                }
-
+                return TuringUtils.filterSpeech(resultObject.get("text").toString());
             }
 
         } catch (IOException e) {
@@ -88,9 +86,8 @@ public class TuringAPI {
     }
 
 
-    public static void main(String[] args)
-    {
-        turing();
+    public static void main(String[] args) {
+        System.out.println(turingRobot("毕加索是谁", "gh_655b593ac7b9_9897297a665e1d3b"));
     }
 
 }

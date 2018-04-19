@@ -147,8 +147,9 @@ public class Tools {
         return null;
     }
 
-    //得到15天以前的日期
-    public static Date getNowDayBefore15Days(Date date) {
+    /** 得到15天以前的日期
+     负数为前多少天，正数为后多少天*/
+    public static Date getDayByNumber(Date date, int number) {
         //剔除掉时间，保留日期
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -159,7 +160,7 @@ public class Tools {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_MONTH, -15);
+        calendar.add(Calendar.DAY_OF_MONTH, number);
         Date datetime = calendar.getTime();
         return datetime;
     }

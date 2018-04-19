@@ -33,7 +33,8 @@ import java.util.Map;
 
 public class Sougou {
 
-    public static final String url = "http://baike.sogou.com/lemma/default/ShowLemmaDefault,$FinalBorder.$NewSearchBar.sf.sd";
+    public static final String url = "https://baike.sogou.com/lemma/default/ShowLemmaDefault,$FinalBorder.$NewSearchBar.sf.sd";
+
     public static Logger logger = LoggerFactory.getLogger(Msg.class);
 
     public static void main(String[] args) {
@@ -70,9 +71,13 @@ public class Sougou {
         if (!"".equals(location)) {
             //获取百科信息
             HttpEntity httpEntity = HttpUtil.httpGet(location, null);
+            String HTMLContent = null;
             try {
-                String HTMLContent = EntityUtils.toString(httpEntity);
-//                System.out.println(HTMLContent);
+                HTMLContent = EntityUtils.toString(httpEntity);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(HTMLContent);
                 //Jsoup匹配
                 org.jsoup.nodes.Document doc = Jsoup.parse(HTMLContent, location);
                 Element element = doc.select("#j-shareAbstract").first();
@@ -86,9 +91,6 @@ public class Sougou {
 //                    JSONObject jsonObject = JSONObject.fromObject(word);
 //                    encyclopedia = jsonObject.getString("mbabstract");
 //                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return encyclopedia;
     }

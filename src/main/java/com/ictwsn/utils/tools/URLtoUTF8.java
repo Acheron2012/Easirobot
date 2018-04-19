@@ -27,7 +27,8 @@ public class URLtoUTF8 {
                 }
             }
         }
-        return sb.toString();
+//        sb = sb.toString().replaceAll("")
+        return sb.toString().replaceAll("\\s","%20");
     }
     //将%E4%BD%A0转换为汉字
     public static String unescape(String s) {

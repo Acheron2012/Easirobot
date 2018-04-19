@@ -61,10 +61,11 @@ public class ReqStatisticServiceImpl extends BaseDao implements RuqStatisticServ
 
         MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
 
-        //得到今天时间
-        Date end_time = new Date();
+        //得到明天时间（8个小时的延迟）
+        Date end_time = Tools.getDayByNumber(new Date(),1);
+
         //得到前15天时间
-        Date start_time = Tools.getNowDayBefore15Days(end_time);
+        Date start_time = Tools.getDayByNumber(end_time,-15);
         System.out.println("start:" + start_time + ",end:" + end_time);
 
         BasicDBObject query = new BasicDBObject("dateTime", new BasicDBObject("$gte", start_time)
@@ -82,7 +83,7 @@ public class ReqStatisticServiceImpl extends BaseDao implements RuqStatisticServ
             Document document = mongoCursor.next();
             reqArray.add(document.getLong("req"));
             flowArray.add(Arith.round(Arith.div(document.getLong("flow"),1024*1024),2));
-            dateArray.add(Tools.getOnlyDayByDate(Tools.changeMongoToLocal(document.getDate("dateTime"))));
+            dateArray.add(Tools.getOnlyDayByDate(Tools.changeToLocalChina(document.getDate("dateTime"))));
             System.out.println(document.getDate("dateTime"));
         }
 
