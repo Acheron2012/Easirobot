@@ -9,5 +9,7 @@
         <mapper class="com.ictwsn.rob.beacon.dao.BeaconDao"/>
         <mapper class="com.ictwsn.rob.voice.dao.VoiceDao"/>
         <mapper class="com.ictwsn.web.req.ReqDao.ReqDao"/>
+        <mapper class="com.ictwsn.rob.physiology.dao.PhysiologyDao" />
+        <mapper class="com.ictwsn.rob.distribute.dao.DistributeDao" />
     </mappers>  
 </configuration>  

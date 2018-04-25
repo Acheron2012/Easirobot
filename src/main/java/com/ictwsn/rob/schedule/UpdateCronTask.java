@@ -3,16 +3,10 @@ package com.ictwsn.rob.schedule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.Trigger;
-import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Component
 @EnableScheduling
@@ -26,7 +20,7 @@ public class UpdateCronTask  implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
         /* 增加一个动态定时器 */
-        scheduledTaskRegistrar.addTriggerTask(new Runnable() {
+        /*scheduledTaskRegistrar.addTriggerTask(new Runnable() {
             @Override
             public void run() {
                 i++;
@@ -42,7 +36,7 @@ public class UpdateCronTask  implements SchedulingConfigurer {
                 Date nextExec = trigger.nextExecutionTime(triggerContext);
                 return nextExec;
             }
-        });
+        });*/
         /* 再增加一个动态定时器 */
 
     }
