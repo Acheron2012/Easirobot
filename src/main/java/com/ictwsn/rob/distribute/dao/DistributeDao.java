@@ -27,5 +27,9 @@ public interface DistributeDao {
     @Insert("insert into tbl_mac_device (mac_address,device_id,is_allocated,application_time) values(#{mac_address},#{device_id},#{is_allocated},#{application_time})")
     int insertMacDevice(DistributeBean distributeBean);
 
+    /** 通过mac地址获取device_id */
+    @Select("select device_id from tbl_mac_device where mac_address = #{0} and is_allocated = 1")
+    String getDeviceIdByMac(String MAC);
+
 
 }

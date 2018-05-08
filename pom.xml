@@ -232,6 +232,15 @@
       <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1455552377940-20160607.jar</systemPath>
     </dependency>
 
+
+    <dependency>
+      <groupId>com.ictwsn</groupId>
+      <artifactId>jave</artifactId>
+      <version>1.0.2</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/jave-1.0.2.jar</systemPath>
+    </dependency>
+
     <!-- 百度AI jar -->
     <dependency>
       <groupId>com.baidu.aip</groupId>

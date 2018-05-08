@@ -1,5 +1,6 @@
 package com.ictwsn.rob.push;
 
+import com.ictwsn.rob.voice.service.VoiceService;
 import com.ictwsn.utils.jpush.ChatbotPush;
 import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.tools.Tools;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,9 @@ import java.io.IOException;
 public class PushMessage {
 
     public static Logger logger = LoggerFactory.getLogger(PushMessage.class);
+
+    @Resource
+    VoiceService voiceService;
 
     @RequestMapping("/ad")
     public String getAdvertisement(HttpServletRequest request, HttpServletResponse response,
@@ -43,6 +48,10 @@ public class PushMessage {
         request_url = URLtoUTF8.toUtf8String(request_url);
         /* 编号4为请求音频并播放 */
         boolean flag = ChatbotPush.testSendPushWithCustomConfig(device_id, request_url, 4);
+
+        //存储本次答案到数据库中
+        logger.info("存储本次答案到数据库中：{}", voiceService.SaveUserLastAnswerByDeviceID(device_id, request_url));
+
         JSONObject jsonObject = new JSONObject();
         if (flag == true) {
             jsonObject.put("status", "OK");
@@ -80,10 +89,15 @@ public class PushMessage {
     }
 
     @RequestMapping("/get_push_text")
-    public void pushText(HttpServletRequest request, HttpServletResponse response)
+    public void pushText(HttpServletRequest request, HttpServletResponse response,
+                         @RequestParam(value = "device_id", required = true) String device_id)
             throws IOException, ServletException {
 
         String voiceResult = Library.getTwoDataField("revolution", "category", "content");
+
+        //存储本次答案到数据库中
+        logger.info("存储本次答案到数据库中：{}", voiceService.SaveUserLastAnswerByDeviceID(device_id, voiceResult));
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("text",voiceResult);
         Tools.responseToJSON(response, jsonObject.toString());

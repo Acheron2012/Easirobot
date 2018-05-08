@@ -37,4 +37,9 @@ public class DistributeServiceImpl extends BaseDao implements DistributeService{
     public int insertMacDevice(DistributeBean distributeBean) {
         return this.sqlSessionTemplate.getMapper(DistributeDao.class).insertMacDevice(distributeBean);
     }
+
+    @Override
+    public String getDeviceIdByMac(String MAC) {
+        return this.sqlSessionTemplate.getMapper(DistributeDao.class).getDeviceIdByMac(MAC);
+    }
 }

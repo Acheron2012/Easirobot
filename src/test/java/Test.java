@@ -11,6 +11,11 @@ public class Test {
     }
 
 
+    public static void main(String[] args) {
+        String a = "ha-ha";
+        System.out.println(a.replace("-",""));
+        System.out.println(a);
+    }
 
 
 }

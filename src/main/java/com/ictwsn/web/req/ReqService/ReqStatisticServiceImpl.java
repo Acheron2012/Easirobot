@@ -65,7 +65,7 @@ public class ReqStatisticServiceImpl extends BaseDao implements RuqStatisticServ
         Date end_time = Tools.getDayByNumber(new Date(),1);
 
         //得到前15天时间
-        Date start_time = Tools.getDayByNumber(end_time,-15);
+        Date start_time = Tools.getDayByNumber(end_time,-14);
         System.out.println("start:" + start_time + ",end:" + end_time);
 
         BasicDBObject query = new BasicDBObject("dateTime", new BasicDBObject("$gte", start_time)
@@ -84,7 +84,7 @@ public class ReqStatisticServiceImpl extends BaseDao implements RuqStatisticServ
             reqArray.add(document.getLong("req"));
             flowArray.add(Arith.round(Arith.div(document.getLong("flow"),1024*1024),2));
             dateArray.add(Tools.getOnlyDayByDate(Tools.changeToLocalChina(document.getDate("dateTime"))));
-            System.out.println(document.getDate("dateTime"));
+//            System.out.println(document.getDate("dateTime"));
         }
 
         JSONObject jsonObject = new JSONObject();

@@ -370,23 +370,36 @@ public class Tools {
         }
     }
 
+    //获取ISO时间字符串
+    public static String getStringByNowDatetime() {
+        //剔除掉时间，保留日期
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(new Date());
+    }
+
+    //根据ISO时间字符串获取时间
+    public static Date getDateByISOString(String ISOString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        try {
+            return sdf.parse(ISOString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //根据ISO时间获取带中文格式的字符串
+    public static String getStringWithChineseByISODate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        return sdf.format(date);
+    }
+
 
     public static void main(String[] args) {
-
-//        Date date = getDayAfter1Day();
-//        System.out.println(getOnlyDayByDate(date));
-//        System.out.println(getNowDayBefore15Days(date));
-        System.out.println(getNumberByHighProbability());
-        /*try {
-            System.out.println(EncrypSHA("easicloudjljajdfio324jll38hl3"));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			System.out.println(sdf.format(new Date()));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}*/
-
-
-//		System.out.println(getNowDate8());
+        String s = getStringByNowDatetime();
+        System.out.println(s);
+        Date d =  getDateByISOString(s);
+        System.out.println(getStringWithChineseByISODate(d));
     }
 
 }

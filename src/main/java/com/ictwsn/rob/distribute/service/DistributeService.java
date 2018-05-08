@@ -12,4 +12,5 @@ public interface DistributeService {
     String getDeviceIdAsc();
     int updateMacDeviceStatusByDeviceId(String device_id, String mac_address, Date application_time);
     int insertMacDevice(DistributeBean distributeBean);
+    String getDeviceIdByMac(String MAC);
 }

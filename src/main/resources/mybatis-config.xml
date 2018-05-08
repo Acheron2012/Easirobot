@@ -11,5 +11,6 @@
         <mapper class="com.ictwsn.web.req.ReqDao.ReqDao"/>
         <mapper class="com.ictwsn.rob.physiology.dao.PhysiologyDao" />
         <mapper class="com.ictwsn.rob.distribute.dao.DistributeDao" />
+        <mapper class="com.ictwsn.rob.message.dao.MessageDao" />
     </mappers>  
 </configuration>  

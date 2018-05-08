@@ -366,8 +366,10 @@ public class ChatbotPush {
 
         if(push_id==4) {
             MSG_CONTENT = "4:" + request_url;
-        } else {
+        } else if(push_id == 6){
             MSG_CONTENT = "6:" + request_url;
+        } else {
+            MSG_CONTENT = "7:" + request_url;
         }
 
 

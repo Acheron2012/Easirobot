@@ -128,6 +128,24 @@ public class VoiceAction {
         System.out.println("子女语音处理完成");
     }
 
+    @RequestMapping(value = "/repeat")
+    public void voiceRepeat(HttpServletRequest request, HttpServletResponse response,
+                              @RequestParam(value = "deviceID", required = true) String deviceID) throws ServletException, IOException {
+        String voiceResult = voiceService.getUserByDeviceID(deviceID).getLast_answer();
+        System.out.println("voice---------:" + voiceResult);
+        //返回文字到客户端
+        ActionTool.responseToJSON(response, voiceResult, ACCESS);
+
+//      合成语音并返回客户端
+//        responseVoice(voiceResult, response);
+
+        //统计流量和下载次数
+        flowStatisticService.updateStatistic(voiceResult.getBytes("UTF-8").length);
+        //存储到数据库中
+        logger.info("更新上一次答案影响行的状态：{}", voiceService.SaveUserLastAnswerByDeviceID(deviceID, voiceResult));
+        logger.info("重复播放完成:{}",deviceID);
+    }
+
 
     @RequestMapping(value = "/voice")
     public void voiceAnalysis(HttpServletRequest request, HttpServletResponse response,
