@@ -32,8 +32,8 @@ public class MessageServiceImpl extends BaseDao implements MessageService {
     public static final String ROOT_PATH = Tools.getConfigureValue("audio.path");
 
     @Override
-    public String getOpenIdByDeviceId(String open_id) {
-        return this.sqlSessionTemplate.getMapper(MessageDao.class).getOpenIdByDeviceId(open_id);
+    public String getDeviceIdByChildOpenId(String open_id) {
+        return this.sqlSessionTemplate.getMapper(MessageDao.class).getDeviceIdByChildOpenId(open_id);
     }
 
     /**
@@ -107,5 +107,15 @@ public class MessageServiceImpl extends BaseDao implements MessageService {
     @Override
     public List<MessageBean> getMessageBeanByDeviceId(String device_id) {
         return this.sqlSessionTemplate.getMapper(MessageDao.class).getMessageBeanByDeviceId(device_id);
+    }
+
+    @Override
+    public List<String> getDeviceIdsByAdminOpenId(String open_id) {
+        return this.sqlSessionTemplate.getMapper(MessageDao.class).getDeviceIdsByAdminOpenId(open_id);
+    }
+
+    @Override
+    public List<String> getDeviceIdsByAdminOpenIdAndOldName(String open_id, String older_name) {
+        return this.sqlSessionTemplate.getMapper(MessageDao.class).getDeviceIdsByAdminOpenIdAndOldName(open_id,older_name);
     }
 }

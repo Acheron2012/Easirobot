@@ -15,10 +15,10 @@ import java.io.File;
 public class ChangeAmrToMp3 {
 
     public static void main(String[] args) {
-//        String sourcePath = "C:\\Users\\Administrator\\Desktop\\20180507190340.amr";
-//        String targetPath = "C:\\Users\\Administrator\\Desktop\\20180507190340.mp3";
-        String sourcePath = args[0];
-        String targetPath = args[1];
+        String sourcePath = "C:\\Users\\Administrator\\Desktop\\20180508200436.amr";
+        String targetPath = "C:\\Users\\Administrator\\Desktop\\20180508200436.mp3";
+//        String sourcePath = args[0];
+//        String targetPath = args[1];
         changeToMp3(sourcePath, targetPath);
     }
 

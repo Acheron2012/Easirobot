@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,39 +53,63 @@ public class MessageAction {
                                       @RequestParam(value = "open_id", required = true) String open_id,
                                       @RequestParam(value = "accessToken", required = true) String accessToken,
                                       @RequestParam(value = "admin", required = true) Integer admin,
-                                      @RequestParam(value = "media_id", required = true) String media_id)
+                                      @RequestParam(value = "media_id", required = true) String media_id,
+                                      @RequestParam(value = "older_name", required = true) String older_name)
             throws IOException, ServletException {
-        String url = DOWNLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("MEDIA_ID",media_id);
-        logger.info("请求下载的音频url为：{}",url);
-        //获取device_id *
-        String device_id = messageService.getOpenIdByDeviceId(open_id);
-        //通过oepn_id和deviev_id创建文件夹
-        messageService.createDirByDeviceIdAndOpenId(device_id, open_id);
-        //通过时间创建音频文件的名字
-        String audio_name = Tools.getStringByNowDatetime();
-        //下载音频文件放入文件夹
-        boolean flag = messageService.downloadAmrByDeviceAndOpenId(device_id, open_id, audio_name, url);
-        //转换音频文件为MP3
-        String sourcePath = ROOT_PATH + "/" + "amr" + "/" + device_id + "/" + open_id + "/" +
-                audio_name + ".amr";
-        String targetPath = ROOT_PATH + "/" + "amr" + "/" + device_id + "/" + open_id + "/" +
-                audio_name + ".mp3";
-        ChangeAmrToMp3.changeToMp3(sourcePath, targetPath);
-        //更新数据库状态
-        MessageBean messageBean = new MessageBean();
-        messageBean.setDevice_id(device_id);
-        messageBean.setOpen_id(open_id);
-        messageBean.setAudio_status(0);
-        messageBean.setAudio_name(audio_name);
-        messageBean.setIs_admin(admin);
-        messageBean.setAudio_time(Tools.getDateByISOString(audio_name));
-        int insertFlag = messageService.insertAudio(messageBean);
-        logger.info("音频插入状态：{}", insertFlag);
-        //推送消息
-        String request_url = AUDIO_URL + "?device_id=" + device_id + "&open_id=" + open_id +
-                "&audio_name=" + audio_name;
-        ChatbotPush.testSendPushWithCustomConfig(device_id, request_url, 7);
-        logger.info("消息已推送：{}", request_url);
+        String url = DOWNLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("MEDIA_ID", media_id);
+        logger.info("请求下载的音频url为：{}", url);
+        List<String> device_ids = new ArrayList<String>();
+        //判断是否是管理员
+        if (admin == 1) {
+            //是否是群发
+            if("全部".equals(older_name.trim())) {
+                //查询该管理员下所有的device_id
+                device_ids = messageService.getDeviceIdsByAdminOpenId(open_id);
+            } else {
+                //根据admin_id和old_name确定发送的device_id
+                device_ids = messageService.getDeviceIdsByAdminOpenIdAndOldName(open_id,older_name);
+                //未搜索到该名字，不做操作
+                if(device_ids == null) {
+                    return null;
+                }
+            }
+        } else {
+            //在子女列表内获取device_id *
+            String device_id = messageService.getDeviceIdByChildOpenId(open_id);
+            device_ids.add(device_id);
+        }
+        logger.info("device长度为:{},是否是管理员：{},发送给:{}", device_ids.size(), admin,older_name);
+        for (String device_id : device_ids) {
+            //通过oepn_id和deviev_id创建文件夹
+            messageService.createDirByDeviceIdAndOpenId(device_id, open_id);
+            //通过时间创建音频文件的名字
+            String audio_name = Tools.getStringByNowDatetime();
+            //下载音频文件放入文件夹
+            boolean flag = messageService.downloadAmrByDeviceAndOpenId(device_id, open_id, audio_name, url);
+            logger.info("下载完成");
+            //转换音频文件为MP3
+            String sourcePath = ROOT_PATH + "/" + "amr" + "/" + device_id + "/" + open_id + "/" +
+                    audio_name + ".amr";
+            String targetPath = ROOT_PATH + "/" + "mp3" + "/" + device_id + "/" + open_id + "/" +
+                    audio_name + ".mp3";
+            ChangeAmrToMp3.changeToMp3(sourcePath, targetPath);
+            logger.info("转换为mp3完成");
+            //更新数据库状态
+            MessageBean messageBean = new MessageBean();
+            messageBean.setDevice_id(device_id);
+            messageBean.setOpen_id(open_id);
+            messageBean.setAudio_status(0);
+            messageBean.setAudio_name(audio_name);
+            messageBean.setIs_admin(admin);
+            messageBean.setAudio_time(Tools.getDateByISOString(audio_name));
+            int insertFlag = messageService.insertAudio(messageBean);
+            logger.info("音频插入状态：{}", insertFlag);
+            //推送消息
+            String request_url = AUDIO_URL + "?device_id=" + device_id + "&open_id=" + open_id +
+                    "&audio_name=" + audio_name + "&admin=" + admin;
+            ChatbotPush.testSendPushWithCustomConfig(device_id, request_url, 7);
+            logger.info("消息已推送：{}", request_url);
+        }
         return null;
     }
 
@@ -92,7 +117,8 @@ public class MessageAction {
     public void downloadConfirmMessage(HttpServletRequest request, HttpServletResponse response,
                                        @RequestParam(value = "device_id", required = true) String device_id,
                                        @RequestParam(value = "open_id", required = true) String open_id,
-                                       @RequestParam(value = "audio_name", required = true) String audio_name)
+                                       @RequestParam(value = "audio_name", required = true) String audio_name,
+                                       @RequestParam(value = "admin", required = false) Integer admin)
             throws IOException, ServletException {
         messageService.updateAudio(device_id, open_id, audio_name);
         String voiceResult = "语音消息已确认";
@@ -120,9 +146,9 @@ public class MessageAction {
             JSONArray jsonArray = new JSONArray();
             for (MessageBean messageBean : fileNames) {
                 JSONObject jsonMessage = new JSONObject();
-                jsonMessage.put("device_id",messageBean.getDevice_id());
+                jsonMessage.put("device_id", messageBean.getDevice_id());
                 jsonMessage.put("open_id", messageBean.getOpen_id());
-                jsonMessage.put("audio_name",messageBean.getAudio_name());
+                jsonMessage.put("audio_name", messageBean.getAudio_name());
                 jsonMessage.put("time", Tools.getStringWithChineseByISODate(messageBean.getAudio_time()));
                 jsonMessage.put("url", AUDIO_URL + "?device_id=" + messageBean.getDevice_id() + "&open_id=" + messageBean.getOpen_id() +
                         "&audio_name=" + messageBean.getAudio_name());
@@ -143,7 +169,9 @@ public class MessageAction {
     public void downloadGetAudio(HttpServletRequest request, HttpServletResponse response,
                                  @RequestParam(value = "device_id", required = true) String device_id,
                                  @RequestParam(value = "open_id", required = true) String open_id,
-                                 @RequestParam(value = "audio_name", required = true) String audio_name)
+                                 @RequestParam(value = "audio_name", required = true) String audio_name,
+                                 @RequestParam(value = "admin", required = false) Integer admin
+    )
             throws IOException, ServletException {
         String filePath = ROOT_PATH + "/mp3/" + device_id + "/" + open_id + "/" + audio_name + ".mp3";
         InputStream inputStream = new FileInputStream(filePath);

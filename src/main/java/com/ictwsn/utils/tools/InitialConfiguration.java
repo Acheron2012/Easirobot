@@ -1,5 +1,7 @@
 package com.ictwsn.utils.tools;
 
+import com.ictwsn.rob.provider.utils.ProviderOperation;
+import net.sf.json.JSONObject;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -13,11 +15,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 
-public class InitialConfiguration implements ApplicationListener<ContextRefreshedEvent> {
+public class InitialConfiguration extends BaseDao implements ApplicationListener<ContextRefreshedEvent> {
     // ContextRefreshedEvent为初始化完毕事件，spring还有很多事件可以利用
 
     public static Logger logger = LoggerFactory.getLogger(InitialConfiguration.class);
 
+    @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
 
         //获取目录创建语音池
@@ -66,6 +69,17 @@ public class InitialConfiguration implements ApplicationListener<ContextRefreshe
         }
 
         logger.info("语音文件夹创建完毕！");
+
+
+        //登录援通服务器
+        String loginCode = ProviderOperation.loginProvider();
+        logger.info("loginCode:{}",loginCode);
+
+        //获取登录密码，并存储至redis中
+        JSONObject loginObject = JSONObject.fromObject(loginCode);
+        String vcode = loginObject.getString("vcode");
+
+        this.redisTemplate.opsForValue().set("vcode",vcode);
 
         logger.info("spring容器初始化完毕================================================");
     }

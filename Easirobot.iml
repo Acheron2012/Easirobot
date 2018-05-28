@@ -117,9 +117,9 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: com.ictwsn:jave:1.0.2">
+      <library name="Maven: com.ictwsn:jave:1.0.3">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jave-1.0.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jave-1.0.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
