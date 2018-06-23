@@ -56,7 +56,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
      		if (user_key == null || user_key.equals("")) {
      			// 若不为API请求，判断是否存在Session（即是否已登录)
      			HttpSession session = request.getSession(true);
-     			UserBean userBean = (UserBean) session.getAttribute("userlogin");
+     			UserSimpleBean userBean = (UserSimpleBean) session.getAttribute("userlogin");
      			logger.info("用户登录状态：{}", userBean);
      			if (userBean != null) {
      				// 用户已经登录

@@ -1,13 +1,12 @@
 package com.ictwsn;
 
-import com.hankcs.hanlp.seg.Viterbi.ViterbiSegment;
-import com.hankcs.hanlp.seg.common.Term;
 import com.ictwsn.rob.schedule.UpdateCronTask;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.*;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class WelcomeAction {
@@ -18,6 +17,14 @@ public class WelcomeAction {
 			System.out.println("测试页面");
 			return "index";
 	}
+
+//	json格式接收
+//	@RequestMapping(value = "/addObj",method= RequestMethod.POST)
+//	@ResponseBody
+//	public String addObj(@RequestBody JSONObject jsonObject) {
+//		System.out.println(jsonObject.toString());
+//		return null;
+//	}
 
 	//欢迎界面（测试）
 	@RequestMapping("/test.do")

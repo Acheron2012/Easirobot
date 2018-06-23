@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2018-05-24.
@@ -28,6 +29,7 @@ public class ProviderOperation {
 	private static final String GET_USER_MESSAGE = "http://api2.ytone.com.cn/api/ytone.ashx?cmd=20200";
 	private static final String IS_ACCESS = "http://api2.ytone.com.cn/api/ytone.ashx?cmd=20001";
 	private static final String GET_RESULT = "http://api2.ytone.com.cn/api/ytone.ashx?cmd=30001";
+	private static final String PUSH_PHY = "http://api.ytone.com.cn/lexin/health.ashx";
 
 	public static void main(String[] args) {
 //		System.out.println(loginProvider());
@@ -68,8 +70,86 @@ public class ProviderOperation {
 		System.out.println(jsonObject.toString());
 		return postMethod(CALL, jsonObject.toString());
 	}
+
+	public static String childUpdate(String vcode ,String device_id, OldBean oldBean,ChildBean childBean) {
+		long id = oldBean.getUser_service_id();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("vcode", vcode);
+		String timespace = Tools.getStringByNowDatetime();
+		jsonObject.put("timespace", timespace);
+		jsonObject.put("account", ACCOUNT);
+		// 相关联系人
+		JSONArray userRelateds = new JSONArray();
+		JSONObject relatedObject = new JSONObject();
+		relatedObject.put("name", childBean.getChild_name());
+		relatedObject.put("user_id", id);
+		relatedObject.put("id", 0);
+		relatedObject.put("addr", childBean.getChild_address());
+		relatedObject.put("age", 80);
+		relatedObject.put("birthday", "");
+		relatedObject.put("distance", "");
+		relatedObject.put("gender", 0);
+		relatedObject.put("is_emergency_contact", 1);
+		relatedObject.put("is_online_hall", 0);
+		relatedObject.put("is_sms", 1);
+		relatedObject.put("location", "");
+		relatedObject.put("mobile", String.valueOf(childBean.getChild_phone()));
+		relatedObject.put("tel", "");
+		relatedObject.put("passwd", "");
+		//relationship为2表示关系为子女
+		relatedObject.put("relationship", 2);
+		relatedObject.put("spare_key", 0);
+		relatedObject.put("spare_key_explain", "");
+		userRelateds.add(relatedObject);
+		jsonObject.put("userRelateds", userRelateds);
+		// 用户信息
+		JSONObject users = new JSONObject();
+		users.put("id",id);
+		users.put("addr", oldBean.getUser_address());
+		users.put("age", oldBean.getUser_age());
+		// 所在城区
+		users.put("area", oldBean.getUser_area());
+		users.put("birthday", "");
+		users.put("blood", "");
+		users.put("body_weight", oldBean.getUser_weight());
+		users.put("call_phone", oldBean.getUser_phone());
+		users.put("city", oldBean.getUser_city());
+		users.put("community", "");
+		users.put("device_class", "机器人");
+		users.put("device_type", "援通移动型");
+		users.put("deviceno", device_id);
+		users.put("disease_history", "");
+		users.put("drug_allergy", "");
+		users.put("economic_conditions", "");
+		users.put("educational_background", "");
+		users.put("first_aid_nav", "");
+		users.put("gender", oldBean.getUser_sex());
+		users.put("health", "");
+		users.put("height", oldBean.getUser_height());
+		users.put("hometown", "");
+		String identity_card_number = oldBean.getIdentity_card();
+		users.put("identity_card_number", identity_card_number);
+		users.put("is_help_age", 0);
+		users.put("is_medicare", 0);
+		users.put("is_nursing_care", 0);
+		users.put("job", "");
+		users.put("map_marker", "");
+		users.put("medicare_card_number", "");
+		users.put("memo", "");
+		String name = oldBean.getUser_name();
+		users.put("name", name);
+		users.put("province", oldBean.getUser_province());
+		users.put("street", oldBean.getUser_street());
+		users.put("work_unit", "");
+		users.put("group_id", 0);
+		jsonObject.put("users", users);
+		String signature = YTUtil.MD5(ACCOUNT + id + name + identity_card_number + timespace + vcode + KEY);
+		jsonObject.put("signature", signature);
+		logger.info(jsonObject.toString());
+		return postMethod(USER_UPDATE, jsonObject.toString());
+	}
 	
-	public static String userUpdate(String vcode ,OldBean oldBean) {
+	public static String userUpdate(String vcode ,String device_id, OldBean oldBean) {
 		long id = oldBean.getUser_service_id();
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("vcode", vcode);
@@ -112,9 +192,9 @@ public class ProviderOperation {
 		users.put("call_phone", oldBean.getUser_phone());
 		users.put("city", oldBean.getUser_city());
 		users.put("community", "");
-		users.put("device_class", "援通机器人");
+		users.put("device_class", "机器人");
 		users.put("device_type", "援通移动型");
-		users.put("deviceno", id);
+		users.put("deviceno", device_id);
 		users.put("disease_history", "");
 		users.put("drug_allergy", "");
 		users.put("economic_conditions", "");
@@ -235,6 +315,28 @@ public class ProviderOperation {
 		System.out.println(jsonObject.toString());
 //		return null;
 		return postMethod(GET_USER_MESSAGE, jsonObject.toString());
+	}
+
+	public static String pushPhysiology(long user_service_id,String device_id, PhyBean phyBean) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("dataType","BP");
+		JSONObject dataObject = new JSONObject();
+		dataObject.put("userId",user_service_id);
+		dataObject.put("deviceId","b208053808fd");
+		dataObject.put("sn",device_id);
+		dataObject.put("userNo",1);
+		Date date = Tools.getISODateByHourAndMinute(phyBean.getTime());
+		dataObject.put("measurementDate",date.getTime());
+		dataObject.put("systolicPressure",phyBean.getBlood_high());
+		dataObject.put("diastolicPressure",phyBean.getBlood_low());
+		dataObject.put("heartRate",phyBean.getHr());
+		dataObject.put("temperature","");
+		dataObject.put("irregularHeartbeat",false);
+		dataObject.put("movementError",false);
+		dataObject.put("rfid","");
+		jsonObject.put("data",dataObject);
+		System.out.println(jsonObject.toString());
+		return postMethod(PUSH_PHY, jsonObject.toString());
 	}
 
 	public static String loginProvider() {

@@ -3,20 +3,18 @@ package com.ictwsn.rob.beacon.action;
 
 import com.hankcs.hanlp.suggest.Suggester;
 import com.ictwsn.rob.beacon.bean.BeaconBean;
-import com.ictwsn.rob.beacon.bean.UserBean;
+import com.ictwsn.rob.beacon.bean.UserSimpleBean;
 import com.ictwsn.rob.beacon.service.BeaconService;
 import com.ictwsn.rob.beacon.tool.BeaconTool;
 import com.ictwsn.rob.voice.action.VoiceAction;
 import com.ictwsn.utils.hanlp.HanLPUtil;
 import com.ictwsn.utils.library.Library;
 import com.ictwsn.utils.poetry.Poetry;
-import com.ictwsn.utils.speech.TextToSpeech;
 import com.ictwsn.utils.tools.ActionTool;
 import com.ictwsn.utils.tools.Tools;
 import com.ictwsn.utils.turing.TuringAPI;
 import com.ictwsn.utils.weather.Suggestion;
 import net.sf.json.JSONObject;
-import org.omg.PortableInterceptor.ACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -195,7 +193,7 @@ public class BeaconAction {
                 System.out.println("不为同一天");
 
                 //获取用户的姓名及所在城市
-                UserBean userBean = beaconService.getUserBeanByDeviceId(device_id);
+                UserSimpleBean userBean = beaconService.getUserBeanByDeviceId(device_id);
                 String user_name = userBean.getUser_name();
                 String user_city = userBean.getUser_city();
                 logger.info("user_name:{},user_city:{}", user_name, user_city);

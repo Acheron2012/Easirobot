@@ -2,6 +2,8 @@ package com.ictwsn.rob.distribute.action;
 
 import com.ictwsn.rob.distribute.bean.DistributeBean;
 import com.ictwsn.rob.distribute.service.DistributeService;
+import com.ictwsn.rob.voice.action.VoiceAction;
+import com.ictwsn.utils.tools.ActionTool;
 import com.ictwsn.utils.tools.HttpUtil;
 import com.ictwsn.utils.tools.Tools;
 import net.sf.json.JSONObject;
@@ -29,6 +31,8 @@ import java.util.Date;
 public class DistributeAction {
 
     public static Logger logger = LoggerFactory.getLogger(DistributeAction.class);
+    // Mac地址错误 502
+    public static final int MAC_ERROR = 502;
 
     @Resource
     DistributeService distributeService;
@@ -40,6 +44,11 @@ public class DistributeAction {
 
         String device_id = "";
         logger.info("MAC:{}", MAC);
+        if(MAC==null||"".equals(MAC)) {
+            logger.info("网络不好，MAC地址为空");
+            ActionTool.responseToJSON(response, "mac error", MAC_ERROR);
+            return;
+        }
         /** 查找该MAC对应的device_id */
         device_id = distributeService.getDeviceIdByMac(MAC);
         /** 若未查找到MAC对应的device_id，则进行分配 */
@@ -82,6 +91,7 @@ public class DistributeAction {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code", VoiceAction.ACCESS);
         jsonObject.put("MAC",MAC);
         jsonObject.put("device_id",device_id);
         Tools.responseToJSON(response, jsonObject.toString());

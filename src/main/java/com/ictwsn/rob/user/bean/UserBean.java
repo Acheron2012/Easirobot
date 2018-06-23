@@ -1,26 +1,46 @@
-package com.ictwsn.rob.provider.utils;
+package com.ictwsn.rob.user.bean;
 
-public class OldBean {
-    private Integer user_id;
+/**
+ * Created by Administrator on 2018-06-20.
+ */
+public class UserBean {
+    private int user_id;
     private String user_name;
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    private String user_password;
     private int user_sex;
     private int user_weight;
+
+    @Override
+    public String toString() {
+        return "UserSimpleBean{" +
+                "user_id=" + user_id +
+                ", user_name='" + user_name + '\'' +
+                ", user_sex=" + user_sex +
+                ", user_weight=" + user_weight +
+                ", user_height=" + user_height +
+                ", user_age=" + user_age +
+                ", user_phone='" + user_phone + '\'' +
+                ", identity_card='" + identity_card + '\'' +
+                ", user_province='" + user_province + '\'' +
+                ", user_city='" + user_city + '\'' +
+                ", user_area='" + user_area + '\'' +
+                ", user_street='" + user_street + '\'' +
+                ", user_address='" + user_address + '\'' +
+                '}';
+    }
+
     private int user_height;
     private int user_age;
     private String user_phone;
-    private String user_address;
+    private String identity_card;
+    private String user_province;
 
+    public int getUser_id() {
+        return user_id;
+    }
 
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -28,14 +48,6 @@ public class OldBean {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
-    }
-
-    public String getUser_password() {
-        return user_password;
-    }
-
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
     }
 
     public int getUser_sex() {
@@ -78,12 +90,12 @@ public class OldBean {
         this.user_phone = user_phone;
     }
 
-    public String getUser_address() {
-        return user_address;
+    public String getIdentity_card() {
+        return identity_card;
     }
 
-    public void setUser_address(String user_address) {
-        this.user_address = user_address;
+    public void setIdentity_card(String identity_card) {
+        this.identity_card = identity_card;
     }
 
     public String getUser_province() {
@@ -92,14 +104,6 @@ public class OldBean {
 
     public void setUser_province(String user_province) {
         this.user_province = user_province;
-    }
-
-    public String getIdentity_card() {
-        return identity_card;
-    }
-
-    public void setIdentity_card(String identity_card) {
-        this.identity_card = identity_card;
     }
 
     public String getUser_city() {
@@ -126,37 +130,17 @@ public class OldBean {
         this.user_street = user_street;
     }
 
-    public long getUser_service_id() {
-        return user_service_id;
+    public String getUser_address() {
+        return user_address;
     }
 
-    public void setUser_service_id(long user_service_id) {
-        this.user_service_id = user_service_id;
+    public void setUser_address(String user_address) {
+        this.user_address = user_address;
     }
 
-    public String getLast_answer() {
-        return last_answer;
-    }
-
-    public void setLast_answer(String last_answer) {
-        this.last_answer = last_answer;
-    }
-
-    private String user_province;
-    private String identity_card;
     private String user_city;
     private String user_area;
-
-    public String getService_status() {
-        return service_status;
-    }
-
-    public void setService_status(String service_status) {
-        this.service_status = service_status;
-    }
-
     private String user_street;
-    private long user_service_id = 0;
-    private String service_status;
-    private String last_answer;
+    private String user_address;
+
 }

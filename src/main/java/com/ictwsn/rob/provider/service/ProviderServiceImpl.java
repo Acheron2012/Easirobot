@@ -1,6 +1,7 @@
 package com.ictwsn.rob.provider.service;
 
 import com.ictwsn.rob.provider.dao.ProviderDao;
+import com.ictwsn.rob.provider.utils.ChildBean;
 import com.ictwsn.rob.provider.utils.OldBean;
 import com.ictwsn.utils.tools.BaseDao;
 import org.slf4j.Logger;
@@ -33,4 +34,31 @@ public class ProviderServiceImpl extends BaseDao implements ProviderService{
     public String getUserPhoneByDeviceId(String device_id) {
         return this.sqlSessionTemplate.getMapper(ProviderDao.class).getUserPhoneByDeviceId(device_id);
     }
+
+    @Override
+    public int updateServiceStatusByUserId(int user_id, String service_status) {
+        return this.sqlSessionTemplate.getMapper(ProviderDao.class).updateServiceStatusByUserId(user_id,service_status);
+}
+
+    @Override
+    public int updateServiceStatusByDeviceId(String device_id, String service_status) {
+        return this.sqlSessionTemplate.getMapper(ProviderDao.class).updateServiceStatusByDeviceId(device_id,service_status);
+    }
+
+    @Override
+    public String getDeviceIdByUserId(int user_id) {
+        return this.sqlSessionTemplate.getMapper(ProviderDao.class).getDeviceIdByUserId(user_id);
+    }
+
+    @Override
+    public OldBean getUserByOpenId(String open_id) {
+        return this.sqlSessionTemplate.getMapper(ProviderDao.class).getUserByOpenId(open_id);
+    }
+
+    @Override
+    public ChildBean getChildByOpenId(String open_id) {
+        return this.sqlSessionTemplate.getMapper(ProviderDao.class).getChildByOpenId(open_id);
+    }
+
+
 }

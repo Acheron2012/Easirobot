@@ -78,6 +78,21 @@ public class UserBean {
         this.last_answer = last_answer;
     }
 
+    @Override
+    public String toString() {
+        return "UserSimpleBean{" +
+                "user_id=" + user_id +
+                ", user_name='" + user_name + '\'' +
+                ", user_password='" + user_password + '\'' +
+                ", user_sex=" + user_sex +
+                ", user_age=" + user_age +
+                ", user_phone='" + user_phone + '\'' +
+                ", user_address='" + user_address + '\'' +
+                ", user_city='" + user_city + '\'' +
+                ", last_answer='" + last_answer + '\'' +
+                '}';
+    }
+
     public void setUser_city(String user_city) {
 
         this.user_city = user_city;

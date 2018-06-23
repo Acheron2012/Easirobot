@@ -20,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("restriction")
 public class Tools {
@@ -394,12 +396,38 @@ public class Tools {
         return sdf.format(date);
     }
 
+    //获取日时分
+    public static String getDayHourMinuteByISODate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd日HH时mm分");
+        return sdf.format(date);
+    }
+
+    public static Date getISODateByHourAndMinute(String ISOString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            return sdf.parse(ISOString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
-        String s = getStringByNowDatetime();
-        System.out.println(s);
-        Date d =  getDateByISOString(s);
-        System.out.println(getStringWithChineseByISODate(d));
+        String text = "讲个故事";
+        System.out.println("想要听个故事".matches("((.*?)((想要听|想听|要听|播放|播|放)|((来|讲|说|念|读|播|放)){1})(个)*)(经济|政治|哲学|历史|文化|三农|教育|生态|军事|安全|故事)(.*)"));
+
+        Pattern pattern = Pattern.compile("((.*?)((想要听|想听|要听|播放|播|放)|((来|讲|说|念|读|播|放)){1})(个)*)(经济|政治|哲学|历史|文化|三农|教育|生态|军事|安全|故事)(.*)");
+        Matcher matcher = pattern.matcher("给我来个三农内容");
+        if(matcher.find()) {
+            System.out.println(matcher.group(8));
+        }
+
+//        System.out.println(getDayHourMinuteByISODate(new Date()));
+//        String s = getStringByNowDatetime();
+//        System.out.println(s);
+//        Date d =  getDateByISOString(s);
+//        System.out.println(getStringWithChineseByISODate(d));
     }
 
 }

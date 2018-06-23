@@ -356,6 +356,40 @@ public class ChatbotPush {
                 .build();
     }
 
+    public static boolean testSendPushWithPhysiology(String device_id, String pushIdAndjsonObject) {
+        ClientConfig config = ClientConfig.getInstance();
+        // Setup the custom hostname
+        config.setPushHostName("https://api.jpush.cn");
+
+        JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, config);
+        ALIAS = device_id;
+
+        MSG_CONTENT = pushIdAndjsonObject;
+
+        System.out.println("MSG_CONTENT:"+MSG_CONTENT);
+
+        // For push, all you need do is to build PushPayload object.
+        PushPayload payload = buildPushObject_android_and_ios();
+
+        try {
+            PushResult result = jpushClient.sendPush(payload);
+            LOG.info("Got result - " + result);
+            JSONObject jsonResult = JSONObject.fromObject(result.toString());
+            if (jsonResult.getInt("statusCode") == 0) {return true;}
+        } catch (APIConnectionException e) {
+            LOG.error("Connection error. Should retry later. ", e);
+
+        } catch (APIRequestException e) {
+            LOG.error("Error response from JPush server. Should review and fix it. ", e);
+            LOG.info("HTTP Status: " + e.getStatus());
+            LOG.info("Error Code: " + e.getErrorCode());
+            LOG.info("Error Message: " + e.getErrorMessage());
+            LOG.info("Msg ID: " + e.getMsgId());
+        }
+        return false;
+    }
+
+
     public static boolean testSendPushWithCustomConfig(String device_id, String request_url,int push_id) {
         ClientConfig config = ClientConfig.getInstance();
         // Setup the custom hostname

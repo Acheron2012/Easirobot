@@ -1,7 +1,7 @@
 package com.ictwsn.rob.beacon.service;
 
 import com.ictwsn.rob.beacon.bean.BeaconBean;
-import com.ictwsn.rob.beacon.bean.UserBean;
+import com.ictwsn.rob.beacon.bean.UserSimpleBean;
 import com.ictwsn.rob.beacon.dao.BeaconDao;
 import com.ictwsn.utils.tools.BaseDao;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class BeaconServiceImpl extends BaseDao implements BeaconService {
         return this.sqlSessionTemplate.getMapper(BeaconDao.class).updateUserBeacon(beaconBean);
     }
 
-    public UserBean getUserBeanByDeviceId(String device_id) {
+    public UserSimpleBean getUserBeanByDeviceId(String device_id) {
         return this.sqlSessionTemplate.getMapper(BeaconDao.class).getUserBeanByDeviceId(device_id);
     }
 }

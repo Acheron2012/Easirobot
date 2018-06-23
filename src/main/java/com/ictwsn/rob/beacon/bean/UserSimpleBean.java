@@ -3,7 +3,7 @@ package com.ictwsn.rob.beacon.bean;
 /**
  * Created by Administrator on 2017-10-25.
  */
-public class UserBean {
+public class UserSimpleBean {
     private int user_id;
     private String user_name;
     private String user_password;

@@ -130,7 +130,7 @@ public class VoiceAction {
 
     @RequestMapping(value = "/repeat")
     public void voiceRepeat(HttpServletRequest request, HttpServletResponse response,
-                              @RequestParam(value = "deviceID", required = true) String deviceID) throws ServletException, IOException {
+                            @RequestParam(value = "deviceID", required = true) String deviceID) throws ServletException, IOException {
         String voiceResult = voiceService.getUserByDeviceID(deviceID).getLast_answer();
         System.out.println("voice---------:" + voiceResult);
         //返回文字到客户端
@@ -143,7 +143,7 @@ public class VoiceAction {
         flowStatisticService.updateStatistic(voiceResult.getBytes("UTF-8").length);
         //存储到数据库中
         logger.info("更新上一次答案影响行的状态：{}", voiceService.SaveUserLastAnswerByDeviceID(deviceID, voiceResult));
-        logger.info("重复播放完成:{}",deviceID);
+        logger.info("重复播放完成:{}", deviceID);
     }
 
 
@@ -238,7 +238,8 @@ public class VoiceAction {
             }
             //爬取新浪新闻
         } else if (text.contains("新鲜事") || text.matches("(讲|说)*(个)*新闻")) {
-            voiceResult = SinaNews.getCurrentNews();
+//            voiceResult = SinaNews.getCurrentNews();
+            voiceResult = "";
 //        }
 //        else if (text.contains("天气")) {
 //            //接入和风天气
@@ -295,27 +296,46 @@ public class VoiceAction {
                 }
                 if (voiceResult == null) flag = false;
             } else flag = false;
-        } else if (text.contains("故事")) {
-            Pattern pattern = Pattern.compile("(讲|说)(个)*(.*?)故事");
+        }
+//        else if (text.contains("故事")) {
+//            Pattern pattern = Pattern.compile("(讲|说)(个)*(.*?)故事");
+//            Matcher matcher = pattern.matcher(text);
+//            if (matcher.find()) {
+//                //如果未查询到前面的内容，则从库里随机选择一条数据
+//                if (matcher.group(3).length() < 2) {
+//                    //接入本地故事库
+//                    voiceResult = Library.getOneDataFromLibrary("story", "content");
+//                } else {
+//                    //接入本地健康知识库
+//                    voiceResult = Library.getOneDataByCondition("story", "content",
+//                            matcher.group(3) + "故事");
+//                }
+//                if (voiceResult == null) flag = false;
+//            } else flag = false;
+//        }
+        else if (text.matches("((.*?)((想要听|想听|要听|播放|播|放)|((来|讲|说|念|读|播|放)){1})(个)*)(经济|政治|哲学|历史|文化|思想|文化思想|思想文化|三农|教育|生态|军事|安全|故事)(.*)")) {
+            Pattern pattern = Pattern.compile("((.*?)((想要听|想听|要听|播放|播|放)|((来|讲|说|念|读|播|放)){1})(个)*)(经济|政治|哲学|历史|文化|思想|文化思想|思想文化|三农|教育|生态|军事|安全|故事)(.*)");
             Matcher matcher = pattern.matcher(text);
+            String inputCategory = "";
             if (matcher.find()) {
-                //如果未查询到前面的内容，则从库里随机选择一条数据
-                if (matcher.group(3).length() < 2) {
-                    //接入本地故事库
-                    voiceResult = Library.getOneDataFromLibrary("story", "content");
-                } else {
-                    //接入本地健康知识库
-                    voiceResult = Library.getOneDataByCondition("story", "content",
-                            matcher.group(3) + "故事");
+                inputCategory = matcher.group(8);
+                if (inputCategory.contains("故事")) {
+                    String[] otherCategory = new String[]{"解放军官兵", "知识分子", "人民公仆", "工人", "农民", "纪实文学"};
+                    inputCategory = otherCategory[new Random().nextInt(otherCategory.length)];
+                } else if (inputCategory.contains("文化") || inputCategory.contains("思想") || inputCategory.contains("思想文化") || inputCategory.contains("文化思想")) {
+                    String[] otherCategory = new String[]{"文化", "红旗飘飘", "领袖风范", "高瞻远瞩", "文艺评论"};
+                    inputCategory = otherCategory[new Random().nextInt(otherCategory.length)];
                 }
-                if (voiceResult == null) flag = false;
-            } else flag = false;
-        } else if (text.contains("红色文化")) {
-            /* 随机挑选红色文化网内容进行播放 */
-            voiceResult = Library.getTwoDataField("revolution", "category", "content");
-            if (voiceResult == null) {
+                voiceResult = Library.getOneDataByConditionField("revolution", "content", "category", inputCategory);
+                voiceResult = "类别：" + inputCategory + "。" + voiceResult;
+            } else {
                 flag = false;
             }
+//            logger.info("我来到了");
+//            /* 随机挑选红色文化网内容进行播放 */
+//            if (voiceResult == null) {
+//                flag = false;
+//            }
         } else if (text.contains("歇后语")) {
             Pattern pattern = Pattern.compile("(讲|说)*(个)*(.*?)歇后语");
             Matcher matcher = pattern.matcher(text);
@@ -427,7 +447,7 @@ public class VoiceAction {
         }
 
         //最终反馈
-        if (voiceResult.equals("") || voiceResult == null) {
+        if ("".equals(voiceResult) || voiceResult == null) {
             String[] answerResult = new String[]{"您说的我不理解，小天小合还在学习当中", "小天小合还没学会这个问题呢", "虽然我听不懂，但是好高大上的样子",
                     "您的问题我正在努力的的学习当中"};
             voiceResult = answerResult[new Random().nextInt(answerResult.length)];

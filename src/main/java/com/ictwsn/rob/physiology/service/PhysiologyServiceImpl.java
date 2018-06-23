@@ -2,6 +2,7 @@ package com.ictwsn.rob.physiology.service;
 
 import com.ictwsn.rob.physiology.bean.PhysiologyBean;
 import com.ictwsn.rob.physiology.dao.PhysiologyDao;
+import com.ictwsn.rob.provider.utils.PhyBean;
 import com.ictwsn.utils.tools.BaseDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,11 @@ public class PhysiologyServiceImpl extends BaseDao implements PhysiologyService 
     @Override
     public PhysiologyBean getPhysiologyByDeviceId(String device_id) {
         return this.sqlSessionTemplate.getMapper(PhysiologyDao.class).getPhysiologyByDeviceId(device_id);
+    }
+
+    @Override
+    public PhyBean getPhyBeanByPhyId(long phy_id) {
+        return this.sqlSessionTemplate.getMapper(PhysiologyDao.class).getPhyBeanByPhyId(phy_id);
     }
 
 }

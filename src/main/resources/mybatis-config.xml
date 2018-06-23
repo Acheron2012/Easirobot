@@ -18,5 +18,6 @@
         <mapper class="com.ictwsn.rob.message.dao.MessageDao" />
         <mapper class="com.ictwsn.rob.schedule.dao.ScheduleDao" />
         <mapper class="com.ictwsn.rob.provider.dao.ProviderDao" />
+        <mapper class="com.ictwsn.rob.user.dao.UserDao" />
     </mappers>  
 </configuration>  
